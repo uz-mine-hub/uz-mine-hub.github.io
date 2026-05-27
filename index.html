@@ -1259,9 +1259,22 @@
                     </div>
                 </div>
 
-            </div>
+                <!-- Slide 5: Glowing Ores -->
+                <div class="slide" onclick="openDownloadFullScreen('glowingores','Glowing Ores','Rudalarni porlatiб ko\'rsatuvchi texture pack.','https://raw.githubusercontent.com/cheesmaster95-sketch/minecraft-sayt/main/images/glowingores.png',[{label:\'v1.20.1\',badge:\'Release\',tags:[\'1.20.1\',\'Vanilla\'],file:\'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/gloving_ores_1.20.1.zip\',date:\'Yangilandi\'},{label:\'v1.19.2\',badge:\'LTS\',tags:[\'1.19.2\',\'Vanilla\'],file:\'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/gloving_ores_1.19.2.zip\',date:\'Avvalgi versiya\'}])">
+                    <img src="https://raw.githubusercontent.com/cheesmaster95-sketch/minecraft-sayt/main/images/glowingores.png" alt="Glowing Ores" onerror="this.src='images/glovingores.png'">
+                    <div class="slide-click-hint"><i class="fa-solid fa-arrow-down"></i> Yuklab Olish</div>
+                    <div class="slide-overlay">
+                        <div class="slide-badge">Texture Pack</div>
+                        <div class="slide-name">Glowing Ores</div>
+                        <div class="slide-versions">
+                            <span class="slide-ver-tag">1.20.1</span>
+                            <span class="slide-ver-tag">1.19.2</span>
+                            <span class="slide-ver-tag">Vanilla</span>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- Arrows -->
+            </div>
             <button class="slider-arrow prev" onclick="sliderMove(-1); event.stopPropagation()"><i class="fa-solid fa-chevron-left"></i></button>
             <button class="slider-arrow next" onclick="sliderMove(1); event.stopPropagation()"><i class="fa-solid fa-chevron-right"></i></button>
 
@@ -1501,12 +1514,26 @@
                     </div>
                 </div>
 
-            </div>
-        </div>
-    </div>
+                <div class="card" data-category="texture" data-name="glowing ores texture pack" data-version="1.20.1 1.19.2" data-loader="all" data-id="glowingores">
+                    <img src="https://raw.githubusercontent.com/cheesmaster95-sketch/minecraft-sayt/main/images/glowingores.png" class="card-img" onerror="this.src='images/glovingores.png';">
+                    <div class="card-content">
+                        <h3>Glowing Ores</h3>
+                        <p>Rudalarni (ores) yorqin porlatiб ko'rsatuvchi texture pack — tungi konchilikni osonlashtiradi va o'yinni chiroyli qiladi.</p>
+                        <div class="card-stats">
+                            <span><i class="fa-solid fa-download"></i> <span class="dl-count" data-id="glowingores">1240</span></span>
+                            <span><i class="fa-solid fa-heart" style="color:#e05555"></i> <span class="like-count" data-id="glowingores">380</span></span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-like" id="like-glowingores" onclick="toggleLike('glowingores')"><i class="fa-solid fa-heart"></i> Like</button>
+                        </div>
+                        <div class="btn" onclick="openDownloadFullScreen('glowingores','Glowing Ores','Rudalarni porlatiб ko\'rsatuvchi texture pack.','https://raw.githubusercontent.com/cheesmaster95-sketch/minecraft-sayt/main/images/glowingores.png',[
+                            {label:'v1.20.1',badge:'Release',tags:['1.20.1','Vanilla'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/gloving_ores_1.20.1.zip',date:'Yangilandi'},
+                            {label:'v1.19.2',badge:'LTS',tags:['1.19.2','Vanilla'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/gloving_ores_1.19.2.zip',date:'Avvalgi versiya'}
+                        ])">Yuklab Olish</div>
+                    </div>
+                </div>
 
-    <div class="interactive-bonus">
-        <h3>Slime ustiga bosing, ball yiging va noyob AI Skinlarini sotib oling!</h3>
+            </div>, ball yiging va noyob AI Skinlarini sotib oling!</h3>
         <div class="main-slime-cube" id="gameSlime" onclick="clickSlime()">
             <div class="main-slime-mouth"></div>
         </div>
@@ -2272,6 +2299,16 @@
             img: 'images/OptiFine.webp'
         },
         {
+            id: 'glowingores', name: 'Glowing Ores', category: 'texture',
+            desc: 'Rudalarni porlatiб ko\'rsatuvchi texture pack — tungi konchilikni osonlashtiradi.',
+            versions: ['1.20.1', '1.19.2'], loader: 'Vanilla',
+            versions_detail: [
+                {label:'v1.20.1',badge:'Release',tags:['1.20.1','Vanilla'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/gloving_ores_1.20.1.zip',date:'Yangilandi'},
+                {label:'v1.19.2',badge:'LTS',tags:['1.19.2','Vanilla'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/gloving_ores_1.19.2.zip',date:'Avvalgi versiya'}
+            ],
+            img: 'https://raw.githubusercontent.com/cheesmaster95-sketch/minecraft-sayt/main/images/glowingores.png'
+        },
+        {
             id: 'manfog', name: 'The Man from the Fog', category: 'mods',
             desc: 'Horror mod. Tumanli tunlarda noma\'lum mavjudot sizi kuzatadi. Qo\'rqinchli!',
             versions: ['1.19.2'], loader: 'Forge',
@@ -2421,6 +2458,11 @@ Agar savol sayt bilan bog'liq bo'lmasa ham yordam ber, lekin saytga qaytishni es
         else if (/1\.16/.test(q)) {
             reply = '1.16.5 uchun: BSL, Complementary, Unbound, MakeUp, Mellow shaderlar + JEI, Sodium, OptiFine modlar mavjud! (Voxels va Man from the Fog bu versiyada yo\'q)';
         }
+        // Texture pack / glowing ores
+        else if (/glow|texture|ore|ruda|porlat/.test(q)) {
+            reply = 'Glowing Ores — rudalarni (ores) yorqin porlatiб ko\'rsatuvchi texture pack ✨\nTungi konchilikni osonlashtiradi va o\'yinni chiroyli qiladi!\nVersiyalar: 1.20.1, 1.19.2\nLoader: Vanilla (hech qanday mod kerak emas)';
+            openId = 'glowingores';
+        }
         // Rahmat
         else if (/rahmat|tashakkur|спасибо|thank/.test(q)) {
             reply = 'Arzimaydi! 😊 Yana savollaringiz bo\'lsa doim yordamlashaman. Yaxshi o\'yin! 🎮';
@@ -2548,7 +2590,7 @@ Agar savol sayt bilan bog'liq bo'lmasa ham yordam ber, lekin saytga qaytishni es
 <!-- ===== FEATURED SLIDER JS ===== -->
 <script>
 (function() {
-    const TOTAL = 4;
+    const TOTAL = 5;
     const AUTO_DELAY = 4500; // ms per slide
     let current = 0;
     let progressStart = null;
