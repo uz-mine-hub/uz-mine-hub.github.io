@@ -701,26 +701,120 @@
         
         .dl-fs-section-title { font-size: 1.4rem; color: #52b788; margin-bottom: 15px; font-weight: 700; text-align: left; display: flex; align-items: center; gap: 8px; }
         
-        /* Modrinth Style Versions Table/List */
-        .versions-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
+        /* Modrinth Style Versions List */
+        .versions-list { display: flex; flex-direction: column; gap: 0; margin-bottom: 30px; border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; }
         .version-row {
-            background-color: var(--version-row-bg); border: 1px solid var(--border-color);
-            border-radius: 12px; padding: 16px 24px; display: flex; justify-content: space-between;
-            align-items: center; transition: all 0.2s ease;
+            background-color: var(--version-row-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: background 0.15s ease;
         }
-        .version-row:hover { border-color: var(--accent-color); background-color: var(--version-row-hover); transform: translateX(4px); }
+        .version-row:last-child { border-bottom: none; }
+        .version-row:hover { background-color: var(--version-row-hover); }
+
+        /* Chap: R icon */
+        .ver-icon {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: var(--accent-color);
+            color: #fff; font-size: 0.9rem; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .ver-icon.release { background: #1b7a3e; }
+        .ver-icon.beta    { background: #b45309; }
+        .ver-icon.alpha   { background: #7c3aed; }
+        .ver-icon.lts     { background: #1e40af; }
+        .ver-icon.legacy  { background: #6b7280; }
+
+        /* Nom + subtitle */
+        .ver-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+        .ver-info { min-width: 0; }
+        .ver-name { font-weight: 600; font-size: 0.95rem; color: var(--text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .ver-meta { font-size: 0.78rem; color: var(--text-muted); margin-top: 1px; }
+
+        /* O'rta: version tag + loader badges */
+        .ver-middle { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+        .ver-badge {
+            padding: 3px 9px; border-radius: 4px;
+            font-size: 0.75rem; font-weight: 600;
+        }
+        .ver-badge.release { background: rgba(27,122,62,0.15); color: #1b7a3e; border: 1px solid rgba(27,122,62,0.3); }
+        .ver-badge.lts     { background: rgba(30,64,175,0.12); color: #3b82f6; border: 1px solid rgba(59,130,246,0.3); }
+        .ver-badge.legacy  { background: rgba(107,114,128,0.12); color: #9ca3af; border: 1px solid rgba(107,114,128,0.25); }
+        .ver-badge.beta    { background: rgba(180,83,9,0.12); color: #f59e0b; border: 1px solid rgba(245,158,11,0.3); }
+        .tag-v {
+            display: flex; align-items: center; gap: 4px;
+            padding: 3px 9px; border-radius: 4px;
+            font-size: 0.75rem; font-weight: 500;
+            background: var(--card-bg);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+        }
+        .tag-v i { font-size: 0.7rem; opacity: 0.7; }
+
+        /* O'ng: sana + yuklab olish soni + download icon */
+        .ver-right { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+        .ver-date { font-size: 0.78rem; color: var(--text-muted); white-space: nowrap; }
+        .ver-supported-tags { display: flex; gap: 5px; }
         
-        .ver-left { display: flex; align-items: center; gap: 15px; }
-        .ver-badge { background-color: var(--accent-color); color: #fff; padding: 4px 10px; border-radius: 6px; font-weight: bold; font-size: 0.8rem; text-transform: uppercase; }
-        .ver-name { font-weight: 600; font-size: 1.05rem; color: var(--text-color); }
-        .ver-meta { font-size: 0.85rem; color: var(--text-muted); margin-top: 2px; }
-        
-        .ver-right { display: flex; align-items: center; gap: 20px; }
-        .ver-supported-tags { display: flex; gap: 8px; }
-        .tag-v { background: rgba(82, 183, 136, 0.15); color: #52b788; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; border: 1px solid rgba(82, 183, 136, 0.3); }
-        
-        .btn-fs-download { background-color: var(--accent-color); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: background 0.2s; border: none; cursor: pointer; }
-        .btn-fs-download:hover { background-color: var(--accent-hover); box-shadow: var(--neon-glow); }
+        .btn-fs-download {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s, transform 0.1s;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            min-width: 120px;
+            justify-content: center;
+        }
+        .btn-fs-download:hover { background-color: var(--accent-hover); transform: translateY(-1px); }
+        .btn-fs-download:active { transform: scale(0.97); }
+        .btn-fs-download.downloading {
+            background-color: #2d6a4f;
+            pointer-events: none;
+        }
+        .btn-fs-download.done {
+            background-color: #1b4332;
+            pointer-events: none;
+        }
+        .btn-fs-download .dl-progress-bar {
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 0%;
+            background: rgba(255,255,255,0.18);
+            transition: width 0.05s linear;
+            border-radius: 8px;
+        }
+        .btn-fs-download .dl-btn-text {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        @keyframes dl-spin {
+            to { transform: rotate(360deg); }
+        }
+        .dl-spinner {
+            width: 14px; height: 14px;
+            border: 2px solid rgba(255,255,255,0.4);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: dl-spin 0.7s linear infinite;
+            display: inline-block;
+        }
 
         /* LIKE BUTTON ON CARD */
         .card-actions { display: flex; gap: 10px; margin-bottom: 12px; }
@@ -920,17 +1014,29 @@
             margin: 0 0 40px 0;
         }
         .featured-slider-title {
-            font-size: 1.3rem;
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+            font-size: 0.78rem;
             font-weight: 800;
-            color: var(--text-color);
-            margin-bottom: 18px;
+            color: var(--text-muted);
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            letter-spacing: 0.5px;
+            gap: 8px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
         }
         .featured-slider-title span {
-            color: #52b788;
+            color: #1bd96a;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+        }
+        .featured-slider-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
+            margin-left: 8px;
         }
         .slider-wrapper {
             position: relative;
@@ -976,31 +1082,35 @@
         .slide-overlay {
             position: absolute;
             bottom: 0; left: 0; right: 0;
-            padding: 28px 36px;
+            padding: 32px 36px 28px;
             z-index: 2;
             pointer-events: none;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
         }
         .slide-badge {
-            display: inline-block;
-            background: #52b788;
-            color: #fff;
-            font-size: 0.72rem;
-            font-weight: 800;
-            letter-spacing: 1.5px;
+            display: inline-flex;
+            align-items: center;
+            background: rgba(27,217,106,0.2);
+            border: 1px solid rgba(27,217,106,0.5);
+            color: #1bd96a;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 2px;
             text-transform: uppercase;
             padding: 4px 12px;
-            border-radius: 30px;
+            border-radius: 4px;
             margin-bottom: 10px;
-            box-shadow: 0 2px 12px rgba(82,183,136,0.5);
         }
         .slide-name {
-            font-size: 2rem;
-            font-weight: 900;
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
             color: #fff;
-            margin-bottom: 6px;
-            line-height: 1.15;
-            text-shadow: 0 2px 16px rgba(0,0,0,0.7);
-            transition: color 0.3s, text-shadow 0.3s;
+            margin-bottom: 8px;
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+            transition: color 0.3s;
         }
         .slide-versions {
             display: flex;
@@ -1010,25 +1120,19 @@
         }
         .slide { cursor: pointer; }
         .slide-ver-tag {
-            background: rgba(82,183,136,0.13);
-            border: 1px solid rgba(82,183,136,0.35);
-            color: #a8e6c5;
-            font-size: 0.8rem;
-            font-weight: 700;
-            padding: 4px 12px;
-            border-radius: 20px;
-            transition: background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.85);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 11px;
+            border-radius: 4px;
+            backdrop-filter: blur(4px);
+            transition: background 0.2s;
         }
-        /* Hover glow effect */
-        .slider-wrapper:hover .slide-name {
-            color: #7de8b8;
-            text-shadow: 0 0 20px rgba(82,183,136,0.7), 0 2px 16px rgba(0,0,0,0.7);
-        }
-        .slider-wrapper:hover .slide-ver-tag {
-            background: rgba(82,183,136,0.22);
-            border-color: rgba(82,183,136,0.7);
-            color: #52ffaa;
-            box-shadow: 0 0 10px rgba(82,183,136,0.4);
+        .slide:hover .slide-ver-tag {
+            background: rgba(255,255,255,0.18);
+            border-color: rgba(255,255,255,0.4);
         }
         /* Click hint */
         .slide-click-hint {
@@ -1226,18 +1330,13 @@
             to { opacity: 1; }
         }
         .dl-fs-desc-section { margin: 0 0 28px 0; }
-        .dl-fs-desc-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-left: 4px solid var(--accent-color);
-            border-radius: 12px;
-            padding: 20px 24px;
-        }
+        .dl-fs-desc-card { padding: 0; }
         .dl-fs-desc-card p {
-            color: var(--text-muted);
-            font-size: 0.97rem;
+            color: var(--text-color);
+            font-size: 1rem;
             line-height: 1.8;
             margin: 0;
+            white-space: pre-line;
         }
         .dl-fs-tags-list {
             display: flex;
@@ -1281,7 +1380,7 @@
 </div>
 
 <div class="navbar">
-    <div class="logo" onclick="filterCategory('all')" style="font-family:'Georgia',serif;font-size:1.25rem;font-weight:900;letter-spacing:0.5px;color:#e53935;text-shadow:1px 1px 0 #b71c1c;cursor:pointer;user-select:none;">Minecraft.uz</div>
+    <div class="logo" onclick="filterCategory('all')" style="font-family:'Montserrat','Segoe UI',sans-serif;font-size:1.35rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#1bd96a;cursor:pointer;user-select:none;">Minecraft<span style="color:#fff;font-weight:400;letter-spacing:1px;">.uz</span></div>
     <div class="nav-links">
         <span class="nav-item active" id="tab-all" onclick="filterCategory('all')">Hammasi</span>
         <span class="nav-item" id="tab-launcher" onclick="filterCategory('launcher')">Launcher</span>
@@ -1310,7 +1409,7 @@
 
     <!-- ===== FEATURED SLIDER ===== -->
     <div class="featured-slider-section">
-        <div class="featured-slider-title">🔥 <span>Featured</span> — Eng Mashhur Shaderlar & Modlar</div>
+        <div class="featured-slider-title"><span>Featured</span> Eng Mashhur Shaderlar & Modlar</div>
         <div class="slider-wrapper" id="featuredSlider">
             <div class="slider-track" id="sliderTrack">
 
@@ -1425,8 +1524,8 @@
                         <p>Minecraft olamiga bir marta bosish orqali kirish imkonini beruvchi eng barqaror va xavfsiz rasmiy boshqaruv dasturi.</p>
                         <div class="card-tags"><span class="card-tag">Launcher</span><span class="card-tag">Java Edition</span><span class="card-tag">Free</span></div>
                         <div class="card-stats">
-                            <span><i class="fa-solid fa-download"></i> <span class="dl-count" data-id="mc-launcher">28100</span></span>
-                            <span><i class="fa-solid fa-heart" style="color:#e05555"></i> <span class="like-count" data-id="mc-launcher">5410</span></span>
+                            <span><i class="fa-regular fa-eye" style="color:#9ca3af"></i> <span class="view-count" data-id="mc-launcher">028100</span></span>
+                            <span><i class="fa-regular fa-heart" id="heart-icon-mc-launcher" style="color:#e05555"></i> <span class="like-count" data-id="mc-launcher">05410</span></span>
                         </div>
                         <button class="btn-like" id="like-mc-launcher" onclick="toggleLike('mc-launcher')" style="display:none"><i class="fa-solid fa-heart"></i> Like</button>
                         <div class="btn" onclick="openDownloadFullScreen('mc-launcher','Minecraft Launcher','Minecraft olamiga bir marta bosish orqali kirish imkonini beruvchi eng barqaror va xavfsiz rasmiy boshqaruv dasturi.','images/Minecraft_Launcher.webp',[{label:'Universal',badge:'Release',tags:['Barcha Versiyalar','Java Edition'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/Minecraft_Launcher.exe',date:'Doim yangilangan'}])">Yuklab Olish</div>
@@ -1445,8 +1544,8 @@
                         <p>Yumshoq rang palitrasiga ega bo'lib, real vaqtdagi soya, bulut va suv reflekslari beradigan mashhur shader.</p>
                         <div class="card-tags"><span class="card-tag">Shader</span><span class="card-tag">OptiFine</span><span class="card-tag">Iris</span><span class="card-tag">Realistic</span></div>
                         <div class="card-stats">
-                            <span><i class="fa-solid fa-download"></i> <span class="dl-count" data-id="bsl">18200</span></span>
-                            <span><i class="fa-solid fa-heart" style="color:#e05555"></i> <span class="like-count" data-id="bsl">4980</span></span>
+                            <span><i class="fa-regular fa-eye" style="color:#9ca3af"></i> <span class="view-count" data-id="bsl">018200</span></span>
+                            <span><i class="fa-regular fa-heart" id="heart-icon-bsl" style="color:#e05555"></i> <span class="like-count" data-id="bsl">04980</span></span>
                         </div>
                         <button class="btn-like" id="like-bsl" onclick="toggleLike('bsl')" style="display:none"><i class="fa-solid fa-heart"></i> Like</button>
                         <div class="btn" onclick="openDownloadFullScreen('bsl','BSL Shaders','Premium vizual grafik shader paketi.','images/bsl.jfif',[{label:'v1.20.1',badge:'Release',tags:['1.20.1','OptiFine/Iris'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/bsl_1.20.1.zip',date:'Bugun yangilandi'},{label:'v1.19.2',badge:'LTS',tags:['1.19.2','OptiFine/Iris'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/bsl_1.19.2.zip',date:'Oxirgi hafta'},{label:'v1.16.5',badge:'Legacy',tags:['1.16.5','OptiFine'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/bsl_1.16.5.zip',date:'Eski versiya'}])">Yuklab Olish</div>
@@ -1465,8 +1564,8 @@
                         <p>Minecraft tabiiy ko'rinishini saqlab, atmosfera va soyalarni chiroyli yaxshilaydigan muvozanatli shader.</p>
                         <div class="card-tags"><span class="card-tag">Shader</span><span class="card-tag">OptiFine</span><span class="card-tag">Iris</span></div>
                         <div class="card-stats">
-                            <span><i class="fa-solid fa-download"></i> <span class="dl-count" data-id="complementary">11300</span></span>
-                            <span><i class="fa-solid fa-heart" style="color:#e05555"></i> <span class="like-count" data-id="complementary">3120</span></span>
+                            <span><i class="fa-regular fa-eye" style="color:#9ca3af"></i> <span class="view-count" data-id="complementary">011300</span></span>
+                            <span><i class="fa-regular fa-heart" id="heart-icon-complementary" style="color:#e05555"></i> <span class="like-count" data-id="complementary">03120</span></span>
                         </div>
                         <button class="btn-like" id="like-complementary" onclick="toggleLike('complementary')" style="display:none"><i class="fa-solid fa-heart"></i> Like</button>
                         <div class="btn" onclick="openDownloadFullScreen('complementary','Complementary Shaders','Klassik va silliq shaderlar.','images/complementary.png',[{label:'v1.20.1',badge:'Release',tags:['1.20.1','OptiFine/Iris'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/complementary_1.20.1.zip',date:'Bugun yangilandi'},{label:'v1.19.2',badge:'LTS',tags:['1.19.2','OptiFine/Iris'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/complementary_1.19.2.zip',date:'Oxirgi hafta'},{label:'v1.16.5',badge:'Legacy',tags:['1.16.5','OptiFine'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/complementary_1.16.5.zip',date:'Eski versiya'}])">Yuklab Olish</div>
@@ -1485,8 +1584,8 @@
                         <p>Kraft retseptlarini va buyumlar ma'lumotlarini bevosita o'yin ichida ko'rsatuvchi asosiy mod.</p>
                         <div class="card-tags"><span class="card-tag">Mod</span><span class="card-tag">Forge</span><span class="card-tag">Fabric</span><span class="card-tag">Utility</span></div>
                         <div class="card-stats">
-                            <span><i class="fa-solid fa-download"></i> <span class="dl-count" data-id="jei">9400</span></span>
-                            <span><i class="fa-solid fa-heart" style="color:#e05555"></i> <span class="like-count" data-id="jei">2760</span></span>
+                            <span><i class="fa-regular fa-eye" style="color:#9ca3af"></i> <span class="view-count" data-id="jei">09400</span></span>
+                            <span><i class="fa-regular fa-heart" id="heart-icon-jei" style="color:#e05555"></i> <span class="like-count" data-id="jei">02760</span></span>
                         </div>
                         <button class="btn-like" id="like-jei" onclick="toggleLike('jei')" style="display:none"><i class="fa-solid fa-heart"></i> Like</button>
                         <div class="btn" onclick="openDownloadFullScreen('jei','Just Enough Items (JEI)','Kraftlarni ko\'rsatuvchi asosiy mod.','images/jei.jfif',[{label:'v1.20.1',badge:'Release',tags:['1.20.1','Forge/Fabric'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/jei_1.20.1.jar',date:'Bugun yangilandi'},{label:'v1.19.2',badge:'LTS',tags:['1.19.2','Forge/Fabric'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/jei_1.19.2.jar',date:'Oxirgi hafta'},{label:'v1.16.5',badge:'Legacy',tags:['1.16.5','Forge'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/jei_1.16.5.jar',date:'Eski versiya'}])">Yuklab Olish</div>
@@ -1505,8 +1604,8 @@
                         <p>Minecraft render mexanizmini qayta yozib, FPS ni 3-5 baravar oshiradigan Fabric optimizatsiya moduli.</p>
                         <div class="card-tags"><span class="card-tag">Mod</span><span class="card-tag">Fabric</span><span class="card-tag">Performance</span><span class="card-tag">FPS Boost</span></div>
                         <div class="card-stats">
-                            <span><i class="fa-solid fa-download"></i> <span class="dl-count" data-id="sodium">7800</span></span>
-                            <span><i class="fa-solid fa-heart" style="color:#e05555"></i> <span class="like-count" data-id="sodium">2340</span></span>
+                            <span><i class="fa-regular fa-eye" style="color:#9ca3af"></i> <span class="view-count" data-id="sodium">07800</span></span>
+                            <span><i class="fa-regular fa-heart" id="heart-icon-sodium" style="color:#e05555"></i> <span class="like-count" data-id="sodium">02340</span></span>
                         </div>
                         <button class="btn-like" id="like-sodium" onclick="toggleLike('sodium')" style="display:none"><i class="fa-solid fa-heart"></i> Like</button>
                         <div class="btn" onclick="openDownloadFullScreen('sodium','Sodium','FPS oshiruvchi asosiy Fabric mod.','images/sodium.png',[{label:'v1.20.1',badge:'Release',tags:['1.20.1','Fabric'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/sodium_1.20.1.jar',date:'Bugun yangilandi'},{label:'v1.19.2',badge:'LTS',tags:['1.19.2','Fabric'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/sodium_1.19.2.jar',date:'Oxirgi hafta'},{label:'v1.16.5',badge:'Legacy',tags:['1.16.5','Fabric'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/sodium_1.16.5.jar',date:'Eski versiya'}])">Yuklab Olish</div>
@@ -1525,8 +1624,8 @@
                         <p>Grafikani batafsil sozlash, HD tekstura va shaderlar yoqishni ta'minlovchi eng mashhur Minecraft moduli.</p>
                         <div class="card-tags"><span class="card-tag">Mod</span><span class="card-tag">Optimization</span><span class="card-tag">Shader Support</span></div>
                         <div class="card-stats">
-                            <span><i class="fa-solid fa-download"></i> <span class="dl-count" data-id="optifine">15400</span></span>
-                            <span><i class="fa-solid fa-heart" style="color:#e05555"></i> <span class="like-count" data-id="optifine">4120</span></span>
+                            <span><i class="fa-regular fa-eye" style="color:#9ca3af"></i> <span class="view-count" data-id="optifine">015400</span></span>
+                            <span><i class="fa-regular fa-heart" id="heart-icon-optifine" style="color:#e05555"></i> <span class="like-count" data-id="optifine">04120</span></span>
                         </div>
                         <button class="btn-like" id="like-optifine" onclick="toggleLike('optifine')" style="display:none"><i class="fa-solid fa-heart"></i> Like</button>
                         <div class="btn" onclick="openDownloadFullScreen('optifine','OptiFine','Grafika va shader optimizator mod.','images/OptiFine.webp',[{label:'v1.20.1 HD U I6',badge:'Release',tags:['1.20.1','Standalone'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/OptiFine_1.20.1_HD_U_I6.jar',date:'Bugun yangilandi'},{label:'v1.19.2 HD U H9',badge:'LTS',tags:['1.19.2','Standalone'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/OptiFine_1.19.2_HD_U_H9.jar',date:'Oxirgi hafta'},{label:'v1.16.5 HD U G7',badge:'Legacy',tags:['1.16.5','Standalone'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/OptiFine_1.16.5_HD_U_G7.jar',date:'Eski versiya'}])">Yuklab Olish</div>
@@ -1545,8 +1644,8 @@
                         <p>FPS ni pasaytirmasdan tezkor va barqaror ishlovchi, zaif kompyuterlar uchun ideal shader.</p>
                         <div class="card-tags"><span class="card-tag">Shader</span><span class="card-tag">Lightweight</span><span class="card-tag">FPS Friendly</span></div>
                         <div class="card-stats">
-                            <span><i class="fa-solid fa-download"></i> <span class="dl-count" data-id="makeup">22300</span></span>
-                            <span><i class="fa-solid fa-heart" style="color:#e05555"></i> <span class="like-count" data-id="makeup">6190</span></span>
+                            <span><i class="fa-regular fa-eye" style="color:#9ca3af"></i> <span class="view-count" data-id="makeup">022300</span></span>
+                            <span><i class="fa-regular fa-heart" id="heart-icon-makeup" style="color:#e05555"></i> <span class="like-count" data-id="makeup">06190</span></span>
                         </div>
                         <button class="btn-like" id="like-makeup" onclick="toggleLike('makeup')" style="display:none"><i class="fa-solid fa-heart"></i> Like</button>
                         <div class="btn" onclick="openDownloadFullScreen('makeup','MakeUp - Ultra Fast','FPS doʻstona shader.','images/makeup.webp',[{label:'v1.20.1',badge:'Release',tags:['1.20.1','OptiFine/Iris'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/make_up_ultra_fast_1.20.1.zip',date:'Bugun yangilandi'},{label:'v1.19.2',badge:'LTS',tags:['1.19.2','OptiFine/Iris'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/make_up_ultra_fast_1.19.2.zip',date:'Oxirgi hafta'},{label:'v1.16.5',badge:'Legacy',tags:['1.16.5','OptiFine'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/make_up_ultra_fast_1.16.5.zip',date:'Eski versiya'}])">Yuklab Olish</div>
@@ -1565,8 +1664,8 @@
                         <p>Ko'zni toliqtirmaydigan pastel rangli, kuchsiz kompyuterlar uchun yengil va chiroyli shader.</p>
                         <div class="card-tags"><span class="card-tag">Shader</span><span class="card-tag">Pastel</span><span class="card-tag">Lightweight</span></div>
                         <div class="card-stats">
-                            <span><i class="fa-solid fa-download"></i> <span class="dl-count" data-id="mellow">4110</span></span>
-                            <span><i class="fa-solid fa-heart" style="color:#e05555"></i> <span class="like-count" data-id="mellow">980</span></span>
+                            <span><i class="fa-regular fa-eye" style="color:#9ca3af"></i> <span class="view-count" data-id="mellow">04110</span></span>
+                            <span><i class="fa-regular fa-heart" id="heart-icon-mellow" style="color:#e05555"></i> <span class="like-count" data-id="mellow">0980</span></span>
                         </div>
                         <button class="btn-like" id="like-mellow" onclick="toggleLike('mellow')" style="display:none"><i class="fa-solid fa-heart"></i> Like</button>
                         <div class="btn" onclick="openDownloadFullScreen('mellow','Mellow Shaders','Mayin shader pack.','images/mellow.png',[{label:'v1.20.1',badge:'Release',tags:['1.20.1','OptiFine/Iris'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/mellow_1.20.1.zip',date:'Bugun yangilandi'},{label:'v1.19.2',badge:'LTS',tags:['1.19.2','OptiFine/Iris'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/mellow_1.19.2.zip',date:'Oxirgi hafta'},{label:'v1.16.5',badge:'Legacy',tags:['1.16.5','OptiFine'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/mellow_1.16.5.zip',date:'Eski versiya'}])">Yuklab Olish</div>
@@ -1585,8 +1684,8 @@
                         <p>Tumanli tunlarda noma'lum mavjudot sizni kuzatadi — yolg'iz o'ynash uchun mo'ljallangan horror mod.</p>
                         <div class="card-tags"><span class="card-tag">Mod</span><span class="card-tag">Horror</span><span class="card-tag">Forge</span></div>
                         <div class="card-stats">
-                            <span><i class="fa-solid fa-download"></i> <span class="dl-count" data-id="manfog">3200</span></span>
-                            <span><i class="fa-solid fa-heart" style="color:#e05555"></i> <span class="like-count" data-id="manfog">1540</span></span>
+                            <span><i class="fa-regular fa-eye" style="color:#9ca3af"></i> <span class="view-count" data-id="manfog">03200</span></span>
+                            <span><i class="fa-regular fa-heart" id="heart-icon-manfog" style="color:#e05555"></i> <span class="like-count" data-id="manfog">01540</span></span>
                         </div>
                         <button class="btn-like" id="like-manfog" onclick="toggleLike('manfog')" style="display:none"><i class="fa-solid fa-heart"></i> Like</button>
                         <div class="btn" onclick="openDownloadFullScreen('manfog','The Man from the Fog','Tumanli horror mod.','images/the_man_from_the_fog.jpg',[{label:'v1.19.2',badge:'Release',tags:['1.19.2','Forge'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/the_man_from_the_fog_1.19.2.jar',date:'Yangilangan'}])">Yuklab Olish</div>
@@ -1605,8 +1704,8 @@
                         <p>Har bir blok uchun mukammal aks etish va realistik tuman — cinematic va screenshot uchun ideal shader.</p>
                         <div class="card-tags"><span class="card-tag">Shader</span><span class="card-tag">OptiFine</span><span class="card-tag">Iris</span><span class="card-tag">Cinematic</span></div>
                         <div class="card-stats">
-                            <span><i class="fa-solid fa-download"></i> <span class="dl-count" data-id="unbound">14100</span></span>
-                            <span><i class="fa-solid fa-heart" style="color:#e05555"></i> <span class="like-count" data-id="unbound">3820</span></span>
+                            <span><i class="fa-regular fa-eye" style="color:#9ca3af"></i> <span class="view-count" data-id="unbound">014100</span></span>
+                            <span><i class="fa-regular fa-heart" id="heart-icon-unbound" style="color:#e05555"></i> <span class="like-count" data-id="unbound">03820</span></span>
                         </div>
                         <button class="btn-like" id="like-unbound" onclick="toggleLike('unbound')" style="display:none"><i class="fa-solid fa-heart"></i> Like</button>
                         <div class="btn" onclick="openDownloadFullScreen('unbound','Complementary Unbound','Unbound seriyali mukammal grafikalar.','images/unbound.png',[{label:'v1.20.1',badge:'Release',tags:['1.20.1','OptiFine/Iris'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/unbound_1.20.1.zip',date:'Bugun yangilandi'},{label:'v1.19.2',badge:'LTS',tags:['1.19.2','OptiFine/Iris'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/unbound_1.19.2.zip',date:'Oxirgi hafta'},{label:'v1.16.5',badge:'Legacy',tags:['1.16.5','OptiFine'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/unbound_1.16.5.zip',date:'Eski versiya'}])">Yuklab Olish</div>
@@ -1625,8 +1724,8 @@
                         <p>Voksel nur texnologiyasi orqali rangli nurlar va dinamik soyalar hosil qiladigan ilg'or shader.</p>
                         <div class="card-tags"><span class="card-tag">Shader</span><span class="card-tag">Iris</span><span class="card-tag">Fabric</span><span class="card-tag">Voxel</span></div>
                         <div class="card-stats">
-                            <span><i class="fa-solid fa-download"></i> <span class="dl-count" data-id="voxels">6900</span></span>
-                            <span><i class="fa-solid fa-heart" style="color:#e05555"></i> <span class="like-count" data-id="voxels">2110</span></span>
+                            <span><i class="fa-regular fa-eye" style="color:#9ca3af"></i> <span class="view-count" data-id="voxels">06900</span></span>
+                            <span><i class="fa-regular fa-heart" id="heart-icon-voxels" style="color:#e05555"></i> <span class="like-count" data-id="voxels">02110</span></span>
                         </div>
                         <button class="btn-like" id="like-voxels" onclick="toggleLike('voxels')" style="display:none"><i class="fa-solid fa-heart"></i> Like</button>
                         <div class="btn" onclick="openDownloadFullScreen('voxels','Rethinking Voxels','Vokselli nur modifikatsiyasi.','images/voxels.jpg',[{label:'v1.20.1',badge:'Release',tags:['1.20.1','Iris/Fabric'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/rethinking_voxels_1.20.1.zip',date:'Bugun yangilandi'},{label:'v1.19.2',badge:'LTS',tags:['1.19.2','Iris/Fabric'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/rethinking_voxels_1.19.2.zip',date:'Oxirgi hafta'}])">Yuklab Olish</div>
@@ -1645,8 +1744,8 @@
                         <p>Rudalarni yorqin porlayotgan holda ko'rsatuvchi tekstura paketi — tungi konchilikni osonlashtiradi.</p>
                         <div class="card-tags"><span class="card-tag">Texture Pack</span><span class="card-tag">Vanilla</span><span class="card-tag">Mining</span></div>
                         <div class="card-stats">
-                            <span><i class="fa-solid fa-download"></i> <span class="dl-count" data-id="glowingores">1240</span></span>
-                            <span><i class="fa-solid fa-heart" style="color:#e05555"></i> <span class="like-count" data-id="glowingores">380</span></span>
+                            <span><i class="fa-regular fa-eye" style="color:#9ca3af"></i> <span class="view-count" data-id="glowingores">01240</span></span>
+                            <span><i class="fa-regular fa-heart" id="heart-icon-glowingores" style="color:#e05555"></i> <span class="like-count" data-id="glowingores">0380</span></span>
                         </div>
                         <button class="btn-like" id="like-glowingores" onclick="toggleLike('glowingores')" style="display:none"><i class="fa-solid fa-heart"></i> Like</button>
                         <div class="btn" onclick="openDownloadFullScreen('glowingores','Glowing Ores','Rudalarni porlatib ko\'rsatuvchi texture pack.','https://raw.githubusercontent.com/cheesmaster95-sketch/minecraft-sayt/main/images/glowingores.png',[{label:'v1.20.1',badge:'Release',tags:['1.20.1','Vanilla'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/gloving_ores_1.20.1.zip',date:'Bugun yangilandi'},{label:'v1.19.2',badge:'LTS',tags:['1.19.2','Vanilla'],file:'https://github.com/cheesmaster95-sketch/minecraft-sayt/releases/download/1.0.0/gloving_ores_1.19.2.zip',date:'Oxirgi hafta'}])">Yuklab Olish</div>
@@ -1669,7 +1768,9 @@
                 <p id="fsDlDesc" style="display:none">Kichik tavsif matni shu yerda paydo bo'ladi.</p>
                 
                 <div class="fs-stats-bar">
-                    <div class="fs-stat"><i class="fa-solid fa-download"></i> <span id="fsDownloadCount">0</span> ta yuklab olindi</div>
+                    <div class="fs-stat"><i class="fa-regular fa-eye"></i> <span id="fsViewCount">0</span> ko'rishlar</div>
+                    <div class="fs-stat"><i class="fa-regular fa-heart" id="fsHeartIcon" style="color:#e05555;cursor:pointer" onclick="toggleLikeModal()"></i> <span id="fsLikeCount">0</span> like</div>
+                    <div class="fs-stat"><i class="fa-solid fa-download"></i> <span id="fsDownloadCount">0</span> yuklab olindi</div>
                     <div class="fs-stat"><i class="fa-solid fa-heart"></i> <span id="fsLikeCount">0</span> like</div>
                     <div class="fs-stat"><i class="fa-solid fa-comment"></i> <span id="fsCommentCount">0</span> izoh</div>
                 </div>
@@ -1684,9 +1785,6 @@
 
         <!-- DESCRIPTION SECTION -->
         <div class="dl-fs-desc-section" id="fsDlDescSection" style="display:none">
-            <div class="dl-fs-section-title">
-                <i class="fa-solid fa-circle-info"></i> Tavsif
-            </div>
             <div class="dl-fs-desc-card">
                 <p id="fsDlLongDesc"></p>
             </div>
@@ -1784,7 +1882,7 @@
     let currentCategory = 'all';
     let purchasedSkins = ['Klassik Yashil'];
 
-    window.addEventListener('load', () => { initAllLikes(); });
+    window.addEventListener('load', () => { /* stats Firebase init dan keyin chaqiriladi */ });
 
     function toggleTheme() {
         document.body.classList.toggle('light-mode');
@@ -1931,87 +2029,140 @@
         modal.classList.add('active');
     }
 
-    /* ===== LIKE, DOWNLOAD, COMMENTS ===== */
+    /* ===== REAL-TIME STATS (Firebase Firestore) ===== */
     let currentResourceId = null;
+    // db() window.load dan keyin window.db orqali ishlatiladi
+    const RESOURCE_IDS = ['mc-launcher','bsl','complementary','jei','sodium','optifine','makeup','mellow','manfog','unbound','voxels','glowingores'];
 
-    function getStore(key, def) {
-        try { return JSON.parse(localStorage.getItem(key)) ?? def; } catch { return def; }
+    // Foydalanuvchi liked bo'lganini localStorage da saqlaymiz (device based)
+    function isLiked(id) {
+        try { return JSON.parse(localStorage.getItem('mc_liked') || '[]').includes(id); } catch { return false; }
     }
-    function setStore(key, val) {
-        try { localStorage.setItem(key, JSON.stringify(val)); } catch {}
-    }
-
-    function toggleLike(id) {
-        const likedSet = getStore('mc_liked', []);
-        const liked = likedSet.includes(id);
-        let newSet;
-        if (liked) {
-            newSet = likedSet.filter(x => x !== id);
-        } else {
-            newSet = [...likedSet, id];
-        }
-        setStore('mc_liked', newSet);
-
-        const counts = getStore('mc_likes', {});
-        const base = parseInt(document.querySelector(`.like-count[data-id="${id}"]`)?.getAttribute('data-base') || 0);
-        counts[id] = (counts[id] ?? base) + (liked ? -1 : 1);
-        setStore('mc_likes', counts);
-
-        updateLikeUI(id);
+    function setLiked(id, val) {
+        try {
+            let arr = JSON.parse(localStorage.getItem('mc_liked') || '[]');
+            if (val) { if (!arr.includes(id)) arr.push(id); }
+            else { arr = arr.filter(x => x !== id); }
+            localStorage.setItem('mc_liked', JSON.stringify(arr));
+        } catch {}
     }
 
-    function updateLikeUI(id) {
-        const likedSet = getStore('mc_liked', []);
-        const counts = getStore('mc_likes', {});
-        const btn = document.getElementById('like-' + id);
-        const countEl = document.querySelector(`.like-count[data-id="${id}"]`);
-        if (!btn || !countEl) return;
-
-        const baseVal = parseInt(countEl.getAttribute('data-base') || countEl.textContent);
-        if (!countEl.getAttribute('data-base')) countEl.setAttribute('data-base', baseVal);
-
-        const val = counts[id] ?? baseVal;
-        countEl.textContent = val;
-
-        if (likedSet.includes(id)) {
-            btn.classList.add('liked');
-            btn.innerHTML = '<i class="fa-solid fa-heart"></i> Liked';
-        } else {
-            btn.classList.remove('liked');
-            btn.innerHTML = '<i class="fa-solid fa-heart"></i> Like';
-        }
+    function fmtNum(n) {
+        if (n >= 1000000) return (n/1000000).toFixed(1) + 'M';
+        if (n >= 1000) return (n/1000).toFixed(1) + 'K';
+        return String(n);
     }
 
-    function initAllLikes() {
-        document.querySelectorAll('.like-count[data-id]').forEach(el => {
-            updateLikeUI(el.getAttribute('data-id'));
+    // Barcha resurslar uchun real-time listener
+    function initRealtimeStats() {
+        RESOURCE_IDS.forEach(id => {
+            window.db.collection('resources').doc(id).onSnapshot(doc => {
+                const data = doc.exists ? doc.data() : {};
+                const views = data.views || 0;
+                const likes = data.likes || 0;
+                const downloads = data.downloads || 0;
+
+                // Karta view-count
+                document.querySelectorAll(`.view-count[data-id="${id}"]`).forEach(el => {
+                    el.textContent = fmtNum(views);
+                });
+                // Karta like-count
+                document.querySelectorAll(`.like-count[data-id="${id}"]`).forEach(el => {
+                    el.textContent = fmtNum(likes);
+                });
+                // Karta dl-count (agar mavjud bo'lsa)
+                document.querySelectorAll(`.dl-count[data-id="${id}"]`).forEach(el => {
+                    el.textContent = fmtNum(downloads);
+                });
+                // Yurak rangi
+                const heartIcon = document.getElementById('heart-icon-' + id);
+                if (heartIcon) {
+                    if (isLiked(id)) {
+                        heartIcon.className = 'fa-solid fa-heart';
+                        heartIcon.style.color = '#e05555';
+                    } else {
+                        heartIcon.className = 'fa-regular fa-heart';
+                        heartIcon.style.color = '#e05555';
+                    }
+                }
+                // Modal ochiq bo'lsa yangilaymiz
+                if (currentResourceId === id) {
+                    const fv = document.getElementById('fsViewCount');
+                    const fl = document.getElementById('fsLikeCount');
+                    const fd = document.getElementById('fsDownloadCount');
+                    if (fv) fv.textContent = fmtNum(views);
+                    if (fl) fl.textContent = fmtNum(likes);
+                    if (fd) fd.textContent = fmtNum(downloads);
+                    updateModalHeartUI(id);
+                }
+            });
         });
     }
 
+    // Sahifa ochilganda view ++ qilish (har session bir marta)
+    function trackView(id) {
+        const key = 'viewed_' + id;
+        if (sessionStorage.getItem(key)) return;
+        sessionStorage.setItem(key, '1');
+        window.db.collection('resources').doc(id).set({
+            views: firebase.firestore.FieldValue.increment(1)
+        }, { merge: true });
+    }
+
+    // Modal ochilganda view track
+    function trackModalView(id) {
+        trackView(id);
+    }
+
+    // Like toggle
+    function toggleLike(id) {
+        const liked = isLiked(id);
+        setLiked(id, !liked);
+        window.db.collection('resources').doc(id).set({
+            likes: firebase.firestore.FieldValue.increment(liked ? -1 : 1)
+        }, { merge: true });
+        updateHeartUI(id, !liked);
+    }
+
+    function toggleLikeModal() {
+        if (currentResourceId) toggleLike(currentResourceId);
+    }
+
+    function updateHeartUI(id, liked) {
+        const heartIcon = document.getElementById('heart-icon-' + id);
+        if (heartIcon) {
+            heartIcon.className = liked ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
+        }
+        updateModalHeartUI(id);
+    }
+
+    function updateModalHeartUI(id) {
+        const fsHeart = document.getElementById('fsHeartIcon');
+        if (!fsHeart) return;
+        const liked = isLiked(id);
+        fsHeart.className = liked ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
+        fsHeart.style.color = '#e05555';
+    }
+
+    function initAllLikes() {
+        RESOURCE_IDS.forEach(id => {
+            updateHeartUI(id, isLiked(id));
+        });
+    }
+
+    // Download increment
     function incrementDownload(id) {
-        const counts = getStore('mc_downloads', {});
-        const countEl = document.querySelector(`.dl-count[data-id="${id}"]`);
-        if (!countEl) return;
-        const base = parseInt(countEl.getAttribute('data-base') || countEl.textContent);
-        if (!countEl.getAttribute('data-base')) countEl.setAttribute('data-base', base);
-        counts[id] = (counts[id] ?? base) + 1;
-        setStore('mc_downloads', counts);
-        countEl.textContent = counts[id];
-        return counts[id];
+        window.db.collection('resources').doc(id).set({
+            downloads: firebase.firestore.FieldValue.increment(1)
+        }, { merge: true });
     }
 
     function getDownloadCount(id) {
-        const counts = getStore('mc_downloads', {});
-        const countEl = document.querySelector(`.dl-count[data-id="${id}"]`);
-        const base = parseInt(countEl?.getAttribute('data-base') || countEl?.textContent || 0);
-        return counts[id] ?? base;
+        return 0; // real-time snapshot dan keladi
     }
 
     function getLikeCount(id) {
-        const counts = getStore('mc_likes', {});
-        const countEl = document.querySelector(`.like-count[data-id="${id}"]`);
-        const base = parseInt(countEl?.getAttribute('data-base') || countEl?.textContent || 0);
-        return counts[id] ?? base;
+        return 0; // real-time snapshot dan keladi
     }
 
     /* ===== COMMENTS (Firestore) ===== */
@@ -2149,28 +2300,96 @@
             const color = v.badgeColor || badgeColors[v.badge] || '#4caf50';
             const row = document.createElement('div');
             row.className = 'version-row';
+            const badgeClass = (v.badge||'release').toLowerCase();
+            const iconLetter = 'V';
+            const loaderIcon = {
+                'OptiFine': 'fa-solid fa-o',
+                'OptiFine/Iris': 'fa-solid fa-layer-group',
+                'Iris': 'fa-solid fa-gem',
+                'Iris/Fabric': 'fa-solid fa-gem',
+                'Fabric': 'fa-solid fa-diamond',
+                'Forge': 'fa-solid fa-hammer',
+                'Forge/Fabric': 'fa-solid fa-layer-group',
+                'NeoForge': 'fa-solid fa-fire',
+                'Standalone': 'fa-solid fa-box',
+                'Java Edition': 'fa-brands fa-java',
+                'Vanilla': 'fa-solid fa-cube',
+            };
+            const tagsHtml = v.tags.map(t => {
+                const icon = loaderIcon[t] || 'fa-solid fa-tag';
+                return `<span class="tag-v"><i class="${icon}"></i>${t}</span>`;
+            }).join('');
             row.innerHTML = `
                 <div class="ver-left">
-                    <span class="ver-badge" style="background-color:${color}">${v.badge}</span>
-                    <div>
+                    <div class="ver-icon ${badgeClass}">${iconLetter}</div>
+                    <div class="ver-info">
                         <div class="ver-name">${title} — ${v.label}</div>
-                        <div class="ver-meta"><i class="fa-solid fa-calendar-days"></i> ${v.date || 'Yangilangan'} • Java Edition</div>
+                        <div class="ver-meta">${v.date || 'Yangilangan'} • Java Edition</div>
                     </div>
                 </div>
+                <div class="ver-middle">
+                    <span class="ver-badge ${badgeClass}">${v.badge}</span>
+                    <div class="ver-supported-tags">${tagsHtml}</div>
+                </div>
                 <div class="ver-right">
-                    <div class="ver-supported-tags">
-                        ${v.tags.map(t => `<span class="tag-v">${t}</span>`).join('')}
-                    </div>
-                    <a href="${v.file.startsWith('http') ? v.file : 'downloads/' + v.file}" class="btn-fs-download" target="_blank" rel="noopener" onclick="onDownloadClick('${id}')">
-                        <i class="fa-solid fa-download"></i> Yuklash
+                    <span class="ver-date"><i class="fa-regular fa-clock"></i> ${v.date || ''}</span>
+                    <a href="${v.file.startsWith('http') ? v.file : 'downloads/' + v.file}" class="btn-fs-download" target="_blank" rel="noopener" onclick="startDownloadAnim(this, '${id}'); return false;">
+                        <div class="dl-progress-bar"></div>
+                        <span class="dl-btn-text"><i class="fa-solid fa-download"></i> Yuklash</span>
                     </a>
                 </div>`;
             list.appendChild(row);
         });
 
+        trackModalView(id);
         renderComments(id);
         document.getElementById('downloadModalFullScreen').classList.add('active');
         document.body.style.overflow = 'hidden';
+    }
+
+    function startDownloadAnim(btn, id) {
+        if (btn.classList.contains('downloading')) return;
+        const href = btn.getAttribute('href');
+
+        // Srazu yuklanishni boshlash
+        const link = document.createElement('a');
+        link.href = href;
+        link.download = '';
+        link.target = '_blank';
+        link.rel = 'noopener';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // Download count yangilash
+        onDownloadClick(id);
+
+        // Animatsiya
+        btn.classList.add('downloading');
+        const bar = btn.querySelector('.dl-progress-bar');
+        const textSpan = btn.querySelector('.dl-btn-text');
+        textSpan.innerHTML = '<span class="dl-spinner"></span> Yuklanmoqda...';
+
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += Math.random() * 18 + 4;
+            if (progress >= 95) { progress = 95; clearInterval(interval); }
+            bar.style.width = progress + '%';
+        }, 120);
+
+        setTimeout(() => {
+            clearInterval(interval);
+            bar.style.width = '100%';
+            btn.classList.remove('downloading');
+            btn.classList.add('done');
+            textSpan.innerHTML = '<i class="fa-solid fa-check"></i> Yuklandi!';
+            setTimeout(() => {
+                btn.classList.remove('done');
+                bar.style.width = '0%';
+                textSpan.innerHTML = '<i class="fa-solid fa-download"></i> Yuklash';
+                btn.style.pointerEvents = '';
+            }, 2500);
+        }, 2200);
     }
 
     function onDownloadClick(id) {
@@ -2208,7 +2427,10 @@
             fbAuth = firebase.auth();
             window.db = firebase.firestore();
             window.fbStorage = firebase.storage();
-        } catch(e) { console.warn('Firebase config qo\'yilmagan:', e.message); return; }
+            // Firebase tayyor - statsni ishga tushiramiz
+            initAllLikes();
+            initRealtimeStats();
+        } catch(e) { console.warn('Firebase init xatosi:', e.message); return; }
 
         fbAuth.onAuthStateChanged(function(user) {
             if (user) {
