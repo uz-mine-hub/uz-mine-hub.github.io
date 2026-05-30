@@ -91,7 +91,8 @@
     <meta name="twitter:description" content="O'zbek tilidagi Minecraft resurslar markazi.">
     <meta name="twitter:image" content="https://uz-mine-hub.github.io/images/bsl.jfif">
     <link rel="icon" type="image/png" href="images/favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js">
     // ===== PROFILE FUNKSIYALARI =====
     function escapeHtml(str) {
@@ -109,7 +110,7 @@
 
         const wrap = document.getElementById('profileAvatarWrap');
         if (user.photoURL) {
-            wrap.innerHTML = '<img src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
+            wrap.innerHTML = '<img loading="lazy" src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
         } else {
             wrap.style.fontSize = '2.5rem';
             wrap.textContent = (user.displayName || user.email).charAt(0).toUpperCase();
@@ -160,7 +161,7 @@
             return user.updateProfile({ photoURL: url });
         }).then(function() {
             const wrap = document.getElementById('profileAvatarWrap');
-            wrap.innerHTML = '<img src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
+            wrap.innerHTML = '<img loading="lazy" src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
             updateNavAvatar(user);
             showNotif('Rasm saqlandi! ✅');
         }).catch(function(e) { showNotif('Xatolik: ' + e.message); });
@@ -170,7 +171,7 @@
         const wrap = document.getElementById('navAvatarWrap');
         if (!wrap) return;
         if (user && user.photoURL) {
-            wrap.innerHTML = '<img src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
+            wrap.innerHTML = '<img loading="lazy" src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
         } else if (user) {
             wrap.innerHTML = '';
             wrap.textContent = (user.displayName || user.email).charAt(0).toUpperCase();
@@ -195,7 +196,7 @@
 
         const wrap = document.getElementById('profileAvatarWrap');
         if (user.photoURL) {
-            wrap.innerHTML = '<img src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
+            wrap.innerHTML = '<img loading="lazy" src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
         } else {
             wrap.style.fontSize = '2.5rem';
             wrap.textContent = (user.displayName || user.email).charAt(0).toUpperCase();
@@ -246,7 +247,7 @@
             return user.updateProfile({ photoURL: url });
         }).then(function() {
             const wrap = document.getElementById('profileAvatarWrap');
-            wrap.innerHTML = '<img src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
+            wrap.innerHTML = '<img loading="lazy" src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
             updateNavAvatar(user);
             showNotif('Rasm saqlandi! ✅');
         }).catch(function(e) { showNotif('Xatolik: ' + e.message); });
@@ -256,7 +257,7 @@
         const wrap = document.getElementById('navAvatarWrap');
         if (!wrap) return;
         if (user && user.photoURL) {
-            wrap.innerHTML = '<img src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
+            wrap.innerHTML = '<img loading="lazy" src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
         } else if (user) {
             wrap.innerHTML = '';
             wrap.textContent = (user.displayName || user.email).charAt(0).toUpperCase();
@@ -281,7 +282,7 @@
 
         const wrap = document.getElementById('profileAvatarWrap');
         if (user.photoURL) {
-            wrap.innerHTML = '<img src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
+            wrap.innerHTML = '<img loading="lazy" src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
         } else {
             wrap.style.fontSize = '2.5rem';
             wrap.textContent = (user.displayName || user.email).charAt(0).toUpperCase();
@@ -332,7 +333,7 @@
             return user.updateProfile({ photoURL: url });
         }).then(function() {
             const wrap = document.getElementById('profileAvatarWrap');
-            wrap.innerHTML = '<img src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
+            wrap.innerHTML = '<img loading="lazy" src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
             updateNavAvatar(user);
             showNotif('Rasm saqlandi! ✅');
         }).catch(function(e) { showNotif('Xatolik: ' + e.message); });
@@ -342,7 +343,7 @@
         const wrap = document.getElementById('navAvatarWrap');
         if (!wrap) return;
         if (user && user.photoURL) {
-            wrap.innerHTML = '<img src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
+            wrap.innerHTML = '<img loading="lazy" src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
         } else if (user) {
             wrap.innerHTML = '';
             wrap.textContent = (user.displayName || user.email).charAt(0).toUpperCase();
@@ -367,7 +368,7 @@
 
         const wrap = document.getElementById('profileAvatarWrap');
         if (user.photoURL) {
-            wrap.innerHTML = '<img src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
+            wrap.innerHTML = '<img loading="lazy" src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
         } else {
             wrap.style.fontSize = '2.5rem';
             wrap.textContent = (user.displayName || user.email).charAt(0).toUpperCase();
@@ -418,7 +419,7 @@
             return user.updateProfile({ photoURL: url });
         }).then(function() {
             const wrap = document.getElementById('profileAvatarWrap');
-            wrap.innerHTML = '<img src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
+            wrap.innerHTML = '<img loading="lazy" src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
             updateNavAvatar(user);
             showNotif('Rasm saqlandi! ✅');
         }).catch(function(e) { showNotif('Xatolik: ' + e.message); });
@@ -428,7 +429,7 @@
         const wrap = document.getElementById('navAvatarWrap');
         if (!wrap) return;
         if (user && user.photoURL) {
-            wrap.innerHTML = '<img src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
+            wrap.innerHTML = '<img loading="lazy" src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
         } else if (user) {
             wrap.innerHTML = '';
             wrap.textContent = (user.displayName || user.email).charAt(0).toUpperCase();
@@ -1532,7 +1533,7 @@
 
                 <!-- Slide 1: BSL Shaders -->
                 <div class="slide" data-slide-id="bsl">
-                    <img src="https://raw.githubusercontent.com/cheesmaster95-sketch/minecraft-sayt/main/images/bsl.jfif" alt="BSL Shaders" onerror="this.src='images/bsl.jfif'">
+                    <img loading="eager" fetchpriority="high" src="https://raw.githubusercontent.com/cheesmaster95-sketch/minecraft-sayt/main/images/bsl.jfif" alt="BSL Shaders" onerror="this.src='images/bsl.jfif'">
                     <div class="slide-click-hint"><i class="fa-solid fa-arrow-down"></i> Yuklab Olish</div>
                     <div class="slide-overlay">
                         <div class="slide-badge">Shader</div>
@@ -1548,7 +1549,7 @@
 
                 <!-- Slide 2: Voxels -->
                 <div class="slide" data-slide-id="voxels">
-                    <img src="https://raw.githubusercontent.com/cheesmaster95-sketch/minecraft-sayt/main/images/voxels.jpg" alt="Voxels Shaders" onerror="this.src='images/voxels.jpg'">
+                    <img loading="lazy" src="https://raw.githubusercontent.com/cheesmaster95-sketch/minecraft-sayt/main/images/voxels.jpg" alt="Voxels Shaders" onerror="this.src='images/voxels.jpg'">
                     <div class="slide-click-hint"><i class="fa-solid fa-arrow-down"></i> Yuklab Olish</div>
                     <div class="slide-overlay">
                         <div class="slide-badge">Shader</div>
@@ -1563,7 +1564,7 @@
 
                 <!-- Slide 3: Unbound -->
                 <div class="slide" data-slide-id="unbound">
-                    <img src="https://raw.githubusercontent.com/cheesmaster95-sketch/minecraft-sayt/main/images/unbound.png" alt="Unbound Shaders" onerror="this.src='images/unbound.png'">
+                    <img loading="lazy" src="https://raw.githubusercontent.com/cheesmaster95-sketch/minecraft-sayt/main/images/unbound.png" alt="Unbound Shaders" onerror="this.src='images/unbound.png'">
                     <div class="slide-click-hint"><i class="fa-solid fa-arrow-down"></i> Yuklab Olish</div>
                     <div class="slide-overlay">
                         <div class="slide-badge">Shader</div>
@@ -1579,7 +1580,7 @@
 
                 <!-- Slide 4: OptiFine -->
                 <div class="slide" data-slide-id="optifine">
-                    <img src="https://raw.githubusercontent.com/cheesmaster95-sketch/minecraft-sayt/main/images/optifine.jpg" alt="OptiFine" onerror="this.src='images/OptiFine.webp'">
+                    <img loading="lazy" src="https://raw.githubusercontent.com/cheesmaster95-sketch/minecraft-sayt/main/images/optifine.jpg" alt="OptiFine" onerror="this.src='images/OptiFine.webp'">
                     <div class="slide-click-hint"><i class="fa-solid fa-arrow-down"></i> Yuklab Olish</div>
                     <div class="slide-overlay">
                         <div class="slide-badge">Mod</div>
@@ -1595,7 +1596,7 @@
 
                 <!-- Slide 5: Glowing Ores -->
                 <div class="slide" data-slide-id="glowingores">
-                    <img src="https://raw.githubusercontent.com/cheesmaster95-sketch/minecraft-sayt/main/images/glowingores.png" alt="Glowing Ores" onerror="this.src='images/glovingores.png'">
+                    <img loading="lazy" src="https://raw.githubusercontent.com/cheesmaster95-sketch/minecraft-sayt/main/images/glowingores.png" alt="Glowing Ores" onerror="this.src='images/glovingores.png'">
                     <div class="slide-click-hint"><i class="fa-solid fa-arrow-down"></i> Yuklab Olish</div>
                     <div class="slide-overlay">
                         <div class="slide-badge">Texture Pack</div>
@@ -1630,10 +1631,10 @@
             <div id="resourceGrid" class="grid">
 
                 <div class="card" data-category="launcher" data-name="minecraft launcher" data-version="all" data-loader="all" data-id="mc-launcher">
-                    <img src="images/Minecraft_Launcher.webp" class="card-img" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d1a)';this.removeAttribute('src');">
+                    <img loading="lazy" src="images/Minecraft_Launcher.webp" class="card-img" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d1a)';this.removeAttribute('src');">
                     <div class="card-content">
                         <div class="card-header-row">
-                            <img src="images/Minecraft_Launcher.webp" class="card-icon" onerror="this.style.display='none';">
+                            <img loading="lazy" src="images/Minecraft_Launcher.webp" alt="icon" class="card-icon" onerror="this.style.display='none';">
                             <div class="card-title-block">
                                 <h3>Minecraft Launcher</h3>
                                 <span class="card-category-badge">Launcher</span>
@@ -1650,10 +1651,10 @@
                     </div>
                 </div>
                 <div class="card" data-category="shaders" data-name="bsl shaders" data-version="1.20.1 1.19.2 1.16.5" data-loader="optifine" data-id="bsl">
-                    <img src="images/bsl.jfif" class="card-img" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d1a)';this.removeAttribute('src');">
+                    <img loading="lazy" src="images/bsl.jfif" class="card-img" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d1a)';this.removeAttribute('src');">
                     <div class="card-content">
                         <div class="card-header-row">
-                            <img src="images/bsl.jfif" class="card-icon" onerror="this.style.display='none';">
+                            <img loading="lazy" src="images/bsl.jfif" alt="icon" class="card-icon" onerror="this.style.display='none';">
                             <div class="card-title-block">
                                 <h3>BSL Shaders</h3>
                                 <span class="card-category-badge">Shader</span>
@@ -1670,10 +1671,10 @@
                     </div>
                 </div>
                 <div class="card" data-category="shaders" data-name="complementary shaders" data-version="1.20.1 1.19.2 1.16.5" data-loader="optifine" data-id="complementary">
-                    <img src="images/complementary.png" class="card-img" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d1a)';this.removeAttribute('src');">
+                    <img loading="lazy" src="images/complementary.png" class="card-img" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d1a)';this.removeAttribute('src');">
                     <div class="card-content">
                         <div class="card-header-row">
-                            <img src="images/complementary.png" class="card-icon" onerror="this.style.display='none';">
+                            <img loading="lazy" src="images/complementary.png" alt="icon" class="card-icon" onerror="this.style.display='none';">
                             <div class="card-title-block">
                                 <h3>Complementary Shaders</h3>
                                 <span class="card-category-badge">Shader</span>
@@ -1690,10 +1691,10 @@
                     </div>
                 </div>
                 <div class="card" data-category="mods" data-name="just enough items jei" data-version="1.20.1 1.19.2 1.16.5" data-loader="forge fabric" data-id="jei">
-                    <img src="images/jei.jfif" class="card-img" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d1a)';this.removeAttribute('src');">
+                    <img loading="lazy" src="images/jei.jfif" class="card-img" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d1a)';this.removeAttribute('src');">
                     <div class="card-content">
                         <div class="card-header-row">
-                            <img src="images/jei.jfif" class="card-icon" onerror="this.style.display='none';">
+                            <img loading="lazy" src="images/jei.jfif" alt="icon" class="card-icon" onerror="this.style.display='none';">
                             <div class="card-title-block">
                                 <h3>Just Enough Items (JEI)</h3>
                                 <span class="card-category-badge">Mod</span>
@@ -1710,10 +1711,10 @@
                     </div>
                 </div>
                 <div class="card" data-category="mods" data-name="sodium" data-version="1.20.1 1.19.2 1.16.5" data-loader="fabric" data-id="sodium">
-                    <img src="images/sodium.png" class="card-img" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d1a)';this.removeAttribute('src');">
+                    <img loading="lazy" src="images/sodium.png" class="card-img" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d1a)';this.removeAttribute('src');">
                     <div class="card-content">
                         <div class="card-header-row">
-                            <img src="images/sodium.png" class="card-icon" onerror="this.style.display='none';">
+                            <img loading="lazy" src="images/sodium.png" alt="icon" class="card-icon" onerror="this.style.display='none';">
                             <div class="card-title-block">
                                 <h3>Sodium</h3>
                                 <span class="card-category-badge">Mod</span>
@@ -1730,10 +1731,10 @@
                     </div>
                 </div>
                 <div class="card" data-category="mods" data-name="optifine" data-version="1.20.1 1.19.2 1.16.5" data-loader="optifine" data-id="optifine">
-                    <img src="images/OptiFine.webp" class="card-img" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d1a)';this.removeAttribute('src');">
+                    <img loading="lazy" src="images/OptiFine.webp" class="card-img" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d1a)';this.removeAttribute('src');">
                     <div class="card-content">
                         <div class="card-header-row">
-                            <img src="images/OptiFine.webp" class="card-icon" onerror="this.style.display='none';">
+                            <img loading="lazy" src="images/OptiFine.webp" alt="icon" class="card-icon" onerror="this.style.display='none';">
                             <div class="card-title-block">
                                 <h3>OptiFine</h3>
                                 <span class="card-category-badge">Mod</span>
@@ -1750,10 +1751,10 @@
                     </div>
                 </div>
                 <div class="card" data-category="shaders" data-name="makeup ultra fast" data-version="1.20.1 1.19.2 1.16.5" data-loader="optifine" data-id="makeup">
-                    <img src="images/makeup.webp" class="card-img" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d1a)';this.removeAttribute('src');">
+                    <img loading="lazy" src="images/makeup.webp" class="card-img" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d1a)';this.removeAttribute('src');">
                     <div class="card-content">
                         <div class="card-header-row">
-                            <img src="images/makeup.webp" class="card-icon" onerror="this.style.display='none';">
+                            <img loading="lazy" src="images/makeup.webp" alt="icon" class="card-icon" onerror="this.style.display='none';">
                             <div class="card-title-block">
                                 <h3>MakeUp - Ultra Fast</h3>
                                 <span class="card-category-badge">Shader</span>
@@ -1770,10 +1771,10 @@
                     </div>
                 </div>
                 <div class="card" data-category="shaders" data-name="mellow shaders" data-version="1.20.1 1.19.2 1.16.5" data-loader="optifine" data-id="mellow">
-                    <img src="images/mellow.png" class="card-img" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d1a)';this.removeAttribute('src');">
+                    <img loading="lazy" src="images/mellow.png" class="card-img" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d1a)';this.removeAttribute('src');">
                     <div class="card-content">
                         <div class="card-header-row">
-                            <img src="images/mellow.png" class="card-icon" onerror="this.style.display='none';">
+                            <img loading="lazy" src="images/mellow.png" alt="icon" class="card-icon" onerror="this.style.display='none';">
                             <div class="card-title-block">
                                 <h3>Mellow Shaders</h3>
                                 <span class="card-category-badge">Shader</span>
@@ -1790,10 +1791,10 @@
                     </div>
                 </div>
                 <div class="card" data-category="mods" data-name="the man from the fog" data-version="1.19.2" data-loader="forge" data-id="manfog">
-                    <img src="images/the_man_from_the_fog.jpg" class="card-img" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d1a)';this.removeAttribute('src');">
+                    <img loading="lazy" src="images/the_man_from_the_fog.jpg" class="card-img" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d1a)';this.removeAttribute('src');">
                     <div class="card-content">
                         <div class="card-header-row">
-                            <img src="images/the_man_from_the_fog.jpg" class="card-icon" onerror="this.style.display='none';">
+                            <img loading="lazy" src="images/the_man_from_the_fog.jpg" alt="icon" class="card-icon" onerror="this.style.display='none';">
                             <div class="card-title-block">
                                 <h3>The Man from the Fog</h3>
                                 <span class="card-category-badge">Mod</span>
@@ -1810,10 +1811,10 @@
                     </div>
                 </div>
                 <div class="card" data-category="shaders" data-name="complementary unbound" data-version="1.20.1 1.19.2 1.16.5" data-loader="optifine" data-id="unbound">
-                    <img src="images/unbound.png" class="card-img" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d1a)';this.removeAttribute('src');">
+                    <img loading="lazy" src="images/unbound.png" class="card-img" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d1a)';this.removeAttribute('src');">
                     <div class="card-content">
                         <div class="card-header-row">
-                            <img src="images/unbound.png" class="card-icon" onerror="this.style.display='none';">
+                            <img loading="lazy" src="images/unbound.png" alt="icon" class="card-icon" onerror="this.style.display='none';">
                             <div class="card-title-block">
                                 <h3>Complementary Unbound</h3>
                                 <span class="card-category-badge">Shader</span>
@@ -1830,10 +1831,10 @@
                     </div>
                 </div>
                 <div class="card" data-category="shaders" data-name="rethinking voxels" data-version="1.20.1 1.19.2" data-loader="fabric" data-id="voxels">
-                    <img src="images/voxels.jpg" class="card-img" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d1a)';this.removeAttribute('src');">
+                    <img loading="lazy" src="images/voxels.jpg" class="card-img" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d1a)';this.removeAttribute('src');">
                     <div class="card-content">
                         <div class="card-header-row">
-                            <img src="images/voxels.jpg" class="card-icon" onerror="this.style.display='none';">
+                            <img loading="lazy" src="images/voxels.jpg" alt="icon" class="card-icon" onerror="this.style.display='none';">
                             <div class="card-title-block">
                                 <h3>Rethinking Voxels</h3>
                                 <span class="card-category-badge">Shader</span>
@@ -1850,10 +1851,10 @@
                     </div>
                 </div>
                 <div class="card" data-category="texture" data-name="glowing ores texture pack" data-version="1.20.1 1.19.2" data-loader="all" data-id="glowingores">
-                    <img src="https://raw.githubusercontent.com/cheesmaster95-sketch/minecraft-sayt/main/images/glowingores.png" class="card-img" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d1a)';this.removeAttribute('src');">
+                    <img loading="lazy" src="https://raw.githubusercontent.com/cheesmaster95-sketch/minecraft-sayt/main/images/glowingores.png" class="card-img" onerror="this.style.background='linear-gradient(135deg,#1a1a2e,#0d0d1a)';this.removeAttribute('src');">
                     <div class="card-content">
                         <div class="card-header-row">
-                            <img src="https://raw.githubusercontent.com/cheesmaster95-sketch/minecraft-sayt/main/images/glowingores.png" class="card-icon" onerror="this.style.display='none';">
+                            <img loading="lazy" src="https://raw.githubusercontent.com/cheesmaster95-sketch/minecraft-sayt/main/images/glowingores.png" alt="icon" class="card-icon" onerror="this.style.display='none';">
                             <div class="card-title-block">
                                 <h3>Glowing Ores</h3>
                                 <span class="card-category-badge">Texture Pack</span>
@@ -1880,7 +1881,7 @@
         <span class="close-modal" onclick="closeFullScreenModal()" style="position:fixed;top:20px;right:30px;font-size:2.5rem;color:var(--text-muted);cursor:pointer;z-index:10;">&times;</span>
         
         <div class="dl-fs-header">
-            <img src="" id="fsDlImg" class="dl-fs-img" alt="Resource Image">
+            <img loading="lazy" src="" id="fsDlImg" class="dl-fs-img" alt="Resource Image">
             <div class="dl-fs-info" style="flex:1">
                 <h2 id="fsDlTitle">Resurs Nomi</h2>
                 <p id="fsDlDesc" style="display:none">Kichik tavsif matni shu yerda paydo bo'ladi.</p>
@@ -3020,7 +3021,7 @@ Agar savol sayt bilan bog'liq bo'lmasa ham yordam ber, lekin saytga qaytishni es
 
         const wrap = document.getElementById('profileAvatarWrap');
         if (user.photoURL) {
-            wrap.innerHTML = '<img src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
+            wrap.innerHTML = '<img loading="lazy" src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
         } else {
             wrap.style.fontSize = '2.5rem';
             wrap.textContent = (user.displayName || user.email).charAt(0).toUpperCase();
@@ -3071,7 +3072,7 @@ Agar savol sayt bilan bog'liq bo'lmasa ham yordam ber, lekin saytga qaytishni es
             return user.updateProfile({ photoURL: url });
         }).then(function() {
             const wrap = document.getElementById('profileAvatarWrap');
-            wrap.innerHTML = '<img src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
+            wrap.innerHTML = '<img loading="lazy" src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
             updateNavAvatar(user);
             showNotif('Rasm saqlandi! ✅');
         }).catch(function(e) { showNotif('Xatolik: ' + e.message); });
@@ -3081,7 +3082,7 @@ Agar savol sayt bilan bog'liq bo'lmasa ham yordam ber, lekin saytga qaytishni es
         const wrap = document.getElementById('navAvatarWrap');
         if (!wrap) return;
         if (user && user.photoURL) {
-            wrap.innerHTML = '<img src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
+            wrap.innerHTML = '<img loading="lazy" src="' + escapeHtml(user.photoURL) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
         } else if (user) {
             wrap.innerHTML = '';
             wrap.textContent = (user.displayName || user.email).charAt(0).toUpperCase();
