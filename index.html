@@ -2378,6 +2378,9 @@
             window.RESOURCE_DESCRIPTIONS = {"mc-launcher": "Minecraft Launcher — bu Mojang Studios tomonidan ishlab chiqilgan rasmiy o'yin boshqaruv dasturi. U orqali Minecraft Java Edition va Bedrock Edition versiyalarini boshqarish, yangilab turish va ishga tushirish mumkin. Launcher bir nechta profilni qo'llab-quvvatlaydi — turli versiyalar yoki mod to'plamlari uchun alohida profillar yaratish imkoni bor. Microsoft hisobi orqali kirish va o'yinni xavfsiz saqlash ta'minlanadi.", "bsl": "BSL Shaders — BSSurber tomonidan yaratilgan eng mashhur shader paketlaridan biri. Yumshoq va issiq rang palitrasiga ega bo'lib, real vaqtdagi soya, bulut, suv reflekslari va havo effektlarini qo'shadi. Kuchli kompyuterlar uchun mo'ljallangan, lekin sozlamalar orqali past konfiguratsiyalarda ham ishlaydi. OptiFine yoki Iris Shaders bilan mos keladi.", "complementary": "Complementary Shaders — EminGT tomonidan yaratilgan keng qo'llaniladigan shader paketi. Minecraft tabiiy ko'rinishini saqlab, atmosfera, nur va soyalarni chiroyli yaxshilaydi. Bir nechta grafik sifat darajasida ishlaydi. OptiFine va Iris bilan to'liq moslik mavjud.", "jei": "Just Enough Items (JEI) — mezz tomonidan yaratilgan modderlar orasida eng ko'p ishlatiladigan yordamchi mod. Har qanday buyum uchun kraft retseptini, baliqchilik, pishirish va boshqa ishlab chiqarish yo'llarini bevosita o'yin ichida ko'rish imkonini beradi. Yangi modlar o'rnatilsa, ular ham avtomatik ravishda JEI ro'yxatiga qo'shiladi.", "sodium": "Sodium — CaffeineMC jamoasi tomonidan ishlab chiqilgan Fabric moduli. Minecraft render mexanizmini tubdan qayta yozib, FPS ko'rsatkichini 3-5 baravar oshiradi. Katta dunyo, ko'p chunk yoki shader ishlatilganda farq yaqqol seziladi. OptiFine-dan farqli ravishda ochiq manba hisoblanadi.", "optifine": "OptiFine — sp614x tomonidan yaratilgan eng mashhur Minecraft optimizatsiya va shader moduli. Grafikani batafsil sozlash, HD tekstura paketlarini yoqish, shaderlar bilan ishlash va FPS ni oshirish imkonini beradi. .jar fayl sifatida yuklab, to'g'ridan-to'g'ri ishga tushiriladi.", "makeup": "MakeUp Ultra Fast Shader — Rre36 tomonidan yaratilgan FPS samarasini yuqori saqlaydigan shader. Zamonaviy effektlarni minimal resurs sarflab ko'rsatadi. Eski yoki o'rta konfiguratsiyali kompyuterlarda ham barqaror ishlaydi.", "mellow": "Mellow Shaders — pastel va mayin ranglar palitrasiga ega yengil shader paketi. Ko'zni toliqtirmaydigan yumshoq yoritish kuchsiz kompyuterlar uchun ideal. Yaratuvchilik rejimi va katta qurilishlar uchun keng qo'llaniladi.", "manfog": "The Man from the Fog — Hallstrom tomonidan yaratilgan Minecraft horror modi. Tumanli tunlarda noma'lum mavjudotni — Tuman odamini — olamga qo'shadi. Yolg'iz o'ynash uchun mo'ljallangan bo'lib, qo'rquv va kutish hissini to'liq o'z ichiga oladi.", "unbound": "Complementary Unbound — Complementary Shaders seriyasining mukammal varianti. Har bir blok uchun aniq aks etish, yorug'lik difraksiyasi va havo effektlarini ta'minlaydi. Kuchli grafika kartasi bilan eng chiroyli ko'rinishni beradi.", "voxels": "Rethinking Voxels — gri573 tomonidan yaratilgan ilg'or shader. Voksel asosidagi nur tarqalish texnologiyasi orqali yorug'lik bloklar ichida real vaqtda sinadi va dinamik soyalar hosil bo'ladi. Suv osti, g'or va ichki xona sahnalarida benazir ko'rinish beradi. Iris va Fabric bilan ishlaydi.", "glowingores": "Glowing Ores Texture Pack — rudalarni porlayotgan holda ko'rsatuvchi tekstura paketi. Temir, oltin, olmos va boshqa barcha rudalar ajralib ko'rinadi. Tungi konchilikda rudani osongina topishga yordam beradi. Vanilla Minecraft bilan to'liq mos keladi."};
         }
         currentResourceId = id;
+        // URL update for SEO
+        try { history.pushState({modId: id}, title, '#/mods/' + id); } catch(e) {}
+        try { document.title = title + ' - Minecraft.uz'; } catch(e) {}
         document.getElementById('fsDlTitle').textContent = title;
         document.getElementById('fsDlDesc').textContent = desc;
         const longDesc = window.RESOURCE_DESCRIPTIONS[id] || desc;
@@ -2529,6 +2532,8 @@
     function closeFullScreenModal() {
         document.getElementById('downloadModalFullScreen').classList.remove('active');
         document.body.style.overflow = 'auto';
+        try { history.pushState({}, 'Minecraft.uz', '#/'); } catch(e) {}
+        try { document.title = 'Minecraft.uz — Shaderlar, Modlar, Teksturalar'; } catch(e) {}
     }
 
     function closeModal(id) {
@@ -2558,6 +2563,36 @@
             window.fbStorage = firebase.storage();
             // Firebase tayyor - statsni ishga tushiramiz
             initAllLikes();
+
+        // Hash URL: agar sahifa #/mods/bsl kabi URL bilan ochilsa, modalni ochish
+        function handleHashUrl() {
+            const hash = window.location.hash;
+            const match = hash.match(/^#\/mods\/(.+)$/);
+            if (match) {
+                const modId = match[1];
+                // Find the mod card and trigger open
+                const allBtns = document.querySelectorAll('[onclick]');
+                for (const btn of allBtns) {
+                    const onclick = btn.getAttribute('onclick') || '';
+                    if (onclick.includes("openDownloadFullScreen('" + modId + "'")) {
+                        btn.click();
+                        return;
+                    }
+                }
+            }
+        }
+        setTimeout(handleHashUrl, 500);
+
+        // Back button support
+        window.addEventListener('popstate', function(e) {
+            const hash = window.location.hash;
+            if (!hash || hash === '#/') {
+                closeFullScreenModal();
+            } else {
+                handleHashUrl();
+            }
+        });
+
             initRealtimeStats();
         } catch(e) { console.warn('Firebase init xatosi:', e.message); return; }
 
