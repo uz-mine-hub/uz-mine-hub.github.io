@@ -1511,9 +1511,9 @@
 
 <div class="notification-overlay" id="notifBox">
     <div class="notification-box">
-        <h4>Уведомление</h4>
-        <p id="notifMessage">Tabriklaymiz! Yangi GOLD skin muvaffaqiyatli sotib olindi!</p>
-        <button class="btn-close-notif" onclick="closeNotif()">Закрыть</button>
+        <h4 id="notifTitle">Bildirishnoma</h4>
+        <p id="notifMessage">Tabriklaymiz!</p>
+        <button class="btn-close-notif" onclick="closeNotif()" id="notifCloseBtn">Yopish</button>
     </div>
 </div>
 
@@ -1552,7 +1552,7 @@
 
     <!-- ===== FEATURED SLIDER ===== -->
     <div class="featured-slider-section">
-        <div class="featured-slider-title"><span>Featured</span> Eng Mashhur Shaderlar & Modlar</div>
+        <div class="featured-slider-title"><span>Featured</span> <span data-i18n="featured">Eng Mashhur Shaderlar & Modlar</span></div>
         <div class="slider-wrapper" id="featuredSlider">
             <div class="slider-track" id="sliderTrack">
 
@@ -1912,17 +1912,16 @@
                 <p id="fsDlDesc" style="display:none">Kichik tavsif matni shu yerda paydo bo'ladi.</p>
                 
                 <div class="fs-stats-bar">
-                    <div class="fs-stat"><i class="fa-regular fa-eye"></i> <span id="fsViewCount">0</span> ko'rishlar</div>
+                    <div class="fs-stat"><i class="fa-regular fa-eye"></i> <span id="fsViewCount">0</span> <span id="fsViewLabel">ko'rishlar</span></div>
                     <div class="fs-stat"><i class="fa-regular fa-heart" id="fsHeartIcon" style="color:#e05555;cursor:pointer" onclick="toggleLikeModal()"></i> <span id="fsLikeCount">0</span> like</div>
-                    <div class="fs-stat"><i class="fa-solid fa-download"></i> <span id="fsDownloadCount">0</span> yuklab olindi</div>
-                    <div class="fs-stat"><i class="fa-solid fa-heart"></i> <span id="fsLikeCount">0</span> like</div>
-                    <div class="fs-stat"><i class="fa-solid fa-comment"></i> <span id="fsCommentCount">0</span> izoh</div>
+                    <div class="fs-stat"><i class="fa-solid fa-download"></i> <span id="fsDownloadCount">0</span> <span id="fsDownloadLabel">yuklab olindi</span></div>
+                    <div class="fs-stat"><i class="fa-solid fa-comment"></i> <span id="fsCommentCount">0</span> <span id="fsCommentLabel">izoh</span></div>
                 </div>
             </div>
         </div>
 
         <div class="dl-fs-section-title">
-            <i class="fa-solid fa-code-branch"></i> Qo'llab-quvvatlanadigan Versiyalar
+            <i class="fa-solid fa-code-branch"></i> <span id="fsVersionsTitle">Qo'llab-quvvatlanadigan Versiyalar</span>
         </div>
 
         <div class="versions-list" id="fsVersionsList"></div>
@@ -1937,7 +1936,7 @@
         <!-- TAGS SECTION -->
         <div class="dl-fs-tags-section" id="fsDlTagsSection" style="display:none;margin:0 0 28px 0;">
             <div class="dl-fs-section-title">
-                <i class="fa-solid fa-tags"></i> Teglar
+                <i class="fa-solid fa-tags"></i> <span id="fsTagsTitle">Teglar</span>
             </div>
             <div class="dl-fs-tags-list" id="fsDlTagsList"></div>
         </div>
@@ -1953,20 +1952,20 @@
         <!-- COMMENTS -->
         <div class="comments-section">
             <div class="dl-fs-section-title">
-                <i class="fa-solid fa-comments"></i> Izohlar (<span id="fsCommentCount2">0</span>)
+                <i class="fa-solid fa-comments"></i> <span id="fsCommentsTitle">Izohlar</span> (<span id="fsCommentCount2">0</span>)
             </div>
             <!-- Login bo'lmagan foydalanuvchi uchun -->
             <div id="commentLoginWall" style="background:var(--card-bg);border:1px solid var(--border-color);border-radius:12px;padding:24px;text-align:center;margin-bottom:20px;">
                 <i class="fa-solid fa-lock" style="font-size:2rem;color:var(--accent-color);margin-bottom:12px;display:block;"></i>
-                <p style="color:var(--text-color);font-weight:600;margin-bottom:6px;">Izoh yozish uchun kirish kerak</p>
-                <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:18px;">Gmail akkountingiz bilan kiring va izoh qoldiring</p>
+                <p id="commentLoginTitle" style="color:var(--text-color);font-weight:600;margin-bottom:6px;">Izoh yozish uchun kirish kerak</p>
+                <p id="commentLoginDesc" style="color:var(--text-muted);font-size:0.85rem;margin-bottom:18px;">Gmail akkountingiz bilan kiring va izoh qoldiring</p>
                 <button onclick="signInWithGoogle()" style="background:#fff;color:#333;border:none;padding:11px 22px;border-radius:8px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:10px;font-size:0.95rem;box-shadow:0 2px 8px rgba(0,0,0,0.3);">
                     <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-                    Gmail bilan kirish
+                    <span id="googleSignInBtn">Gmail bilan kirish</span>
                 </button>
                 <div style="margin-top:12px;">
-                    <span style="color:var(--text-muted);font-size:0.82rem;">yoki </span>
-                    <span onclick="openAuthModal('login')" style="color:var(--accent-color);cursor:pointer;font-weight:600;font-size:0.85rem;">Email bilan kirish</span>
+                    <span id="commentOrText" style="color:var(--text-muted);font-size:0.82rem;">yoki </span>
+                    <span onclick="openAuthModal('login')" id="emailSignInBtn" style="color:var(--accent-color);cursor:pointer;font-weight:600;font-size:0.85rem;">Email bilan kirish</span>
                 </div>
             </div>
             <!-- Login bo'lgan foydalanuvchi uchun forma -->
@@ -1975,8 +1974,8 @@
                     <div id="commentUserAvatar" style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,#4caf50,#2e7d32);display:flex;align-items:center;justify-content:center;color:white;font-size:0.8rem;font-weight:bold;"></div>
                     <span id="commentUserName" style="font-weight:600;color:var(--text-color);font-size:0.9rem;"></span>
                 </div>
-                <textarea id="commentText" placeholder="Fikringizni yozing..."></textarea>
-                <button class="btn-comment-submit" onclick="submitComment()"><i class="fa-solid fa-paper-plane"></i> Yuborish</button>
+                <textarea id="commentText" placeholder="Fikringizni yozing..." id="commentTextarea"></textarea>
+                <button class="btn-comment-submit" onclick="submitComment()"><i class="fa-solid fa-paper-plane"></i> <span id="commentSubmitText">Yuborish</span></button>
             </div>
             <div class="comments-list" id="commentsList"></div>
         </div>
@@ -2016,11 +2015,11 @@
             <span style="cursor:pointer; font-size: 1.2rem;" onclick="toggleChat()">&times;</span>
         </div>
         <div class="chat-body" id="chatBody">
-            <div class="msg bot">Salom! Men Slime AI-man. Minecraft resurslari bo'yicha qanday yordam bera olaman? 🟩</div>
+            <div class="msg bot" id="slimeWelcomeMsg">Salom! Men Slime AI-man. Minecraft resurslari bo'yicha qanday yordam bera olaman? 🟩</div>
         </div>
         <div class="chat-input-area">
             <input type="text" id="chatInput" placeholder="Xabar yozing..." onkeypress="handleChatKey(event)">
-            <button onclick="sendMessage()">Yuborish</button>
+            <button onclick="sendMessage()" id="chatSendBtn">Yuborish</button>
         </div>
     </div>
     <div class="slime-cube" id="fixedSlime" onclick="toggleChat()">
@@ -2164,19 +2163,29 @@
         const errEl = document.getElementById('authError');
         if (errEl) errEl.style.display = 'none';
         if (_authMode === 'login') {
-            title.textContent = "Tizimga Kirish";
-            subtitle.textContent = "Hisobingizga kiring";
-            btn.textContent = "Kirish";
+            const t = {
+                uz: {title:"Tizimga Kirish", sub:"Hisobingizga kiring", btn:"Kirish", switchText:"Hisobingiz yo'qmi?", switchLink:"Ro'yxatdan o'ting"},
+                ru: {title:"Войти в систему", sub:"Войдите в свой аккаунт", btn:"Войти", switchText:"Нет аккаунта?", switchLink:"Зарегистрироваться"},
+                en: {title:"Sign In", sub:"Log in to your account", btn:"Log In", switchText:"Don't have an account?", switchLink:"Sign Up"}
+            }[currentLang] || {};
+            title.textContent = t.title || "Tizimga Kirish";
+            subtitle.textContent = t.sub || "Hisobingizga kiring";
+            btn.textContent = t.btn || "Kirish";
             if (ug) ug.style.display = 'none';
-            document.getElementById('authSwitchText').textContent = "Hisobingiz yo'qmi?";
-            document.getElementById('authSwitchLink').textContent = "Ro'yxatdan o'ting";
+            document.getElementById('authSwitchText').textContent = t.switchText || "Hisobingiz yo'qmi?";
+            document.getElementById('authSwitchLink').textContent = t.switchLink || "Ro'yxatdan o'ting";
         } else {
-            title.textContent = "Ro'yxatdan O'tish";
-            subtitle.textContent = "Yangi hisob yarating";
-            btn.textContent = "Hisob Yaratish";
+            const t = {
+                uz: {title:"Ro'yxatdan O'tish", sub:"Yangi hisob yarating", btn:"Hisob Yaratish", switchText:"Hisobingiz bormi?", switchLink:"Tizimga kiring"},
+                ru: {title:"Регистрация", sub:"Создайте новый аккаунт", btn:"Создать аккаунт", switchText:"Уже есть аккаунт?", switchLink:"Войти"},
+                en: {title:"Sign Up", sub:"Create a new account", btn:"Create Account", switchText:"Already have an account?", switchLink:"Sign In"}
+            }[currentLang] || {};
+            title.textContent = t.title || "Ro'yxatdan O'tish";
+            subtitle.textContent = t.sub || "Yangi hisob yarating";
+            btn.textContent = t.btn || "Hisob Yaratish";
             if (ug) ug.style.display = 'block';
-            document.getElementById('authSwitchText').textContent = "Hisobingiz bormi?";
-            document.getElementById('authSwitchLink').textContent = "Tizimga kiring";
+            document.getElementById('authSwitchText').textContent = t.switchText || "Hisobingiz bormi?";
+            document.getElementById('authSwitchLink').textContent = t.switchLink || "Tizimga kiring";
         }
         modal.classList.add('active');
     }
@@ -2567,15 +2576,162 @@
     }
 
     /* ===== FULLSCREEN OPEN ===== */
-    function openDownloadFullScreen(id, title, desc, imgUrl, versions) {
-        if (!window.INSTALL_GUIDES) {
-            window.INSTALL_GUIDES = {"bsl": {"name": "BSL Shaders", "loader": "OptiFine", "steps": ["Скачай и установи <b>Java</b> (если не установлена)", "Скачай и установи <b>OptiFine</b> для своей версии Minecraft", "Скачай шейдер <b>BSL Shaders</b> (файл .zip)", "Запусти Minecraft с профилем <b>OptiFine</b>", "Зайди в <b>Настройки</b> → <b>Настройки видео</b> → <b>Шейдеры</b>", "Нажми <b>Открыть папку шейдеров</b> и скопируй туда .zip файл", "Выбери BSL Shaders из списка и нажми <b>Готово</b>"]}, "complementary": {"name": "Complementary Shaders", "loader": "OptiFine / Iris", "steps": ["Установи <b>OptiFine</b> или <b>Iris Shaders + Fabric</b>", "Скачай шейдер <b>Complementary Shaders</b> (файл .zip)", "Запусти Minecraft с профилем <b>OptiFine</b> или <b>Fabric</b>", "Зайди в <b>Настройки</b> → <b>Настройки видео</b> → <b>Шейдеры</b>", "Нажми <b>Открыть папку шейдеров</b>, скопируй туда .zip файл", "Выбери Complementary из списка и нажми <b>Готово</b>"]}, "unbound": {"name": "Complementary Unbound", "loader": "OptiFine / Iris", "steps": ["Установи <b>OptiFine</b> или <b>Iris Shaders + Fabric</b>", "Скачай шейдер <b>Complementary Unbound</b> (файл .zip)", "Запусти Minecraft с нужным профилем", "Зайди в <b>Настройки</b> → <b>Настройки видео</b> → <b>Шейдеры</b>", "Нажми <b>Открыть папку шейдеров</b>, скопируй туда .zip файл", "Выбери Complementary Unbound из списка и нажми <b>Готово</b>"]}, "voxels": {"name": "Rethinking Voxels", "loader": "Iris + Fabric", "steps": ["Установи <b>Fabric Loader</b> для своей версии Minecraft", "Скачай и установи <b>Iris Shaders</b> (мод для Fabric)", "Скачай шейдер <b>Rethinking Voxels</b> (файл .zip)", "Запусти Minecraft с профилем <b>Fabric</b>", "Зайди в <b>Настройки</b> → <b>Настройки видео</b> → <b>Шейдеры</b>", "Нажми <b>Открыть папку шейдеров</b>, скопируй туда .zip файл", "Выбери Rethinking Voxels из списка и нажми <b>Готово</b>"]}, "makeup": {"name": "MakeUp - Ultra Fast", "loader": "OptiFine / Iris", "steps": ["Установи <b>OptiFine</b> или <b>Iris Shaders + Fabric</b>", "Скачай шейдер <b>MakeUp Ultra Fast</b> (файл .zip)", "Запусти Minecraft с нужным профилем", "Зайди в <b>Настройки</b> → <b>Настройки видео</b> → <b>Шейдеры</b>", "Нажми <b>Открыть папку шейдеров</b>, скопируй туда .zip файл", "Выбери MakeUp из списка и нажми <b>Готово</b>"]}, "mellow": {"name": "Mellow Shaders", "loader": "OptiFine / Iris", "steps": ["Установи <b>OptiFine</b> или <b>Iris Shaders + Fabric</b>", "Скачай шейдер <b>Mellow Shaders</b> (файл .zip)", "Запусти Minecraft с нужным профилем", "Зайди в <b>Настройки</b> → <b>Настройки видео</b> → <b>Шейдеры</b>", "Нажми <b>Открыть папку шейдеров</b>, скопируй туда .zip файл", "Выбери Mellow из списка и нажми <b>Готово</b>"]}, "optifine": {"name": "OptiFine", "loader": "Standalone", "steps": ["Убедись что <b>Java</b> установлена (Java 17 или выше)", "Скачай <b>OptiFine</b> (файл .jar)", "Дважды кликни на .jar файл — откроется установщик", "Нажми <b>Install</b> — OptiFine установится автоматически", "Открой лаунчер Minecraft, выбери профиль <b>OptiFine</b>", "Нажми <b>Играть</b> — готово!"]}, "sodium": {"name": "Sodium", "loader": "Fabric", "steps": ["Установи <b>Fabric Loader</b> для своей версии Minecraft", "Скачай <b>Sodium</b> (файл .jar)", "Скопируй .jar файл в папку <b>.minecraft\\mods</b>", "Запусти Minecraft с профилем <b>Fabric</b>", "Sodium активируется автоматически — FPS уже вырастет!"]}, "jei": {"name": "Just Enough Items", "loader": "Forge / Fabric", "steps": ["Установи <b>Forge</b> или <b>Fabric</b> для своей версии", "Скачай <b>JEI</b> (файл .jar) — убедись что версия совпадает", "Скопируй .jar файл в папку <b>.minecraft\\mods</b>", "Запусти Minecraft с профилем <b>Forge</b> или <b>Fabric</b>", "JEI появится автоматически в правой части инвентаря"]}, "manfog": {"name": "The Man from the Fog", "loader": "Forge", "steps": ["Установи <b>Forge</b> для Minecraft 1.19.2", "Скачай мод <b>The Man from the Fog</b> (файл .jar)", "Скопируй .jar файл в папку <b>.minecraft\\mods</b>", "Запусти Minecraft с профилем <b>Forge 1.19.2</b>", "Заходи в выживание ночью в туман... если осмелишься 😨"]}, "mc-launcher": {"name": "Minecraft Launcher", "loader": "Standalone", "steps": ["Скачай установщик <b>Minecraft Launcher</b> (файл .exe)", "Запусти установщик и следуй инструкциям", "Войди в свой <b>Microsoft / Mojang</b> аккаунт", "Выбери нужную версию Minecraft и нажми <b>Играть</b>"]}, "glowingores": {"name": "Glowing Ores", "loader": "Vanilla", "steps": ["Скачай текстур пак <b>Glowing Ores</b> (файл .zip)", "Открой Minecraft и зайди в <b>Настройки</b> → <b>Пакеты ресурсов</b>", "Нажми <b>Открыть папку пакетов</b> и скопируй туда .zip файл", "Вернись в игру — пак появится в списке доступных", "Нажми на стрелку чтобы активировать и нажми <b>Готово</b>"]}};
+    // ===== KO'P TILLI MA'LUMOTLAR =====
+    const ALL_INSTALL_GUIDES = {
+        uz: {
+            "bsl": {"name": "BSL Shaders", "title": "BSL Shaders ni qanday o'rnatish", "steps": ["<b>Java</b> o'rnatilganligini tekshiring (agar yo'q bo'lsa o'rnating)", "O'zingizning Minecraft versiyangiz uchun <b>OptiFine</b> ni yuklab o'rnating", "<b>BSL Shaders</b> ni yuklab oling (.zip fayl)", "<b>OptiFine</b> profili bilan Minecraft ni ishga tushiring", "<b>Sozlamalar</b> → <b>Video sozlamalar</b> → <b>Shaderlar</b> ga o'ting", "<b>Shaderlar papkasini ochish</b> tugmasini bosing va .zip faylni u yerga ko'chiring", "Ro'yxatdan BSL Shaders ni tanlang va <b>Tayyor</b> tugmasini bosing"]},
+            "complementary": {"name": "Complementary Shaders", "title": "Complementary Shaders ni qanday o'rnatish", "steps": ["<b>OptiFine</b> yoki <b>Iris Shaders + Fabric</b> o'rnating", "<b>Complementary Shaders</b> ni yuklab oling (.zip fayl)", "<b>OptiFine</b> yoki <b>Fabric</b> profili bilan Minecraft ni ishga tushiring", "<b>Sozlamalar</b> → <b>Video sozlamalar</b> → <b>Shaderlar</b> ga o'ting", "<b>Shaderlar papkasini ochish</b> tugmasini bosib .zip faylni ko'chiring", "Ro'yxatdan Complementary ni tanlang va <b>Tayyor</b> tugmasini bosing"]},
+            "unbound": {"name": "Complementary Unbound", "title": "Complementary Unbound ni qanday o'rnatish", "steps": ["<b>OptiFine</b> yoki <b>Iris Shaders + Fabric</b> o'rnating", "<b>Complementary Unbound</b> ni yuklab oling (.zip fayl)", "Kerakli profil bilan Minecraft ni ishga tushiring", "<b>Sozlamalar</b> → <b>Video sozlamalar</b> → <b>Shaderlar</b> ga o'ting", "<b>Shaderlar papkasini ochish</b> tugmasini bosib .zip faylni ko'chiring", "Ro'yxatdan Complementary Unbound ni tanlang va <b>Tayyor</b> tugmasini bosing"]},
+            "voxels": {"name": "Rethinking Voxels", "title": "Rethinking Voxels ni qanday o'rnatish", "steps": ["Minecraft versiyangiz uchun <b>Fabric Loader</b> o'rnating", "<b>Iris Shaders</b> ni yuklab o'rnating (Fabric uchun mod)", "<b>Rethinking Voxels</b> ni yuklab oling (.zip fayl)", "<b>Fabric</b> profili bilan Minecraft ni ishga tushiring", "<b>Sozlamalar</b> → <b>Video sozlamalar</b> → <b>Shaderlar</b> ga o'ting", "<b>Shaderlar papkasini ochish</b> tugmasini bosib .zip faylni ko'chiring", "Ro'yxatdan Rethinking Voxels ni tanlang va <b>Tayyor</b> tugmasini bosing"]},
+            "makeup": {"name": "MakeUp - Ultra Fast", "title": "MakeUp Ultra Fast ni qanday o'rnatish", "steps": ["<b>OptiFine</b> yoki <b>Iris Shaders + Fabric</b> o'rnating", "<b>MakeUp Ultra Fast</b> ni yuklab oling (.zip fayl)", "Kerakli profil bilan Minecraft ni ishga tushiring", "<b>Sozlamalar</b> → <b>Video sozlamalar</b> → <b>Shaderlar</b> ga o'ting", "<b>Shaderlar papkasini ochish</b> tugmasini bosib .zip faylni ko'chiring", "Ro'yxatdan MakeUp ni tanlang va <b>Tayyor</b> tugmasini bosing"]},
+            "mellow": {"name": "Mellow Shaders", "title": "Mellow Shaders ni qanday o'rnatish", "steps": ["<b>OptiFine</b> yoki <b>Iris Shaders + Fabric</b> o'rnating", "<b>Mellow Shaders</b> ni yuklab oling (.zip fayl)", "Kerakli profil bilan Minecraft ni ishga tushiring", "<b>Sozlamalar</b> → <b>Video sozlamalar</b> → <b>Shaderlar</b> ga o'ting", "<b>Shaderlar papkasini ochish</b> tugmasini bosib .zip faylni ko'chiring", "Ro'yxatdan Mellow ni tanlang va <b>Tayyor</b> tugmasini bosing"]},
+            "optifine": {"name": "OptiFine", "title": "OptiFine ni qanday o'rnatish", "steps": ["<b>Java</b> o'rnatilganligini tekshiring (Java 17 yoki undan yuqori)", "<b>OptiFine</b> ni yuklab oling (.jar fayl)", ".jar faylga ikki marta bosing — o'rnatuvchi ochiladi", "<b>Install</b> tugmasini bosing — OptiFine avtomatik o'rnatiladi", "Minecraft launcherni oching, <b>OptiFine</b> profilini tanlang", "<b>O'ynash</b> tugmasini bosing — tayyor!"]},
+            "sodium": {"name": "Sodium", "title": "Sodium ni qanday o'rnatish", "steps": ["Minecraft versiyangiz uchun <b>Fabric Loader</b> o'rnating", "<b>Sodium</b> ni yuklab oling (.jar fayl)", ".jar faylni <b>.minecraft\\mods</b> papkasiga ko'chiring", "<b>Fabric</b> profili bilan Minecraft ni ishga tushiring", "Sodium avtomatik faollashadi — FPS allaqachon oshadi!"]},
+            "jei": {"name": "Just Enough Items", "title": "JEI ni qanday o'rnatish", "steps": ["Versiyangiz uchun <b>Forge</b> yoki <b>Fabric</b> o'rnating", "<b>JEI</b> ni yuklab oling (.jar fayl) — versiya mos kelishiga ishonch hosil qiling", ".jar faylni <b>.minecraft\\mods</b> papkasiga ko'chiring", "<b>Forge</b> yoki <b>Fabric</b> profili bilan Minecraft ni ishga tushiring", "JEI inventar o'ng tomonida avtomatik paydo bo'ladi"]},
+            "manfog": {"name": "The Man from the Fog", "title": "The Man from the Fog ni qanday o'rnatish", "steps": ["Minecraft 1.19.2 uchun <b>Forge</b> o'rnating", "<b>The Man from the Fog</b> modini yuklab oling (.jar fayl)", ".jar faylni <b>.minecraft\\mods</b> papkasiga ko'chiring", "<b>Forge 1.19.2</b> profili bilan Minecraft ni ishga tushiring", "Tungi tumanda yashashga kiring... agar jur'at etsa 😨"]},
+            "mc-launcher": {"name": "Minecraft Launcher", "title": "Minecraft Launcher ni qanday o'rnatish", "steps": ["<b>Minecraft Launcher</b> o'rnatuvchisini yuklab oling (.exe fayl)", "O'rnatuvchini ishga tushiring va ko'rsatmalarga amal qiling", "<b>Microsoft / Mojang</b> hisobingizga kiring", "Kerakli Minecraft versiyasini tanlang va <b>O'ynash</b> tugmasini bosing"]},
+            "glowingores": {"name": "Glowing Ores", "title": "Glowing Ores ni qanday o'rnatish", "steps": ["<b>Glowing Ores</b> tekstura paketini yuklab oling (.zip fayl)", "Minecraft ni oching va <b>Sozlamalar</b> → <b>Resurs paketlari</b> ga o'ting", "<b>Paketlar papkasini ochish</b> tugmasini bosib .zip faylni ko'chiring", "O'yinga qayting — paket mavjud ro'yxatda paydo bo'ladi", "Faollashtirish uchun o'q tugmasini bosing va <b>Tayyor</b> tugmasini bosing"]}
+        },
+        ru: {
+            "bsl": {"name": "BSL Shaders", "title": "Как установить BSL Shaders", "steps": ["Скачай и установи <b>Java</b> (если не установлена)", "Скачай и установи <b>OptiFine</b> для своей версии Minecraft", "Скачай шейдер <b>BSL Shaders</b> (файл .zip)", "Запусти Minecraft с профилем <b>OptiFine</b>", "Зайди в <b>Настройки</b> → <b>Настройки видео</b> → <b>Шейдеры</b>", "Нажми <b>Открыть папку шейдеров</b> и скопируй туда .zip файл", "Выбери BSL Shaders из списка и нажми <b>Готово</b>"]},
+            "complementary": {"name": "Complementary Shaders", "title": "Как установить Complementary Shaders", "steps": ["Установи <b>OptiFine</b> или <b>Iris Shaders + Fabric</b>", "Скачай шейдер <b>Complementary Shaders</b> (файл .zip)", "Запусти Minecraft с профилем <b>OptiFine</b> или <b>Fabric</b>", "Зайди в <b>Настройки</b> → <b>Настройки видео</b> → <b>Шейдеры</b>", "Нажми <b>Открыть папку шейдеров</b>, скопируй туда .zip файл", "Выбери Complementary из списка и нажми <b>Готово</b>"]},
+            "unbound": {"name": "Complementary Unbound", "title": "Как установить Complementary Unbound", "steps": ["Установи <b>OptiFine</b> или <b>Iris Shaders + Fabric</b>", "Скачай шейдер <b>Complementary Unbound</b> (файл .zip)", "Запусти Minecraft с нужным профилем", "Зайди в <b>Настройки</b> → <b>Настройки видео</b> → <b>Шейдеры</b>", "Нажми <b>Открыть папку шейдеров</b>, скопируй туда .zip файл", "Выбери Complementary Unbound из списка и нажми <b>Готово</b>"]},
+            "voxels": {"name": "Rethinking Voxels", "title": "Как установить Rethinking Voxels", "steps": ["Установи <b>Fabric Loader</b> для своей версии Minecraft", "Скачай и установи <b>Iris Shaders</b> (мод для Fabric)", "Скачай шейдер <b>Rethinking Voxels</b> (файл .zip)", "Запусти Minecraft с профилем <b>Fabric</b>", "Зайди в <b>Настройки</b> → <b>Настройки видео</b> → <b>Шейдеры</b>", "Нажми <b>Открыть папку шейдеров</b>, скопируй туда .zip файл", "Выбери Rethinking Voxels из списка и нажми <b>Готово</b>"]},
+            "makeup": {"name": "MakeUp - Ultra Fast", "title": "Как установить MakeUp Ultra Fast", "steps": ["Установи <b>OptiFine</b> или <b>Iris Shaders + Fabric</b>", "Скачай шейдер <b>MakeUp Ultra Fast</b> (файл .zip)", "Запусти Minecraft с нужным профилем", "Зайди в <b>Настройки</b> → <b>Настройки видео</b> → <b>Шейдеры</b>", "Нажми <b>Открыть папку шейдеров</b>, скопируй туда .zip файл", "Выбери MakeUp из списка и нажми <b>Готово</b>"]},
+            "mellow": {"name": "Mellow Shaders", "title": "Как установить Mellow Shaders", "steps": ["Установи <b>OptiFine</b> или <b>Iris Shaders + Fabric</b>", "Скачай шейдер <b>Mellow Shaders</b> (файл .zip)", "Запусти Minecraft с нужным профилем", "Зайди в <b>Настройки</b> → <b>Настройки видео</b> → <b>Шейдеры</b>", "Нажми <b>Открыть папку шейдеров</b>, скопируй туда .zip файл", "Выбери Mellow из списка и нажми <b>Готово</b>"]},
+            "optifine": {"name": "OptiFine", "title": "Как установить OptiFine", "steps": ["Убедись что <b>Java</b> установлена (Java 17 или выше)", "Скачай <b>OptiFine</b> (файл .jar)", "Дважды кликни на .jar файл — откроется установщик", "Нажми <b>Install</b> — OptiFine установится автоматически", "Открой лаунчер Minecraft, выбери профиль <b>OptiFine</b>", "Нажми <b>Играть</b> — готово!"]},
+            "sodium": {"name": "Sodium", "title": "Как установить Sodium", "steps": ["Установи <b>Fabric Loader</b> для своей версии Minecraft", "Скачай <b>Sodium</b> (файл .jar)", "Скопируй .jar файл в папку <b>.minecraft\\mods</b>", "Запусти Minecraft с профилем <b>Fabric</b>", "Sodium активируется автоматически — FPS уже вырастет!"]},
+            "jei": {"name": "Just Enough Items", "title": "Как установить JEI", "steps": ["Установи <b>Forge</b> или <b>Fabric</b> для своей версии", "Скачай <b>JEI</b> (файл .jar) — убедись что версия совпадает", "Скопируй .jar файл в папку <b>.minecraft\\mods</b>", "Запусти Minecraft с профилем <b>Forge</b> или <b>Fabric</b>", "JEI появится автоматически в правой части инвентаря"]},
+            "manfog": {"name": "The Man from the Fog", "title": "Как установить The Man from the Fog", "steps": ["Установи <b>Forge</b> для Minecraft 1.19.2", "Скачай мод <b>The Man from the Fog</b> (файл .jar)", "Скопируй .jar файл в папку <b>.minecraft\\mods</b>", "Запусти Minecraft с профилем <b>Forge 1.19.2</b>", "Заходи в выживание ночью в туман... если осмелишься 😨"]},
+            "mc-launcher": {"name": "Minecraft Launcher", "title": "Как установить Minecraft Launcher", "steps": ["Скачай установщик <b>Minecraft Launcher</b> (файл .exe)", "Запусти установщик и следуй инструкциям", "Войди в свой <b>Microsoft / Mojang</b> аккаунт", "Выбери нужную версию Minecraft и нажми <b>Играть</b>"]},
+            "glowingores": {"name": "Glowing Ores", "title": "Как установить Glowing Ores", "steps": ["Скачай текстур пак <b>Glowing Ores</b> (файл .zip)", "Открой Minecraft и зайди в <b>Настройки</b> → <b>Пакеты ресурсов</b>", "Нажми <b>Открыть папку пакетов</b> и скопируй туда .zip файл", "Вернись в игру — пак появится в списке доступных", "Нажми на стрелку чтобы активировать и нажми <b>Готово</b>"]}
+        },
+        en: {
+            "bsl": {"name": "BSL Shaders", "title": "How to install BSL Shaders", "steps": ["Download and install <b>Java</b> (if not already installed)", "Download and install <b>OptiFine</b> for your Minecraft version", "Download <b>BSL Shaders</b> (.zip file)", "Launch Minecraft with the <b>OptiFine</b> profile", "Go to <b>Options</b> → <b>Video Settings</b> → <b>Shaders</b>", "Click <b>Open Shader Pack Folder</b> and copy the .zip file there", "Select BSL Shaders from the list and click <b>Done</b>"]},
+            "complementary": {"name": "Complementary Shaders", "title": "How to install Complementary Shaders", "steps": ["Install <b>OptiFine</b> or <b>Iris Shaders + Fabric</b>", "Download <b>Complementary Shaders</b> (.zip file)", "Launch Minecraft with the <b>OptiFine</b> or <b>Fabric</b> profile", "Go to <b>Options</b> → <b>Video Settings</b> → <b>Shaders</b>", "Click <b>Open Shader Pack Folder</b> and copy the .zip file there", "Select Complementary from the list and click <b>Done</b>"]},
+            "unbound": {"name": "Complementary Unbound", "title": "How to install Complementary Unbound", "steps": ["Install <b>OptiFine</b> or <b>Iris Shaders + Fabric</b>", "Download <b>Complementary Unbound</b> (.zip file)", "Launch Minecraft with the appropriate profile", "Go to <b>Options</b> → <b>Video Settings</b> → <b>Shaders</b>", "Click <b>Open Shader Pack Folder</b> and copy the .zip file there", "Select Complementary Unbound from the list and click <b>Done</b>"]},
+            "voxels": {"name": "Rethinking Voxels", "title": "How to install Rethinking Voxels", "steps": ["Install <b>Fabric Loader</b> for your Minecraft version", "Download and install <b>Iris Shaders</b> (Fabric mod)", "Download <b>Rethinking Voxels</b> (.zip file)", "Launch Minecraft with the <b>Fabric</b> profile", "Go to <b>Options</b> → <b>Video Settings</b> → <b>Shaders</b>", "Click <b>Open Shader Pack Folder</b> and copy the .zip file there", "Select Rethinking Voxels from the list and click <b>Done</b>"]},
+            "makeup": {"name": "MakeUp - Ultra Fast", "title": "How to install MakeUp Ultra Fast", "steps": ["Install <b>OptiFine</b> or <b>Iris Shaders + Fabric</b>", "Download <b>MakeUp Ultra Fast</b> (.zip file)", "Launch Minecraft with the appropriate profile", "Go to <b>Options</b> → <b>Video Settings</b> → <b>Shaders</b>", "Click <b>Open Shader Pack Folder</b> and copy the .zip file there", "Select MakeUp from the list and click <b>Done</b>"]},
+            "mellow": {"name": "Mellow Shaders", "title": "How to install Mellow Shaders", "steps": ["Install <b>OptiFine</b> or <b>Iris Shaders + Fabric</b>", "Download <b>Mellow Shaders</b> (.zip file)", "Launch Minecraft with the appropriate profile", "Go to <b>Options</b> → <b>Video Settings</b> → <b>Shaders</b>", "Click <b>Open Shader Pack Folder</b> and copy the .zip file there", "Select Mellow from the list and click <b>Done</b>"]},
+            "optifine": {"name": "OptiFine", "title": "How to install OptiFine", "steps": ["Make sure <b>Java</b> is installed (Java 17 or higher)", "Download <b>OptiFine</b> (.jar file)", "Double-click the .jar file — the installer will open", "Click <b>Install</b> — OptiFine will install automatically", "Open the Minecraft launcher, select the <b>OptiFine</b> profile", "Click <b>Play</b> — done!"]},
+            "sodium": {"name": "Sodium", "title": "How to install Sodium", "steps": ["Install <b>Fabric Loader</b> for your Minecraft version", "Download <b>Sodium</b> (.jar file)", "Copy the .jar file to the <b>.minecraft\\mods</b> folder", "Launch Minecraft with the <b>Fabric</b> profile", "Sodium activates automatically — FPS will already be higher!"]},
+            "jei": {"name": "Just Enough Items", "title": "How to install JEI", "steps": ["Install <b>Forge</b> or <b>Fabric</b> for your version", "Download <b>JEI</b> (.jar file) — make sure the version matches", "Copy the .jar file to the <b>.minecraft\\mods</b> folder", "Launch Minecraft with the <b>Forge</b> or <b>Fabric</b> profile", "JEI will appear automatically on the right side of your inventory"]},
+            "manfog": {"name": "The Man from the Fog", "title": "How to install The Man from the Fog", "steps": ["Install <b>Forge</b> for Minecraft 1.19.2", "Download the mod <b>The Man from the Fog</b> (.jar file)", "Copy the .jar file to the <b>.minecraft\\mods</b> folder", "Launch Minecraft with the <b>Forge 1.19.2</b> profile", "Enter survival mode on a foggy night... if you dare 😨"]},
+            "mc-launcher": {"name": "Minecraft Launcher", "title": "How to install Minecraft Launcher", "steps": ["Download the <b>Minecraft Launcher</b> installer (.exe file)", "Run the installer and follow the instructions", "Sign in with your <b>Microsoft / Mojang</b> account", "Choose your Minecraft version and click <b>Play</b>"]},
+            "glowingores": {"name": "Glowing Ores", "title": "How to install Glowing Ores", "steps": ["Download the <b>Glowing Ores</b> texture pack (.zip file)", "Open Minecraft and go to <b>Options</b> → <b>Resource Packs</b>", "Click <b>Open Pack Folder</b> and copy the .zip file there", "Return to the game — the pack will appear in the available list", "Click the arrow to activate it and click <b>Done</b>"]}
         }
+    };
+
+    const ALL_RESOURCE_DESCRIPTIONS = {
+        uz: {
+            "mc-launcher": "Minecraft Launcher — bu Mojang Studios tomonidan ishlab chiqilgan rasmiy o'yin boshqaruv dasturi. U orqali Minecraft Java Edition va Bedrock Edition versiyalarini boshqarish, yangilab turish va ishga tushirish mumkin. Launcher bir nechta profilni qo'llab-quvvatlaydi — turli versiyalar yoki mod to'plamlari uchun alohida profillar yaratish imkoni bor. Microsoft hisobi orqali kirish va o'yinni xavfsiz saqlash ta'minlanadi.",
+            "bsl": "BSL Shaders — BSSurber tomonidan yaratilgan eng mashhur shader paketlaridan biri. Yumshoq va issiq rang palitrasiga ega bo'lib, real vaqtdagi soya, bulut, suv reflekslari va havo effektlarini qo'shadi. Kuchli kompyuterlar uchun mo'ljallangan, lekin sozlamalar orqali past konfiguratsiyalarda ham ishlaydi. OptiFine yoki Iris Shaders bilan mos keladi.",
+            "complementary": "Complementary Shaders — EminGT tomonidan yaratilgan keng qo'llaniladigan shader paketi. Minecraft tabiiy ko'rinishini saqlab, atmosfera, nur va soyalarni chiroyli yaxshilaydi. Bir nechta grafik sifat darajasida ishlaydi. OptiFine va Iris bilan to'liq moslik mavjud.",
+            "jei": "Just Enough Items (JEI) — mezz tomonidan yaratilgan modderlar orasida eng ko'p ishlatiladigan yordamchi mod. Har qanday buyum uchun kraft retseptini, baliqchilik, pishirish va boshqa ishlab chiqarish yo'llarini bevosita o'yin ichida ko'rish imkonini beradi. Yangi modlar o'rnatilsa, ular ham avtomatik ravishda JEI ro'yxatiga qo'shiladi.",
+            "sodium": "Sodium — CaffeineMC jamoasi tomonidan ishlab chiqilgan Fabric moduli. Minecraft render mexanizmini tubdan qayta yozib, FPS ko'rsatkichini 3-5 baravar oshiradi. Katta dunyo, ko'p chunk yoki shader ishlatilganda farq yaqqol seziladi. OptiFine-dan farqli ravishda ochiq manba hisoblanadi.",
+            "optifine": "OptiFine — sp614x tomonidan yaratilgan eng mashhur Minecraft optimizatsiya va shader moduli. Grafikani batafsil sozlash, HD tekstura paketlarini yoqish, shaderlar bilan ishlash va FPS ni oshirish imkonini beradi. .jar fayl sifatida yuklab, to'g'ridan-to'g'ri ishga tushiriladi.",
+            "makeup": "MakeUp Ultra Fast Shader — Rre36 tomonidan yaratilgan FPS samarasini yuqori saqlaydigan shader. Zamonaviy effektlarni minimal resurs sarflab ko'rsatadi. Eski yoki o'rta konfiguratsiyali kompyuterlarda ham barqaror ishlaydi.",
+            "mellow": "Mellow Shaders — pastel va mayin ranglar palitrasiga ega yengil shader paketi. Ko'zni toliqtirmaydigan yumshoq yoritish kuchsiz kompyuterlar uchun ideal. Yaratuvchilik rejimi va katta qurilishlar uchun keng qo'llaniladi.",
+            "manfog": "The Man from the Fog — Hallstrom tomonidan yaratilgan Minecraft horror modi. Tumanli tunlarda noma'lum mavjudotni — Tuman odamini — olamga qo'shadi. Yolg'iz o'ynash uchun mo'ljallangan bo'lib, qo'rquv va kutish hissini to'liq o'z ichiga oladi.",
+            "unbound": "Complementary Unbound — Complementary Shaders seriyasining mukammal varianti. Har bir blok uchun aniq aks etish, yorug'lik difraksiyasi va havo effektlarini ta'minlaydi. Kuchli grafika kartasi bilan eng chiroyli ko'rinishni beradi.",
+            "voxels": "Rethinking Voxels — gri573 tomonidan yaratilgan ilg'or shader. Voksel asosidagi nur tarqalish texnologiyasi orqali yorug'lik bloklar ichida real vaqtda sinadi va dinamik soyalar hosil bo'ladi. Suv osti, g'or va ichki xona sahnalarida benazir ko'rinish beradi. Iris va Fabric bilan ishlaydi.",
+            "glowingores": "Glowing Ores Texture Pack — rudalarni porlayotgan holda ko'rsatuvchi tekstura paketi. Temir, oltin, olmos va boshqa barcha rudalar ajralib ko'rinadi. Tungi konchilikda rudani osongina topishga yordam beradi. Vanilla Minecraft bilan to'liq mos keladi."
+        },
+        ru: {
+            "mc-launcher": "Minecraft Launcher — официальная программа управления игрой от Mojang Studios. С её помощью можно управлять, обновлять и запускать Minecraft Java Edition и Bedrock Edition. Поддерживает несколько профилей — можно создавать отдельные профили для разных версий или наборов модов. Обеспечивается вход через аккаунт Microsoft и безопасное сохранение прогресса.",
+            "bsl": "BSL Shaders — один из самых популярных шейдерных пакетов, созданный BSSurber. Имеет мягкую и тёплую цветовую палитру, добавляет реалистичные тени, облака, отражения воды и эффекты атмосферы. Предназначен для мощных ПК, но с настройками работает и на слабых конфигурациях. Совместим с OptiFine и Iris Shaders.",
+            "complementary": "Complementary Shaders — широко используемый шейдерный пакет от EminGT. Сохраняет естественный вид Minecraft, красиво улучшая атмосферу, свет и тени. Работает на нескольких уровнях качества графики. Полная совместимость с OptiFine и Iris.",
+            "jei": "Just Enough Items (JEI) — самый популярный вспомогательный мод среди моддеров, созданный mezz. Позволяет прямо в игре просматривать рецепты крафта, рыбалки, приготовления и других способов изготовления для любого предмета. При установке новых модов они автоматически добавляются в список JEI.",
+            "sodium": "Sodium — модуль Fabric от команды CaffeineMC. Полностью переписывает движок рендеринга Minecraft, увеличивая FPS в 3-5 раз. Разница особенно заметна на больших мирах, при большом количестве чанков или использовании шейдеров. В отличие от OptiFine, является проектом с открытым исходным кодом.",
+            "optifine": "OptiFine — самый популярный модуль оптимизации и шейдеров Minecraft от sp614x. Позволяет детально настраивать графику, использовать HD текстур-паки, работать с шейдерами и повышать FPS. Скачивается в виде .jar файла и запускается напрямую.",
+            "makeup": "MakeUp Ultra Fast Shader — шейдер от Rre36 с высокой эффективностью FPS. Отображает современные эффекты при минимальных затратах ресурсов. Стабильно работает даже на старых или средних конфигурациях ПК.",
+            "mellow": "Mellow Shaders — лёгкий шейдерный пакет с пастельной и мягкой цветовой палитрой. Мягкое освещение, не утомляющее глаза, идеально для слабых ПК. Широко используется в режиме творчества и при больших стройках.",
+            "manfog": "The Man from the Fog — хоррор-мод для Minecraft от Hallstrom. Добавляет в мир неизвестное существо — Человека из тумана — в туманные ночи. Предназначен для одиночной игры и полностью передаёт чувство страха и ожидания.",
+            "unbound": "Complementary Unbound — совершенная версия серии Complementary Shaders. Обеспечивает точные отражения для каждого блока, дифракцию света и эффекты атмосферы. С мощной видеокартой даёт самый красивый внешний вид.",
+            "voxels": "Rethinking Voxels — продвинутый шейдер от gri573. С помощью технологии распространения света на основе вокселей свет преломляется внутри блоков в реальном времени и создаёт динамические тени. Даёт неповторимый вид под водой, в пещерах и в закрытых помещениях. Работает с Iris и Fabric.",
+            "glowingores": "Glowing Ores Texture Pack — текстурный пак, показывающий руды светящимися. Железо, золото, алмазы и все остальные руды выделяются из общей массы. Помогает легко найти руду при ночной добыче. Полностью совместим с ванильным Minecraft."
+        },
+        en: {
+            "mc-launcher": "Minecraft Launcher is the official game management application developed by Mojang Studios. It allows you to manage, update, and launch both Minecraft Java Edition and Bedrock Edition. The launcher supports multiple profiles — you can create separate profiles for different versions or mod packs. Microsoft account sign-in and secure game saving are built in.",
+            "bsl": "BSL Shaders is one of the most popular shader packs, created by BSSurber. It features a soft and warm color palette with real-time shadows, clouds, water reflections, and atmospheric effects. Designed for powerful PCs but can be tuned to work on lower-end systems as well. Compatible with OptiFine and Iris Shaders.",
+            "complementary": "Complementary Shaders is a widely used shader pack by EminGT. It preserves Minecraft's natural look while beautifully enhancing atmosphere, lighting, and shadows. Works at multiple quality levels. Fully compatible with OptiFine and Iris.",
+            "jei": "Just Enough Items (JEI) is the most widely used utility mod among modders, created by mezz. It lets you view crafting recipes, fishing loot, smelting outputs, and other production methods for any item directly in-game. When new mods are installed, they are automatically added to the JEI list.",
+            "sodium": "Sodium is a Fabric module by CaffeineMC. It completely rewrites Minecraft's rendering engine, boosting FPS by 3-5x. The difference is especially noticeable in large worlds, with many chunks loaded, or when using shaders. Unlike OptiFine, it is open-source.",
+            "optifine": "OptiFine is the most popular Minecraft optimization and shader module by sp614x. It allows detailed graphics customization, HD texture pack support, shader integration, and FPS improvement. Downloaded as a .jar file and run directly.",
+            "makeup": "MakeUp Ultra Fast Shader by Rre36 maintains high FPS performance while rendering modern visual effects with minimal resource usage. Runs stably even on older or mid-range PC configurations.",
+            "mellow": "Mellow Shaders is a lightweight shader pack with a pastel and gentle color palette. Its soft, eye-friendly lighting is ideal for low-end PCs. Widely used in creative mode and for large builds.",
+            "manfog": "The Man from the Fog is a Minecraft horror mod by Hallstrom. It adds an unknown creature — the Man from the Fog — to the world on foggy nights. Designed for solo play, it fully captures the feeling of fear and anticipation.",
+            "unbound": "Complementary Unbound is the ultimate version of the Complementary Shaders series. It provides precise reflections for every block, light diffraction, and atmospheric effects. With a powerful GPU, it delivers the most stunning visuals.",
+            "voxels": "Rethinking Voxels is an advanced shader by gri573. Using voxel-based light propagation technology, light refracts inside blocks in real time and creates dynamic shadows. It gives unmatched visuals underwater, in caves, and in interior scenes. Works with Iris and Fabric.",
+            "glowingores": "Glowing Ores Texture Pack shows ores in a glowing state. Iron, gold, diamonds, and all other ores stand out clearly. It helps you easily spot ores during nighttime mining. Fully compatible with vanilla Minecraft."
+        }
+    };
+
+    const ALL_CARD_DESCRIPTIONS = {
+        uz: {
+            "mc-launcher": "Minecraft olamiga bir marta bosish orqali kirish imkonini beruvchi eng barqaror va xavfsiz rasmiy boshqaruv dasturi.",
+            "bsl": "Yumshoq va issiq ranglar bilan real vaqtdagi soya, bulut va suv reflekslarini qo'shadigan eng mashhur shader.",
+            "complementary": "Minecraft tabiiy ko'rinishini saqlab, atmosfera va nurni chiroyli yaxshilaydigan muvozanatli shader.",
+            "jei": "Har qanday buyumning kraft retseptini o'yin ichida bevosita ko'rish imkonini beruvchi eng asosiy yordamchi mod.",
+            "sodium": "Minecraft render mexanizmini qayta yozib, FPS ni 3-5 baravar oshiradigan Fabric optimizatsiya moduli.",
+            "optifine": "Grafikani batafsil sozlash, HD tekstura va shaderlar yoqishni ta'minlovchi eng mashhur Minecraft moduli.",
+            "makeup": "FPS ni pasaytirmasdan tezkor va barqaror ishlovchi, zaif kompyuterlar uchun ideal shader.",
+            "mellow": "Ko'zni toliqtirmaydigan pastel rangli, kuchsiz kompyuterlar uchun yengil va chiroyli shader.",
+            "manfog": "Tumanli tunlarda noma'lum mavjudot sizni kuzatadi — yolg'iz o'ynash uchun mo'ljallangan horror mod.",
+            "unbound": "Har bir blok uchun mukammal aks etish va realistik tuman — cinematic va screenshot uchun ideal shader.",
+            "voxels": "Voksel nur texnologiyasi orqali rangli nurlar va dinamik soyalar hosil qiladigan ilg'or shader.",
+            "glowingores": "Rudalarni yorqin porlayotgan holda ko'rsatuvchi tekstura paketi — tungi konchilikni osonlashtiradi."
+        },
+        ru: {
+            "mc-launcher": "Официальный лаунчер Minecraft — самый стабильный и безопасный способ войти в мир Minecraft одним кликом.",
+            "bsl": "Самый популярный шейдер с мягкими тёплыми тонами, добавляющий тени в реальном времени, облака и отражения воды.",
+            "complementary": "Сбалансированный шейдер, сохраняющий естественный вид Minecraft и красиво улучшающий атмосферу и освещение.",
+            "jei": "Незаменимый вспомогательный мод, позволяющий просматривать рецепты крафта прямо в игре.",
+            "sodium": "Модуль оптимизации Fabric, переписывающий движок рендеринга Minecraft и повышающий FPS в 3-5 раз.",
+            "optifine": "Самый популярный модуль Minecraft для детальной настройки графики, HD текстур и поддержки шейдеров.",
+            "makeup": "Быстрый и стабильный шейдер, идеальный для слабых ПК — не снижает FPS.",
+            "mellow": "Лёгкий шейдер с пастельными цветами, не утомляющий глаза — идеален для слабых компьютеров.",
+            "manfog": "В туманные ночи за вами следит неизвестное существо — хоррор-мод для одиночной игры.",
+            "unbound": "Идеальные отражения и реалистичный туман для каждого блока — идеально для кинематографии и скриншотов.",
+            "voxels": "Продвинутый шейдер с вокселевой технологией, создающий цветные лучи света и динамические тени.",
+            "glowingores": "Текстурный пак, показывающий руды ярко светящимися — облегчает ночную добычу."
+        },
+        en: {
+            "mc-launcher": "The official Minecraft Launcher — the most stable and secure way to enter the world of Minecraft with one click.",
+            "bsl": "The most popular shader with soft warm tones, adding real-time shadows, clouds, and water reflections.",
+            "complementary": "A balanced shader that preserves Minecraft's natural look while beautifully enhancing atmosphere and lighting.",
+            "jei": "The essential utility mod for viewing crafting recipes of any item directly in-game.",
+            "sodium": "A Fabric optimization module that rewrites Minecraft's rendering engine and boosts FPS by 3-5x.",
+            "optifine": "The most popular Minecraft module for detailed graphics settings, HD textures, and shader support.",
+            "makeup": "A fast and stable shader ideal for low-end PCs — no FPS drop.",
+            "mellow": "A lightweight shader with pastel colors that's easy on the eyes — perfect for weak computers.",
+            "manfog": "An unknown creature watches you on foggy nights — a horror mod designed for solo play.",
+            "unbound": "Perfect reflections and realistic fog for every block — ideal for cinematic shots and screenshots.",
+            "voxels": "An advanced shader using voxel technology that creates colorful light rays and dynamic shadows.",
+            "glowingores": "A texture pack showing ores brightly glowing — makes night mining much easier."
+        }
+    };
+
+    const DOWNLOAD_BTN_TEXT = { uz: 'Yuklab Olish', ru: 'Скачать', en: 'Download' };
+    const UPDATED_TEXT = { uz: 'Yangilangan', ru: 'Обновлено', en: 'Updated' };
+
+    // Version date translations
+    const VERSION_DATES = {
+        uz: { 'Bugun yangilandi': 'Bugun yangilandi', "O'tgan hafta": "O'tgan hafta", 'Eski versiya': 'Eski versiya', 'Doim yangilangan': 'Doim yangilangan', 'Yangilangan': 'Yangilangan', 'Avvalgi versiya': 'Avvalgi versiya' },
+        ru: { 'Bugun yangilandi': 'Обновлено сегодня', "O'tgan hafta": 'На прошлой неделе', 'Eski versiya': 'Старая версия', 'Doim yangilangan': 'Всегда актуально', 'Yangilangan': 'Обновлено', 'Avvalgi versiya': 'Предыдущая версия' },
+        en: { 'Bugun yangilandi': 'Updated today', "O'tgan hafta": 'Last week', 'Eski versiya': 'Legacy version', 'Doim yangilangan': 'Always up to date', 'Yangilangan': 'Updated', 'Avvalgi versiya': 'Previous version' }
+    };
+
+    function translateDate(date, lang) {
+        return (VERSION_DATES[lang] || VERSION_DATES['uz'])[date] || date;
+    }
+
+    function openDownloadFullScreen(id, title, desc, imgUrl, versions) {
+        const lang = typeof currentLang !== 'undefined' ? currentLang : 'uz';
+        window.INSTALL_GUIDES = ALL_INSTALL_GUIDES[lang] || ALL_INSTALL_GUIDES['uz'];
+        window.RESOURCE_DESCRIPTIONS = ALL_RESOURCE_DESCRIPTIONS[lang] || ALL_RESOURCE_DESCRIPTIONS['uz'];
         if (!window.RESOURCE_TAGS) {
             window.RESOURCE_TAGS = {"mc-launcher": ["Launcher", "Official", "Java Edition", "Bedrock", "Microsoft", "Free"], "bsl": ["Shader", "OptiFine", "Iris", "Realistic", "High Quality", "Shadows", "Reflections"], "complementary": ["Shader", "OptiFine", "Iris", "Balanced", "Atmosphere", "Lightweight"], "jei": ["Mod", "Forge", "Fabric", "Utility", "Recipes", "QoL", "Popular"], "sodium": ["Mod", "Fabric", "Performance", "FPS Boost", "Open Source", "Optimization"], "optifine": ["Mod", "Optimization", "Shader Support", "HD Textures", "FPS Boost", "Standalone"], "makeup": ["Shader", "OptiFine", "Iris", "Lightweight", "Fast", "FPS Friendly", "Low-End PC"], "mellow": ["Shader", "OptiFine", "Iris", "Pastel", "Lightweight", "Eye-Friendly", "Creative"], "manfog": ["Mod", "Forge", "Horror", "Atmospheric", "Survival", "Scary", "Adventure"], "unbound": ["Shader", "OptiFine", "Iris", "Cinematic", "Reflections", "High Quality", "Screenshot"], "voxels": ["Shader", "Iris", "Fabric", "Voxel", "Ray Tracing", "Colorful", "Advanced"], "glowingores": ["Texture Pack", "Vanilla", "Mining", "Glowing", "Lightweight", "Utility", "Dark Mode"]};
-        }
-        if (!window.RESOURCE_DESCRIPTIONS) {
-            window.RESOURCE_DESCRIPTIONS = {"mc-launcher": "Minecraft Launcher — bu Mojang Studios tomonidan ishlab chiqilgan rasmiy o'yin boshqaruv dasturi. U orqali Minecraft Java Edition va Bedrock Edition versiyalarini boshqarish, yangilab turish va ishga tushirish mumkin. Launcher bir nechta profilni qo'llab-quvvatlaydi — turli versiyalar yoki mod to'plamlari uchun alohida profillar yaratish imkoni bor. Microsoft hisobi orqali kirish va o'yinni xavfsiz saqlash ta'minlanadi.", "bsl": "BSL Shaders — BSSurber tomonidan yaratilgan eng mashhur shader paketlaridan biri. Yumshoq va issiq rang palitrasiga ega bo'lib, real vaqtdagi soya, bulut, suv reflekslari va havo effektlarini qo'shadi. Kuchli kompyuterlar uchun mo'ljallangan, lekin sozlamalar orqali past konfiguratsiyalarda ham ishlaydi. OptiFine yoki Iris Shaders bilan mos keladi.", "complementary": "Complementary Shaders — EminGT tomonidan yaratilgan keng qo'llaniladigan shader paketi. Minecraft tabiiy ko'rinishini saqlab, atmosfera, nur va soyalarni chiroyli yaxshilaydi. Bir nechta grafik sifat darajasida ishlaydi. OptiFine va Iris bilan to'liq moslik mavjud.", "jei": "Just Enough Items (JEI) — mezz tomonidan yaratilgan modderlar orasida eng ko'p ishlatiladigan yordamchi mod. Har qanday buyum uchun kraft retseptini, baliqchilik, pishirish va boshqa ishlab chiqarish yo'llarini bevosita o'yin ichida ko'rish imkonini beradi. Yangi modlar o'rnatilsa, ular ham avtomatik ravishda JEI ro'yxatiga qo'shiladi.", "sodium": "Sodium — CaffeineMC jamoasi tomonidan ishlab chiqilgan Fabric moduli. Minecraft render mexanizmini tubdan qayta yozib, FPS ko'rsatkichini 3-5 baravar oshiradi. Katta dunyo, ko'p chunk yoki shader ishlatilganda farq yaqqol seziladi. OptiFine-dan farqli ravishda ochiq manba hisoblanadi.", "optifine": "OptiFine — sp614x tomonidan yaratilgan eng mashhur Minecraft optimizatsiya va shader moduli. Grafikani batafsil sozlash, HD tekstura paketlarini yoqish, shaderlar bilan ishlash va FPS ni oshirish imkonini beradi. .jar fayl sifatida yuklab, to'g'ridan-to'g'ri ishga tushiriladi.", "makeup": "MakeUp Ultra Fast Shader — Rre36 tomonidan yaratilgan FPS samarasini yuqori saqlaydigan shader. Zamonaviy effektlarni minimal resurs sarflab ko'rsatadi. Eski yoki o'rta konfiguratsiyali kompyuterlarda ham barqaror ishlaydi.", "mellow": "Mellow Shaders — pastel va mayin ranglar palitrasiga ega yengil shader paketi. Ko'zni toliqtirmaydigan yumshoq yoritish kuchsiz kompyuterlar uchun ideal. Yaratuvchilik rejimi va katta qurilishlar uchun keng qo'llaniladi.", "manfog": "The Man from the Fog — Hallstrom tomonidan yaratilgan Minecraft horror modi. Tumanli tunlarda noma'lum mavjudotni — Tuman odamini — olamga qo'shadi. Yolg'iz o'ynash uchun mo'ljallangan bo'lib, qo'rquv va kutish hissini to'liq o'z ichiga oladi.", "unbound": "Complementary Unbound — Complementary Shaders seriyasining mukammal varianti. Har bir blok uchun aniq aks etish, yorug'lik difraksiyasi va havo effektlarini ta'minlaydi. Kuchli grafika kartasi bilan eng chiroyli ko'rinishni beradi.", "voxels": "Rethinking Voxels — gri573 tomonidan yaratilgan ilg'or shader. Voksel asosidagi nur tarqalish texnologiyasi orqali yorug'lik bloklar ichida real vaqtda sinadi va dinamik soyalar hosil bo'ladi. Suv osti, g'or va ichki xona sahnalarida benazir ko'rinish beradi. Iris va Fabric bilan ishlaydi.", "glowingores": "Glowing Ores Texture Pack — rudalarni porlayotgan holda ko'rsatuvchi tekstura paketi. Temir, oltin, olmos va boshqa barcha rudalar ajralib ko'rinadi. Tungi konchilikda rudani osongina topishga yordam beradi. Vanilla Minecraft bilan to'liq mos keladi."};
         }
         currentResourceId = id;
         // URL update for SEO
@@ -2595,7 +2751,7 @@
         const installTitle = document.getElementById('fsDlInstallTitle');
         if (guide && guide.steps) {
             installSection.style.display = 'block';
-            installTitle.textContent = 'Как установить ' + guide.name;
+            installTitle.textContent = guide.title || ('Как установить ' + guide.name);
             installSteps.innerHTML = guide.steps.map((step, i) =>
                 `<li><span class="dl-install-step-num">${i+1}</span><span>${step}</span></li>`
             ).join('');
@@ -2656,7 +2812,7 @@
                     <div class="ver-icon ${badgeClass}">${iconLetter}</div>
                     <div class="ver-info">
                         <div class="ver-name">${title} — ${v.label}</div>
-                        <div class="ver-meta">${v.date || 'Yangilangan'} • Java Edition</div>
+                        <div class="ver-meta">${translateDate(v.date || '', lang) || UPDATED_TEXT[lang] || 'Yangilangan'} • Java Edition</div>
                     </div>
                 </div>
                 <div class="ver-middle">
@@ -2664,10 +2820,10 @@
                     <div class="ver-supported-tags">${tagsHtml}</div>
                 </div>
                 <div class="ver-right">
-                    <span class="ver-date"><i class="fa-regular fa-clock"></i> ${v.date || ''}</span>
+                    <span class="ver-date"><i class="fa-regular fa-clock"></i> ${translateDate(v.date || '', lang)}</span>
                     <a href="${v.file.startsWith('http') ? v.file : 'downloads/' + v.file}" class="btn-fs-download" target="_blank" rel="noopener" onclick="startDownloadAnim(this, '${id}'); return false;">
                         <div class="dl-progress-bar"></div>
-                        <span class="dl-btn-text"><i class="fa-solid fa-download"></i> Yuklash</span>
+                        <span class="dl-btn-text"><i class="fa-solid fa-download"></i> ${DOWNLOAD_BTN_TEXT[lang] || 'Yuklab Olish'}</span>
                     </a>
                 </div>`;
             list.appendChild(row);
@@ -2700,7 +2856,11 @@
         btn.classList.add('downloading');
         const bar = btn.querySelector('.dl-progress-bar');
         const textSpan = btn.querySelector('.dl-btn-text');
-        textSpan.innerHTML = '<span class="dl-spinner"></span> Yuklanmoqda...';
+        const loadingText = {uz:'Yuklanmoqda...', ru:'Загрузка...', en:'Downloading...'};
+        const doneText = {uz:'Yuklandi!', ru:'Скачано!', en:'Downloaded!'};
+        const dlBtnText = {uz:'Yuklash', ru:'Скачать', en:'Download'};
+        const langNow = typeof currentLang !== 'undefined' ? currentLang : 'uz';
+        textSpan.innerHTML = '<span class="dl-spinner"></span> ' + (loadingText[langNow] || 'Yuklanmoqda...');
 
         let progress = 0;
         const interval = setInterval(() => {
@@ -2714,11 +2874,11 @@
             bar.style.width = '100%';
             btn.classList.remove('downloading');
             btn.classList.add('done');
-            textSpan.innerHTML = '<i class="fa-solid fa-check"></i> Yuklandi!';
+            textSpan.innerHTML = '<i class="fa-solid fa-check"></i> ' + (doneText[langNow] || 'Yuklandi!');
             setTimeout(() => {
                 btn.classList.remove('done');
                 bar.style.width = '0%';
-                textSpan.innerHTML = '<i class="fa-solid fa-download"></i> Yuklash';
+                textSpan.innerHTML = '<i class="fa-solid fa-download"></i> ' + (dlBtnText[langNow] || 'Yuklash');
                 btn.style.pointerEvents = '';
             }, 2500);
         }, 2200);
@@ -3044,18 +3204,21 @@
 
     let chatHistory = [];
 
-    const SLIME_SYSTEM = `Sen "Slime AI" — MC-CENTER saytining yordamchi botisan. Seni Minecraft resurslari platformasi uchun yaratishgan.
-Sen faqat o'zbek tilida gaplashasan. Qisqa, aniq va do'stona javob ber. Emoji ishlatsa bo'ladi.
+    function getSlimeSystem() {
+        const lang = typeof currentLang !== 'undefined' ? currentLang : 'uz';
+        const instructions = {
+            uz: `Sen "Slime AI" — MC-CENTER saytining yordamchi botisan. Faqat o'zbek tilida gaplash. Qisqa, aniq va do'stona javob ber. Emoji ishlatsa bo'ladi.`,
+            ru: `Ты "Slime AI" — помощник сайта MC-CENTER. Говори только по-русски. Отвечай коротко, чётко и дружелюбно. Можно использовать эмодзи.`,
+            en: `You are "Slime AI" — the assistant of MC-CENTER. Speak only in English. Give short, clear, and friendly answers. Emojis are allowed.`
+        };
+        return `${instructions[lang] || instructions['uz']}
 
-Saytda mavjud resurslar:
-${SITE_RESOURCES.map(r => '- ' + r.name + ' (' + r.category + '): versiyalar: ' + r.versions.join(', ') + ' | loader: ' + r.loader + ' | ' + r.desc).join('\n')}
+Available resources on the site:
+${SITE_RESOURCES.map(r => '- ' + r.name + ' (' + r.category + '): versions: ' + r.versions.join(', ') + ' | loader: ' + r.loader + ' | ' + r.desc).join('\n')}
 
-Agar foydalanuvchi biror resursni "ochib ber", "ko'rsat", "sahifasini kor", "yuklab olmoqchiman" desa, javobingning OXIRIDA aynan shu formatda yoz:
-[OPEN:resurs_id]
-Masalan BSL Shaders uchun: [OPEN:bsl]
-ID lar: mc-launcher, bsl, complementary, unbound, makeup, mellow, voxels, jei, sodium, optifine, manfog
-
-Agar savol sayt bilan bog'liq bo'lmasa ham yordam ber, lekin saytga qaytishni eslatib qo'y.`;
+If user asks to open/show a resource, at the END of reply write exactly: [OPEN:resurs_id]
+IDs: mc-launcher, bsl, complementary, unbound, makeup, mellow, voxels, jei, sodium, optifine, manfog`;
+    }
 
     async function sendMessage() {
         const input = document.getElementById('chatInput');
@@ -3088,115 +3251,145 @@ Agar savol sayt bilan bog'liq bo'lmasa ham yordam ber, lekin saytga qaytishni es
         let reply = '';
         let openId = null;
 
-        // Salom/salomlashish
-        if (/^(salom|salm|assalom|hey|hi|hello|привет|alo)\b/.test(q)) {
-            reply = 'Salom! 👋 Men Slime AI — saytning yordamchi botiman. Shader, mod yoki launcher haqida savollaringiz bo\'lsa yordamlashaman! 🟩';
-        }
-        // Nima bilasan / nimalar bor
-        else if (/nima bil|nima qil|nima var|nima bo|hamma (narsa|mod|shader|resurs)|ro\'yxat|список/.test(q)) {
-            reply = `Saytda mavjud resurslar:\n\n🎨 SHADERLAR: BSL, Complementary, Unbound, MakeUp Ultra Fast, Mellow, Rethinking Voxels\n⚙️ MODLAR: JEI, Sodium, OptiFine, The Man from the Fog\n🚀 LAUNCHER: Minecraft Launcher\n\nQaysi biri haqida ko'proq bilmoqchisiz?`;
-        }
-        // TOP / eng yaxshi shader
-        else if (/(eng yaxshi|top|best|zo'r|zo\'r|rekomend|qaysi|tavsiy).*(shader)|(shader).*(top|eng yaxshi|best|zo'r|tavsiy)/.test(q)) {
-            reply = 'Eng mashhur shaderlar:\n\n🥇 BSL Shaders — issiq atmosfera, ajoyib soyalar\n🥈 Complementary Unbound — ultra-realistik reflection\n🥉 Rethinking Voxels — real vaqtda yorug\'lik sinishi\n\nKuchsiz PC uchun: MakeUp Ultra Fast yoki Mellow tavsiya qilaman! 😊';
-            openId = 'bsl';
-        }
-        // BSL
-        else if (/bsl/.test(q)) {
-            reply = 'BSL Shaders — issiq atmosfera, tiniq suv va dinamik soyalar 🌅\nVersiyalar: 1.20.1, 1.19.2, 1.16.5\nLoader: OptiFine / Iris\nYuklab olish tugmasini bosing! 👇';
-            openId = 'bsl';
-        }
-        // Complementary / unbound
-        else if (/unbound/.test(q)) {
-            reply = 'Complementary Unbound — har bir blokda mukammal reflection va realistik tuman 🌫️\nVersiyalar: 1.20.1, 1.19.2, 1.16.5\nLoader: OptiFine / Iris';
-            openId = 'unbound';
-        }
-        else if (/complementary/.test(q)) {
-            reply = 'Complementary Shaders — original ko\'rinishni saqlab, yorug\'lik va soyalarni silliqlaydigan klassik shader ✨\nVersiyalar: 1.20.1, 1.19.2, 1.16.5\nLoader: OptiFine / Iris';
-            openId = 'complementary';
-        }
-        // Voxels / rethinking
-        else if (/voxel|rethink/.test(q)) {
-            reply = 'Rethinking Voxels — real vaqtda yorug\'lik sinishi va rangli nurlar 💫\nVersiyalar: 1.20.1, 1.19.2\nLoader: Iris / Fabric';
-            openId = 'voxels';
-        }
-        // Makeup
-        else if (/makeup|make.?up|ultra.?fast/.test(q)) {
-            reply = 'MakeUp Ultra Fast — FPS tushirmay ishlaydi! Kuchsiz PC lar uchun ham zo\'r ⚡\nVersiyalar: 1.20.1, 1.19.2, 1.16.5\nLoader: OptiFine / Iris';
-            openId = 'makeup';
-        }
-        // Mellow
-        else if (/mellow/.test(q)) {
-            reply = 'Mellow Shaders — pastel rangli, ko\'zni charchatmaydigan yengil shader 🍃\nVersiyalar: 1.20.1, 1.19.2, 1.16.5\nLoader: OptiFine / Iris';
-            openId = 'mellow';
-        }
-        // JEI
-        else if (/jei|just enough|kraft|craft|recipe/.test(q)) {
-            reply = 'Just Enough Items (JEI) — barcha bloklar ro\'yxati, craft va pishirish usullarini ko\'rsatadi 📖\nVersiyalar: 1.20.1, 1.19.2, 1.16.5\nLoader: Forge / Fabric';
-            openId = 'jei';
-        }
-        // Sodium
-        else if (/sodium|fps|optim|tezlash/.test(q)) {
-            reply = 'Sodium — Fabric render optimizatori. FPS ni juda yuqori ko\'taradi 🚀\nVersiyalar: 1.20.1, 1.19.2, 1.16.5\nLoader: Fabric\n\nFPS muammosi bo\'lsa OptiFine ham sinab ko\'ring!';
-            openId = 'sodium';
-        }
-        // OptiFine
-        else if (/optifine|opti.?fine/.test(q)) {
-            reply = 'OptiFine — grafikalarni sozlash, tezlashtirish va shaderlarni yoqish imkonini beradi 🔧\nVersiyalar: 1.20.1 HD U I6, 1.19.2 HD U H9, 1.16.5 HD U G7\nLoader: Standalone (alohida .jar fayl)';
-            openId = 'optifine';
-        }
-        // Man from fog / horror
-        else if (/fog|man from|horror|qo'rq|dahshat/.test(q)) {
-            reply = 'The Man from the Fog — horror mod! Tumanli tunlarda noma\'lum mavjudot sizi kuzatadi 👁️\nVersiya: 1.19.2\nLoader: Forge\nQo\'rqinchli o\'ynash uchun ideal! 😱';
-            openId = 'manfog';
-        }
-        // Launcher
-        else if (/launcher|yuklab ol|o'rnat|install|boshlash/.test(q)) {
-            reply = 'Minecraft Launcher — rasmiy barqaror launcher 🚀\nBarcha Java versiyalarini qo\'llab-quvvatlaydi.\nYuklab oling va o\'yinni boshlang!';
-            openId = 'mc-launcher';
-        }
-        // Kuchsiz PC
-        else if (/kuchsiz|low.?end|zaif|eski pc|kam ram|lag/.test(q)) {
-            reply = 'Kuchsiz PC uchun eng yaxshi tanlov:\n\n⚡ MakeUp Ultra Fast — eng tez shader\n🍃 Mellow Shaders — yengil va chiroyli\n🔧 OptiFine — FPS optimizatori\n⚗️ Sodium — Fabric uchun render optim.\n\nBulardan birini tanlang!';
-        }
-        // Fabric / Forge / Iris
-        else if (/fabric/.test(q)) {
-            reply = 'Fabric loader uchun: Sodium, Rethinking Voxels (Iris bilan), JEI tavsiya qilaman! 🧵';
-        }
-        else if (/forge/.test(q)) {
-            reply = 'Forge loader uchun: JEI, OptiFine, The Man from the Fog, BSL (OptiFine orqali) tavsiya qilaman! 🔨';
-        }
-        else if (/iris/.test(q)) {
-            reply = 'Iris loader uchun: BSL, Complementary, Unbound, Rethinking Voxels, MakeUp juda mos keladi! 🌈';
-        }
-        // 1.20.1
-        else if (/1\.20/.test(q)) {
-            reply = '1.20.x versiyasi uchun barcha asosiy resurslar mavjud:\nShaderlar: BSL, Complementary, Unbound, MakeUp, Mellow, Voxels\nModlar: JEI, Sodium, OptiFine\nHammasini yuklab olishingiz mumkin! ✅';
-        }
-        // 1.19.2
-        else if (/1\.19/.test(q)) {
-            reply = '1.19.2 uchun: BSL, Complementary, Unbound, MakeUp, Mellow, Voxels shaderlar + JEI, Sodium, OptiFine, Man from the Fog modlar bor! 🎮';
-        }
-        // 1.16.5
-        else if (/1\.16/.test(q)) {
-            reply = '1.16.5 uchun: BSL, Complementary, Unbound, MakeUp, Mellow shaderlar + JEI, Sodium, OptiFine modlar mavjud! (Voxels va Man from the Fog bu versiyada yo\'q)';
-        }
-        // Texture pack / glowing ores
-        else if (/glow|texture|ore|ruda|porlat/.test(q)) {
-            reply = 'Glowing Ores — rudalarni (ores) yorqin porlatiб ko\'rsatuvchi texture pack ✨\nTungi konchilikni osonlashtiradi va o\'yinni chiroyli qiladi!\nVersiyalar: 1.20.1, 1.19.2\nLoader: Vanilla (hech qanday mod kerak emas)';
-            openId = 'glowingores';
-        }
-        // Rahmat
-        else if (/rahmat|tashakkur|спасибо|thank/.test(q)) {
-            reply = 'Arzimaydi! 😊 Yana savollaringiz bo\'lsa doim yordamlashaman. Yaxshi o\'yin! 🎮';
-        }
-        // Xayr
-        else if (/xayr|ko'rishguncha|bye|пока/.test(q)) {
-            reply = 'Xayr! Yaxshi o\'yin! 👋🟩';
-        }
-        // Default
-        else {
-            reply = 'Saytda mavjud resurslar haqida savollaringiz bo\'lsa yordamlashaman! Masalan:\n• "BSL shader haqida"\n• "kuchsiz PC uchun mod"\n• "1.20.1 da qaysi shader"\n• "forge modlari" va h.k. 😊';
+        const cl = typeof currentLang !== 'undefined' ? currentLang : 'uz';
+        const R = {
+            uz: {
+                hello: 'Salom! 👋 Men Slime AI — saytning yordamchi botiman. Shader, mod yoki launcher haqida savollaringiz bo\'lsa yordamlashaman! 🟩',
+                list: 'Saytda mavjud resurslar:\n\n🎨 SHADERLAR: BSL, Complementary, Unbound, MakeUp Ultra Fast, Mellow, Rethinking Voxels\n⚙️ MODLAR: JEI, Sodium, OptiFine, The Man from the Fog\n🚀 LAUNCHER: Minecraft Launcher\n\nQaysi biri haqida ko\'proq bilmoqchisiz?',
+                topShader: 'Eng mashhur shaderlar:\n\n🥇 BSL Shaders — issiq atmosfera, ajoyib soyalar\n🥈 Complementary Unbound — ultra-realistik reflection\n🥉 Rethinking Voxels — real vaqtda yorug\'lik sinishi\n\nKuchsiz PC uchun: MakeUp Ultra Fast yoki Mellow tavsiya qilaman! 😊',
+                bsl: 'BSL Shaders — issiq atmosfera, tiniq suv va dinamik soyalar 🌅\nVersiyalar: 1.20.1, 1.19.2, 1.16.5\nLoader: OptiFine / Iris',
+                unbound: 'Complementary Unbound — har bir blokda mukammal reflection va realistik tuman 🌫️\nVersiyalar: 1.20.1, 1.19.2, 1.16.5\nLoader: OptiFine / Iris',
+                complementary: 'Complementary Shaders — original ko\'rinishni saqlab, yorug\'lik va soyalarni silliqlaydigan klassik shader ✨\nVersiyalar: 1.20.1, 1.19.2, 1.16.5',
+                voxels: 'Rethinking Voxels — real vaqtda yorug\'lik sinishi va rangli nurlar 💫\nVersiyalar: 1.20.1, 1.19.2\nLoader: Iris / Fabric',
+                makeup: 'MakeUp Ultra Fast — FPS tushirmay ishlaydi! Kuchsiz PC lar uchun ham zo\'r ⚡\nVersiyalar: 1.20.1, 1.19.2, 1.16.5',
+                mellow: 'Mellow Shaders — pastel rangli, ko\'zni charchatmaydigan yengil shader 🍃\nVersiyalar: 1.20.1, 1.19.2, 1.16.5',
+                jei: 'Just Enough Items (JEI) — barcha bloklar ro\'yxati, craft va pishirish usullarini ko\'rsatadi 📖\nVersiyalar: 1.20.1, 1.19.2, 1.16.5\nLoader: Forge / Fabric',
+                sodium: 'Sodium — Fabric render optimizatori. FPS ni juda yuqori ko\'taradi 🚀\nVersiyalar: 1.20.1, 1.19.2, 1.16.5\nLoader: Fabric',
+                optifine: 'OptiFine — grafikalarni sozlash, tezlashtirish va shaderlarni yoqish imkonini beradi 🔧\nLoader: Standalone (.jar fayl)',
+                manfog: 'The Man from the Fog — horror mod! Tumanli tunlarda noma\'lum mavjudot sizi kuzatadi 👁️\nVersiya: 1.19.2 | Loader: Forge 😱',
+                launcher: 'Minecraft Launcher — rasmiy barqaror launcher 🚀\nBarcha Java versiyalarini qo\'llab-quvvatlaydi.',
+                lowEnd: 'Kuchsiz PC uchun eng yaxshi tanlov:\n\n⚡ MakeUp Ultra Fast — eng tez shader\n🍃 Mellow Shaders — yengil va chiroyli\n🔧 OptiFine — FPS optimizatori\n⚗️ Sodium — Fabric uchun render optimizatori',
+                fabric: 'Fabric loader uchun: Sodium, Rethinking Voxels (Iris bilan), JEI tavsiya qilaman! 🧵',
+                forge: 'Forge loader uchun: JEI, OptiFine, The Man from the Fog, BSL (OptiFine orqali) tavsiya qilaman! 🔨',
+                iris: 'Iris loader uchun: BSL, Complementary, Unbound, Rethinking Voxels, MakeUp juda mos keladi! 🌈',
+                v120: '1.20.x uchun barcha resurslar mavjud:\nShaderlar: BSL, Complementary, Unbound, MakeUp, Mellow, Voxels\nModlar: JEI, Sodium, OptiFine ✅',
+                v119: '1.19.2 uchun: Barcha shaderlar + JEI, Sodium, OptiFine, Man from the Fog modlar bor! 🎮',
+                v116: '1.16.5 uchun: BSL, Complementary, Unbound, MakeUp, Mellow + JEI, Sodium, OptiFine mavjud!',
+                glowing: 'Glowing Ores — rudalarni yorqin porlatiб ko\'rsatuvchi texture pack ✨\nVersiyalar: 1.20.1, 1.19.2 | Vanilla (mod shart emas)',
+                thanks: 'Arzimaydi! 😊 Yana savollaringiz bo\'lsa doim yordamlashaman. Yaxshi o\'yin! 🎮',
+                bye: 'Xayr! Yaxshi o\'yin! 👋🟩',
+                openBtn: 'Yuklab Olish',
+                def: 'Savollaringiz bo\'lsa yordamlashaman! Masalan:\n• "BSL shader haqida"\n• "kuchsiz PC uchun mod"\n• "1.20.1 da qaysi shader" 😊'
+            },
+            ru: {
+                hello: 'Привет! 👋 Я Slime AI — помощник сайта. Задай вопрос о шейдерах, модах или лаунчере! 🟩',
+                list: 'Ресурсы на сайте:\n\n🎨 ШЕЙДЕРЫ: BSL, Complementary, Unbound, MakeUp Ultra Fast, Mellow, Rethinking Voxels\n⚙️ МОДЫ: JEI, Sodium, OptiFine, The Man from the Fog\n🚀 ЛАУНЧЕР: Minecraft Launcher\n\nО чём хочешь узнать подробнее?',
+                topShader: 'Топ шейдеров:\n\n🥇 BSL Shaders — тёплая атмосфера, красивые тени\n🥈 Complementary Unbound — ультрареалистичные отражения\n🥉 Rethinking Voxels — преломление света в реальном времени\n\nДля слабого ПК: MakeUp Ultra Fast или Mellow! 😊',
+                bsl: 'BSL Shaders — тёплая атмосфера, прозрачная вода и динамические тени 🌅\nВерсии: 1.20.1, 1.19.2, 1.16.5\nLoader: OptiFine / Iris',
+                unbound: 'Complementary Unbound — идеальные отражения и реалистичный туман 🌫️\nВерсии: 1.20.1, 1.19.2, 1.16.5\nLoader: OptiFine / Iris',
+                complementary: 'Complementary Shaders — классический шейдер, сохраняющий оригинальный вид ✨\nВерсии: 1.20.1, 1.19.2, 1.16.5',
+                voxels: 'Rethinking Voxels — преломление света и цветные лучи в реальном времени 💫\nВерсии: 1.20.1, 1.19.2\nLoader: Iris / Fabric',
+                makeup: 'MakeUp Ultra Fast — не снижает FPS! Отлично работает на слабых ПК ⚡\nВерсии: 1.20.1, 1.19.2, 1.16.5',
+                mellow: 'Mellow Shaders — пастельные цвета, не утомляет глаза 🍃\nВерсии: 1.20.1, 1.19.2, 1.16.5',
+                jei: 'Just Enough Items (JEI) — показывает рецепты крафта и приготовления 📖\nВерсии: 1.20.1, 1.19.2, 1.16.5\nLoader: Forge / Fabric',
+                sodium: 'Sodium — оптимизатор рендеринга для Fabric. Значительно повышает FPS 🚀\nВерсии: 1.20.1, 1.19.2, 1.16.5\nLoader: Fabric',
+                optifine: 'OptiFine — настройка графики, ускорение и поддержка шейдеров 🔧\nLoader: Standalone (.jar файл)',
+                manfog: 'The Man from the Fog — хоррор мод! В туманные ночи неизвестное существо следит за тобой 👁️\nВерсия: 1.19.2 | Loader: Forge 😱',
+                launcher: 'Minecraft Launcher — официальный стабильный лаунчер 🚀\nПоддерживает все версии Java.',
+                lowEnd: 'Лучший выбор для слабого ПК:\n\n⚡ MakeUp Ultra Fast — самый быстрый шейдер\n🍃 Mellow Shaders — лёгкий и красивый\n🔧 OptiFine — оптимизатор FPS\n⚗️ Sodium — оптимизатор рендеринга для Fabric',
+                fabric: 'Для Fabric: рекомендую Sodium, Rethinking Voxels (с Iris), JEI! 🧵',
+                forge: 'Для Forge: рекомендую JEI, OptiFine, The Man from the Fog, BSL (через OptiFine)! 🔨',
+                iris: 'Для Iris: BSL, Complementary, Unbound, Rethinking Voxels, MakeUp отлично подходят! 🌈',
+                v120: 'Для 1.20.x доступны все ресурсы:\nШейдеры: BSL, Complementary, Unbound, MakeUp, Mellow, Voxels\nМоды: JEI, Sodium, OptiFine ✅',
+                v119: 'Для 1.19.2: все шейдеры + JEI, Sodium, OptiFine, Man from the Fog! 🎮',
+                v116: 'Для 1.16.5: BSL, Complementary, Unbound, MakeUp, Mellow + JEI, Sodium, OptiFine!',
+                glowing: 'Glowing Ores — текстур-пак, делающий руды светящимися ✨\nВерсии: 1.20.1, 1.19.2 | Vanilla (моды не нужны)',
+                thanks: 'Пожалуйста! 😊 Если будут вопросы — всегда помогу. Удачной игры! 🎮',
+                bye: 'Пока! Удачной игры! 👋🟩',
+                openBtn: 'Скачать',
+                def: 'Могу помочь с вопросами о ресурсах! Например:\n• "Про BSL shader"\n• "Мод для слабого ПК"\n• "Какой шейдер для 1.20.1" 😊'
+            },
+            en: {
+                hello: 'Hello! 👋 I\'m Slime AI — the site assistant. Ask me about shaders, mods, or the launcher! 🟩',
+                list: 'Resources on the site:\n\n🎨 SHADERS: BSL, Complementary, Unbound, MakeUp Ultra Fast, Mellow, Rethinking Voxels\n⚙️ MODS: JEI, Sodium, OptiFine, The Man from the Fog\n🚀 LAUNCHER: Minecraft Launcher\n\nWhat would you like to know more about?',
+                topShader: 'Top shaders:\n\n🥇 BSL Shaders — warm atmosphere, beautiful shadows\n🥈 Complementary Unbound — ultra-realistic reflections\n🥉 Rethinking Voxels — real-time light refraction\n\nFor low-end PC: MakeUp Ultra Fast or Mellow! 😊',
+                bsl: 'BSL Shaders — warm atmosphere, clear water and dynamic shadows 🌅\nVersions: 1.20.1, 1.19.2, 1.16.5\nLoader: OptiFine / Iris',
+                unbound: 'Complementary Unbound — perfect reflections and realistic fog 🌫️\nVersions: 1.20.1, 1.19.2, 1.16.5\nLoader: OptiFine / Iris',
+                complementary: 'Complementary Shaders — classic shader that preserves Minecraft\'s original look ✨\nVersions: 1.20.1, 1.19.2, 1.16.5',
+                voxels: 'Rethinking Voxels — real-time light refraction and colorful rays 💫\nVersions: 1.20.1, 1.19.2\nLoader: Iris / Fabric',
+                makeup: 'MakeUp Ultra Fast — no FPS drop! Great even for low-end PCs ⚡\nVersions: 1.20.1, 1.19.2, 1.16.5',
+                mellow: 'Mellow Shaders — pastel colors, easy on the eyes 🍃\nVersions: 1.20.1, 1.19.2, 1.16.5',
+                jei: 'Just Enough Items (JEI) — shows crafting and smelting recipes for any item 📖\nVersions: 1.20.1, 1.19.2, 1.16.5\nLoader: Forge / Fabric',
+                sodium: 'Sodium — Fabric render optimizer. Massively boosts FPS 🚀\nVersions: 1.20.1, 1.19.2, 1.16.5\nLoader: Fabric',
+                optifine: 'OptiFine — graphics tweaking, FPS boost and shader support 🔧\nLoader: Standalone (.jar file)',
+                manfog: 'The Man from the Fog — horror mod! An unknown creature watches you on foggy nights 👁️\nVersion: 1.19.2 | Loader: Forge 😱',
+                launcher: 'Minecraft Launcher — the official stable launcher 🚀\nSupports all Java versions.',
+                lowEnd: 'Best picks for a low-end PC:\n\n⚡ MakeUp Ultra Fast — fastest shader\n🍃 Mellow Shaders — light and beautiful\n🔧 OptiFine — FPS optimizer\n⚗️ Sodium — Fabric render optimizer',
+                fabric: 'For Fabric: I recommend Sodium, Rethinking Voxels (with Iris), JEI! 🧵',
+                forge: 'For Forge: I recommend JEI, OptiFine, The Man from the Fog, BSL (via OptiFine)! 🔨',
+                iris: 'For Iris: BSL, Complementary, Unbound, Rethinking Voxels, MakeUp work great! 🌈',
+                v120: 'For 1.20.x all resources are available:\nShaders: BSL, Complementary, Unbound, MakeUp, Mellow, Voxels\nMods: JEI, Sodium, OptiFine ✅',
+                v119: 'For 1.19.2: all shaders + JEI, Sodium, OptiFine, Man from the Fog! 🎮',
+                v116: 'For 1.16.5: BSL, Complementary, Unbound, MakeUp, Mellow + JEI, Sodium, OptiFine!',
+                glowing: 'Glowing Ores — texture pack that makes ores glow ✨\nVersions: 1.20.1, 1.19.2 | Vanilla (no mods needed)',
+                thanks: 'You\'re welcome! 😊 Feel free to ask anytime. Have fun playing! 🎮',
+                bye: 'Bye! Have fun! 👋🟩',
+                openBtn: 'Download',
+                def: 'I can help with questions about resources! For example:\n• "About BSL shader"\n• "Mod for low-end PC"\n• "Which shader for 1.20.1" 😊'
+            }
+        };
+        const r = R[cl] || R['uz'];
+
+        if (/^(salom|salm|assalom|hey|hi|hello|привет|alo|сало|хай)\b/.test(q)) {
+            reply = r.hello;
+        } else if (/nima bil|nima qil|nima var|nima bo|hamma (narsa|mod|shader|resurs)|ro\'yxat|список|what.*have|what.*know/.test(q)) {
+            reply = r.list;
+        } else if (/(eng yaxshi|top|best|zo'r|zo\'r|rekomend|qaysi|tavsiy|лучший|лучш|recommend).*(shader|шейдер)|(shader|шейдер).*(top|eng yaxshi|best|zo'r|tavsiy|лучший)/.test(q)) {
+            reply = r.topShader; openId = 'bsl';
+        } else if (/bsl/.test(q)) {
+            reply = r.bsl; openId = 'bsl';
+        } else if (/unbound/.test(q)) {
+            reply = r.unbound; openId = 'unbound';
+        } else if (/complementary/.test(q)) {
+            reply = r.complementary; openId = 'complementary';
+        } else if (/voxel|rethink/.test(q)) {
+            reply = r.voxels; openId = 'voxels';
+        } else if (/makeup|make.?up|ultra.?fast/.test(q)) {
+            reply = r.makeup; openId = 'makeup';
+        } else if (/mellow/.test(q)) {
+            reply = r.mellow; openId = 'mellow';
+        } else if (/jei|just enough|kraft|craft|recipe|рецепт/.test(q)) {
+            reply = r.jei; openId = 'jei';
+        } else if (/sodium|fps|optim|tezlash|оптим/.test(q)) {
+            reply = r.sodium; openId = 'sodium';
+        } else if (/optifine|opti.?fine/.test(q)) {
+            reply = r.optifine; openId = 'optifine';
+        } else if (/fog|man from|horror|qo'rq|dahshat|хоррор|страшн/.test(q)) {
+            reply = r.manfog; openId = 'manfog';
+        } else if (/launcher|yuklab ol|o'rnat|install|boshlash|скачать|лаунчер/.test(q)) {
+            reply = r.launcher; openId = 'mc-launcher';
+        } else if (/kuchsiz|low.?end|zaif|eski pc|kam ram|lag|слабый|старый пк/.test(q)) {
+            reply = r.lowEnd;
+        } else if (/fabric/.test(q)) {
+            reply = r.fabric;
+        } else if (/forge/.test(q)) {
+            reply = r.forge;
+        } else if (/iris/.test(q)) {
+            reply = r.iris;
+        } else if (/1\.20/.test(q)) {
+            reply = r.v120;
+        } else if (/1\.19/.test(q)) {
+            reply = r.v119;
+        } else if (/1\.16/.test(q)) {
+            reply = r.v116;
+        } else if (/glow|texture|ore|ruda|porlat|руда|текстур/.test(q)) {
+            reply = r.glowing; openId = 'glowingores';
+        } else if (/rahmat|tashakkur|спасибо|thank|merci/.test(q)) {
+            reply = r.thanks;
+        } else if (/xayr|ko'rishguncha|bye|пока|ciao/.test(q)) {
+            reply = r.bye;
+        } else {
+            reply = r.def;
         }
 
         const botMsg = document.createElement('div');
@@ -3211,7 +3404,7 @@ Agar savol sayt bilan bog'liq bo'lmasa ham yordam ber, lekin saytga qaytishni es
             if (res) {
                 const btn = document.createElement('button');
                 btn.style.cssText = 'margin-top:10px;background:var(--accent-color);color:white;border:none;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:700;font-size:0.82rem;display:flex;align-items:center;gap:6px;';
-                btn.innerHTML = '<i class="fa-solid fa-arrow-up-right-from-square"></i> ' + res.name + ' — Yuklab Olish';
+                btn.innerHTML = '<i class="fa-solid fa-arrow-up-right-from-square"></i> ' + res.name + ' — ' + (r.openBtn || 'Yuklab Olish');
                 btn.onclick = () => openDownloadFullScreen(res.id, res.name, res.desc, res.img, res.versions_detail);
                 botMsg.appendChild(document.createElement('br'));
                 botMsg.appendChild(btn);
@@ -3545,6 +3738,148 @@ document.addEventListener('DOMContentLoaded', function() {
         const regBtn = document.getElementById('btnRegister');
         if (loginBtn && tr['nav.login']) loginBtn.textContent = tr['nav.login'];
         if (regBtn && tr['nav.signup']) regBtn.textContent = tr['nav.signup'];
+
+        // Card descriptions
+        if (typeof ALL_CARD_DESCRIPTIONS !== 'undefined') {
+            const cardDescs = ALL_CARD_DESCRIPTIONS[lang] || ALL_CARD_DESCRIPTIONS['uz'];
+            document.querySelectorAll('.card[data-id]').forEach(card => {
+                const id = card.getAttribute('data-id');
+                if (cardDescs[id]) {
+                    const p = card.querySelector('.card-content > p');
+                    if (p) p.textContent = cardDescs[id];
+                }
+            });
+        }
+
+        // Card "Yuklab Olish" buttons
+        if (typeof DOWNLOAD_BTN_TEXT !== 'undefined') {
+            const dlText = DOWNLOAD_BTN_TEXT[lang] || 'Yuklab Olish';
+            document.querySelectorAll('.card .btn').forEach(btn => {
+                if (!btn.querySelector('i')) {
+                    btn.textContent = dlText;
+                } else {
+                    const textNode = [...btn.childNodes].find(n => n.nodeType === 3);
+                    if (textNode) textNode.textContent = ' ' + dlText;
+                }
+            });
+        }
+
+        // Slider "Yuklab Olish" hint texts
+        if (typeof DOWNLOAD_BTN_TEXT !== 'undefined') {
+            const dlText = DOWNLOAD_BTN_TEXT[lang] || 'Yuklab Olish';
+            document.querySelectorAll('.slide-click-hint').forEach(el => {
+                el.innerHTML = '<i class="fa-solid fa-arrow-down"></i> ' + dlText;
+            });
+        }
+
+        // Fullscreen modal section titles
+        const uiT = {
+            uz: {
+                versions: "Qo'llab-quvvatlanadigan Versiyalar",
+                tags: "Teglar",
+                comments: "Izohlar",
+                views: "ko'rishlar",
+                downloads: "yuklab olindi",
+                commentsWord: "izoh",
+                notifTitle: "Bildirishnoma",
+                notifClose: "Yopish",
+                commentLoginTitle: "Izoh yozish uchun kirish kerak",
+                commentLoginDesc: "Gmail akkountingiz bilan kiring va izoh qoldiring",
+                googleBtn: "Gmail bilan kirish",
+                orText: "yoki",
+                emailBtn: "Email bilan kirish",
+                commentPlaceholder: "Fikringizni yozing...",
+                commentSubmit: "Yuborish",
+                chatWelcome: "Salom! Men Slime AI-man. Minecraft resurslari bo'yicha qanday yordam bera olaman? 🟩",
+                chatPlaceholder: "Xabar yozing...",
+                chatSend: "Yuborish",
+                chatName: "🟢 Slime AI Yordamchi",
+                profilePlaceholder: "Foydalanuvchi nomi",
+                internetCheck: "Internet aloqasini tekshiring."
+            },
+            ru: {
+                versions: "Поддерживаемые Версии",
+                tags: "Теги",
+                comments: "Комментарии",
+                views: "просмотров",
+                downloads: "скачиваний",
+                commentsWord: "коммент.",
+                notifTitle: "Уведомление",
+                notifClose: "Закрыть",
+                commentLoginTitle: "Войдите чтобы оставить комментарий",
+                commentLoginDesc: "Войдите через аккаунт Gmail и оставьте комментарий",
+                googleBtn: "Войти через Gmail",
+                orText: "или",
+                emailBtn: "Войти по Email",
+                commentPlaceholder: "Напишите ваш комментарий...",
+                commentSubmit: "Отправить",
+                chatWelcome: "Привет! Я Slime AI — помощник сайта. Чем могу помочь по Minecraft? 🟩",
+                chatPlaceholder: "Написать сообщение...",
+                chatSend: "Отправить",
+                chatName: "🟢 Slime AI Помощник",
+                profilePlaceholder: "Имя пользователя",
+                internetCheck: "Проверьте подключение к интернету."
+            },
+            en: {
+                versions: "Supported Versions",
+                tags: "Tags",
+                comments: "Comments",
+                views: "views",
+                downloads: "downloads",
+                commentsWord: "comment(s)",
+                notifTitle: "Notification",
+                notifClose: "Close",
+                commentLoginTitle: "Sign in to leave a comment",
+                commentLoginDesc: "Sign in with your Gmail account and leave a comment",
+                googleBtn: "Sign in with Gmail",
+                orText: "or",
+                emailBtn: "Sign in with Email",
+                commentPlaceholder: "Write your comment...",
+                commentSubmit: "Submit",
+                chatWelcome: "Hello! I'm Slime AI — the site's assistant. How can I help you with Minecraft? 🟩",
+                chatPlaceholder: "Type a message...",
+                chatSend: "Send",
+                chatName: "🟢 Slime AI Assistant",
+                profilePlaceholder: "Username",
+                internetCheck: "Check your internet connection."
+            }
+        };
+        const t = uiT[lang] || uiT['uz'];
+
+        // Modal section titles
+        const el = (id) => document.getElementById(id);
+        if (el('fsVersionsTitle')) el('fsVersionsTitle').textContent = t.versions;
+        if (el('fsTagsTitle')) el('fsTagsTitle').textContent = t.tags;
+        if (el('fsCommentsTitle')) el('fsCommentsTitle').textContent = t.comments;
+        if (el('fsViewLabel')) el('fsViewLabel').textContent = t.views;
+        if (el('fsDownloadLabel')) el('fsDownloadLabel').textContent = t.downloads;
+        if (el('fsCommentLabel')) el('fsCommentLabel').textContent = t.commentsWord;
+
+        // Notification box
+        if (el('notifTitle')) el('notifTitle').textContent = t.notifTitle;
+        if (el('notifCloseBtn')) el('notifCloseBtn').textContent = t.notifClose;
+
+        // Comment login wall
+        if (el('commentLoginTitle')) el('commentLoginTitle').textContent = t.commentLoginTitle;
+        if (el('commentLoginDesc')) el('commentLoginDesc').textContent = t.commentLoginDesc;
+        if (el('googleSignInBtn')) el('googleSignInBtn').textContent = t.googleBtn;
+        if (el('commentOrText')) el('commentOrText').textContent = t.orText + ' ';
+        if (el('emailSignInBtn')) el('emailSignInBtn').textContent = t.emailBtn;
+        if (el('commentSubmitText')) el('commentSubmitText').textContent = t.commentSubmit;
+        const commentTA = el('commentText');
+        if (commentTA) commentTA.placeholder = t.commentPlaceholder;
+
+        // Slime AI chatbot
+        if (el('chatBotName')) el('chatBotName').textContent = t.chatName;
+        const chatInput = el('chatInput');
+        if (chatInput) chatInput.placeholder = t.chatPlaceholder;
+        if (el('chatSendBtn')) el('chatSendBtn').textContent = t.chatSend;
+        // Welcome xabarini yangilash
+        if (el('slimeWelcomeMsg')) el('slimeWelcomeMsg').textContent = t.chatWelcome;
+
+        // Profile modal input placeholder
+        const profileInput = el('profileNameInput');
+        if (profileInput) profileInput.placeholder = t.profilePlaceholder;
     }
 
     // Init lang on page load
@@ -3669,16 +4004,16 @@ document.addEventListener('DOMContentLoaded', function() {
             <div id="profileAvatarWrap" class="profile-avatar-placeholder" onclick="document.getElementById('avatarFileInput').click()">?</div>
             <input type="file" id="avatarFileInput" accept="image/*" style="display:none" onchange="uploadAvatar(this)">
             <button class="avatar-upload-btn" onclick="document.getElementById('avatarFileInput').click()">
-                <i class="fa-solid fa-camera"></i> Rasm yuklash
+                <i class="fa-solid fa-camera"></i> <span data-i18n="profile.upload">Rasm yuklash</span>
             </button>
             <div class="profile-display-name" id="profileDisplayName">—</div>
             <div class="profile-email-text" id="profileEmailText">—</div>
         </div>
 
-        <div class="profile-section-title">Profil sozlamalari</div>
+        <div class="profile-section-title" data-i18n="profile.title">Profil sozlamalari</div>
         <input class="profile-input" id="profileNameInput" placeholder="Foydalanuvchi nomi">
         <button class="profile-save-btn" onclick="saveProfileName()">
-            <i class="fa-solid fa-floppy-disk"></i> Saqlash
+            <i class="fa-solid fa-floppy-disk"></i> <span data-i18n="profile.save">Saqlash</span>
         </button>
 
         <div class="profile-section-title" data-i18n="profile.settings">Sozlamalar</div>
@@ -3695,20 +4030,20 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="toggle-sw on" id="toggleThemeSw" onclick="toggleThemeFromProfile(this)"></div>
         </div>
         <div class="setting-row">
-            <div class="setting-row-label"><i class="fa-solid fa-bell"></i> Bildirishnomalar</div>
+            <div class="setting-row-label"><i class="fa-solid fa-bell"></i> <span data-i18n="profile.notifications">Bildirishnomalar</span></div>
             <div class="toggle-sw on" id="toggleNotifSw" onclick="this.classList.toggle('on')"></div>
         </div>
         <div class="setting-row">
-            <div class="setting-row-label"><i class="fa-solid fa-envelope"></i> Email yangiliklar</div>
+            <div class="setting-row-label"><i class="fa-solid fa-envelope"></i> <span data-i18n="profile.email">Email yangiliklar</span></div>
             <div class="toggle-sw" id="toggleEmailSw" onclick="this.classList.toggle('on')"></div>
         </div>
 
-        <div class="profile-section-title" style="margin-top:25px;">Hisob</div>
+        <div class="profile-section-title" style="margin-top:25px;" data-i18n="profile.account">Hisob</div>
         <button class="profile-logout-btn" onclick="fbLogout(); closeProfileModal();">
-            <i class="fa-solid fa-right-from-bracket"></i> Tizimdan chiqish
+            <i class="fa-solid fa-right-from-bracket"></i> <span data-i18n="profile.logout">Tizimdan chiqish</span>
         </button>
         <button class="profile-logout-btn" onclick="confirmDeleteAccount()" style="margin-top:8px;border-color:#ef4444;color:#ef4444;">
-            <i class="fa-solid fa-user-slash"></i> Hisobni o'chirish
+            <i class="fa-solid fa-user-slash"></i> <span data-i18n="profile.delete">Hisobni o'chirish</span>
         </button>
     </div>
 </div>
