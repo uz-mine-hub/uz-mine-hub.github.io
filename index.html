@@ -294,7 +294,7 @@
             border-bottom: 2px solid var(--border-color);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
             transition: background-color 0.3s ease;
         }
         .logo { font-size: 1.4rem; font-weight: bold; color: #52b788; cursor: pointer; display: flex; align-items: center; gap: 8px; }
@@ -587,7 +587,7 @@
         /* MODRINTH FULL SCREEN DOWNLOAD MODAL */
         .modal-fullscreen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: var(--modal-full-bg); z-index: 1600;
+            background-color: var(--modal-full-bg); z-index: 1500;
             opacity: 0; pointer-events: none; transition: all 0.3s ease;
             overflow-y: auto; padding: 40px 20px;
         }
@@ -1017,7 +1017,6 @@
         .slider-track {
             display: flex;
             transition: transform 0.7s cubic-bezier(0.77, 0, 0.18, 1);
-            will-change: transform;
         }
         .slide {
             min-width: 100%;
@@ -1760,7 +1759,7 @@
             background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
             opacity: 0.4;
         }
-        .navbar { position: sticky; top: 0; z-index: 900; }
+        .navbar { position: sticky; top: 0; z-index: 1000; }
 
     </style>
 </head>
@@ -3047,6 +3046,8 @@
             window.RESOURCE_TAGS = {"mc-launcher": ["Launcher", "Official", "Java Edition", "Bedrock", "Microsoft", "Free"], "bsl": ["Shader", "OptiFine", "Iris", "Realistic", "High Quality", "Shadows", "Reflections"], "complementary": ["Shader", "OptiFine", "Iris", "Balanced", "Atmosphere", "Lightweight"], "jei": ["Mod", "Forge", "Fabric", "Utility", "Recipes", "QoL", "Popular"], "sodium": ["Mod", "Fabric", "Performance", "FPS Boost", "Open Source", "Optimization"], "optifine": ["Mod", "Optimization", "Shader Support", "HD Textures", "FPS Boost", "Standalone"], "makeup": ["Shader", "OptiFine", "Iris", "Lightweight", "Fast", "FPS Friendly", "Low-End PC"], "mellow": ["Shader", "OptiFine", "Iris", "Pastel", "Lightweight", "Eye-Friendly", "Creative"], "manfog": ["Mod", "Forge", "Horror", "Atmospheric", "Survival", "Scary", "Adventure"], "unbound": ["Shader", "OptiFine", "Iris", "Cinematic", "Reflections", "High Quality", "Screenshot"], "voxels": ["Shader", "Iris", "Fabric", "Voxel", "Ray Tracing", "Colorful", "Advanced"], "glowingores": ["Texture Pack", "Vanilla", "Mining", "Glowing", "Lightweight", "Utility", "Dark Mode"]};
         }
         currentResourceId = id;
+        // URL update for SEO
+        try { history.pushState({modId: id}, title, '#/mods/' + id); } catch(e) {}
         try { document.title = title + ' - Minecraft.uz'; } catch(e) {}
         document.getElementById('fsDlTitle').textContent = title;
         document.getElementById('fsDlDesc').textContent = desc;
@@ -3167,11 +3168,8 @@
 
         trackModalView(id);
         renderComments(id);
-        const _sbw = window.innerWidth - document.documentElement.clientWidth;
-        document.body.style.overflow = 'hidden';
-        document.body.style.paddingRight = _sbw + 'px';
         document.getElementById('downloadModalFullScreen').classList.add('active');
-        document.getElementById('downloadModalFullScreen').scrollTop = 0;
+        document.body.style.overflow = 'hidden';
     }
 
     function startDownloadAnim(btn, id) {
@@ -3230,8 +3228,8 @@
 
     function closeFullScreenModal() {
         document.getElementById('downloadModalFullScreen').classList.remove('active');
-        document.body.style.overflow = '';
-        document.body.style.paddingRight = '';
+        document.body.style.overflow = 'auto';
+        try { history.pushState({}, 'Minecraft.uz', '#/'); } catch(e) {}
         try { document.title = 'Minecraft.uz — Shaderlar, Modlar, Teksturalar'; } catch(e) {}
     }
 
