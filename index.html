@@ -292,7 +292,7 @@
             border-bottom: 2px solid var(--border-color);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 9999;
             transition: background-color 0.3s ease;
         }
         .logo { font-size: 1.4rem; font-weight: bold; color: #52b788; cursor: pointer; display: flex; align-items: center; gap: 8px; }
@@ -362,6 +362,17 @@
             margin-bottom: 28px;
             position: relative;
             overflow: hidden;
+            isolation: isolate;
+        }
+        .hero-bg-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.35);
+            z-index: -1;
+            border-radius: 20px;
         }
         header::before {
             content: '';
@@ -582,6 +593,76 @@
         .form-input { width: 100%; padding: 12px; background: var(--dropdown-bg); border: 2px solid var(--border-color); border-radius: 8px; color: var(--text-color); outline: none; }
         .btn-submit { width: 100%; padding: 14px; background: var(--accent-color); border: none; border-radius: 8px; color: white; font-weight: bold; cursor: pointer; box-shadow: var(--neon-glow); }
 
+
+        /* SCREENSHOTS */
+        .ss-section { margin: 0 0 28px 0; }
+        .ss-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 12px;
+        }
+        .ss-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 16/9;
+            background: #0a0c14;
+        }
+        .ss-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+        .ss-item:hover img { transform: scale(1.05); filter: brightness(0.7); }
+        .ss-item::after {
+            content: '\f00e';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .ss-item:hover::after { opacity: 1; }
+        /* Lightbox */
+        .ss-lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.92);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .ss-lightbox.open { display: flex; }
+        .ss-lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 12px;
+            object-fit: contain;
+            box-shadow: 0 0 60px rgba(0,0,0,0.8);
+        }
+        .ss-lightbox-close {
+            position: fixed;
+            top: 20px; right: 30px;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            z-index: 10000;
+            background: none;
+            border: none;
+            line-height: 1;
+        }
+        .ss-lightbox-close:hover { color: #52b788; }
         /* MODRINTH FULL SCREEN DOWNLOAD MODAL */
         .modal-fullscreen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -1006,7 +1087,6 @@
         .slider-track {
             display: flex;
             transition: transform 0.7s cubic-bezier(0.77, 0, 0.18, 1);
-            will-change: transform;
         }
         .slide {
             min-width: 100%;
@@ -1546,6 +1626,7 @@
 
 <div class="container">
     <header>
+        <img src="images/site.png" alt="" class="hero-bg-img" onerror="this.style.display='none'">
         <h1>Minecraft Premium Resurslar Markazi</h1>
         <p>Bu yerda oʻzingiz uchun koʻplab premium modlar, shaderlar va tekstura paketlarini daxshatli tezlikda topasiz!</p>
     </header>
@@ -1947,6 +2028,15 @@
                 <i class="fa-solid fa-circle-play"></i> <span id="fsDlInstallTitle">Как установить</span>
             </div>
             <ol class="dl-install-steps" id="fsDlInstallSteps"></ol>
+        </div>
+
+
+        <!-- SCREENSHOTS -->
+        <div class="ss-section" id="ssSection" style="display:none">
+            <div class="dl-fs-section-title">
+                <i class="fa-solid fa-images"></i> <span>Screenshots</span>
+            </div>
+            <div class="ss-grid" id="ssGrid"></div>
         </div>
 
         <!-- COMMENTS -->
@@ -2726,6 +2816,19 @@
         return (VERSION_DATES[lang] || VERSION_DATES['uz'])[date] || date;
     }
 
+
+    const RESOURCE_SCREENSHOTS = {
+        "bsl":          ["images/bsl1.png", "images/bsl2.jpg"],
+        "complementary":["images/complementary1.png", "images/complementary2.png"],
+        "voxels":       ["images/voxels1.png", "images/voxels2.webp"],
+        "mellow":       ["images/mellow1.jfif", "images/mellow2.jfif"],
+        "makeup":       ["images/make-up1.jpg", "images/make-up2.webp"],
+        "manfog":       ["images/man1.webp", "images/man2.webp"],
+        "unbound":      ["images/unbound1.jfif"],
+        "optifine":     ["images/optifine1.jpg"],
+        "sodium":       ["images/sodium1.png"],
+        "jei":          ["images/jei1.png"]
+    };
     function openDownloadFullScreen(id, title, desc, imgUrl, versions) {
         const lang = typeof currentLang !== 'undefined' ? currentLang : 'uz';
         window.INSTALL_GUIDES = ALL_INSTALL_GUIDES[lang] || ALL_INSTALL_GUIDES['uz'];
@@ -2829,6 +2932,29 @@
             list.appendChild(row);
         });
 
+
+        // Screenshots
+        const ssData = RESOURCE_SCREENSHOTS[id] || [];
+        const ssSection = document.getElementById('ssSection');
+        const ssGrid = document.getElementById('ssGrid');
+        ssGrid.innerHTML = '';
+        if (ssData.length > 0) {
+            ssSection.style.display = 'block';
+            ssData.forEach(src => {
+                const item = document.createElement('div');
+                item.className = 'ss-item';
+                const img = document.createElement('img');
+                img.loading = 'lazy';
+                img.src = src;
+                img.alt = 'Screenshot';
+                img.onclick = function(e) { e.stopPropagation(); openLightbox(src); };
+                item.appendChild(img);
+                ssGrid.appendChild(item);
+            });
+        } else {
+            ssSection.style.display = 'none';
+        }
+
         trackModalView(id);
         renderComments(id);
         document.getElementById('downloadModalFullScreen').classList.add('active');
@@ -2889,6 +3015,18 @@
         document.getElementById('fsDownloadCount').textContent = newCount;
     }
 
+
+    function openLightbox(src) {
+        document.getElementById('ssLightboxImg').src = src;
+        document.getElementById('ssLightbox').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(e) {
+        if (e.target === document.getElementById('ssLightbox')) {
+            document.getElementById('ssLightbox').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    }
     function closeFullScreenModal() {
         document.getElementById('downloadModalFullScreen').classList.remove('active');
         document.body.style.overflow = 'auto';
@@ -4048,5 +4186,11 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 </div>
 
+
+<!-- SCREENSHOTS LIGHTBOX -->
+<div class="ss-lightbox" id="ssLightbox" onclick="closeLightbox(event)">
+    <button class="ss-lightbox-close" onclick="document.getElementById('ssLightbox').classList.remove('open')">&times;</button>
+    <img id="ssLightboxImg" src="" alt="Screenshot">
+</div>
 </body>
 </html>
