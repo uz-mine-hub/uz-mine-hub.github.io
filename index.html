@@ -295,7 +295,6 @@
             position: sticky;
             top: 0;
             z-index: 900;
-            isolation: isolate;
             transition: background-color 0.3s ease;
         }
         .logo { font-size: 1.4rem; font-weight: bold; color: #52b788; cursor: pointer; display: flex; align-items: center; gap: 8px; }
@@ -1018,6 +1017,7 @@
         .slider-track {
             display: flex;
             transition: transform 0.7s cubic-bezier(0.77, 0, 0.18, 1);
+            will-change: transform;
         }
         .slide {
             min-width: 100%;
@@ -1760,8 +1760,7 @@
             background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
             opacity: 0.4;
         }
-        .navbar { position: sticky; top: 0; z-index: 900;
-            isolation: isolate; }
+        .navbar { position: sticky; top: 0; z-index: 900; }
 
     </style>
 </head>
@@ -3170,8 +3169,12 @@
 
         trackModalView(id);
         renderComments(id);
+        const scrollY = window.scrollY;
         document.getElementById('downloadModalFullScreen').classList.add('active');
+        const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
         document.body.style.overflow = 'hidden';
+        document.body.style.paddingRight = scrollBarWidth + 'px';
+        document.body.dataset.scrollY = scrollY;
     }
 
     function startDownloadAnim(btn, id) {
@@ -3230,7 +3233,8 @@
 
     function closeFullScreenModal() {
         document.getElementById('downloadModalFullScreen').classList.remove('active');
-        document.body.style.overflow = 'auto';
+        document.body.style.overflow = '';
+        document.body.style.paddingRight = '';
         try { history.pushState({}, 'Minecraft.uz', '#/'); } catch(e) {}
         try { document.title = 'Minecraft.uz — Shaderlar, Modlar, Teksturalar'; } catch(e) {}
     }
