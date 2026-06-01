@@ -960,6 +960,15 @@
             .dl-fs-title { font-size: 1.3rem; }
             .version-row { flex-direction: column; gap: 8px; align-items: flex-start; }
         }
+        /* Screenshots responsive */
+        @media (max-width: 600px) {
+            #fsScreenshotsList img {
+                min-width: 100% !important;
+                max-width: 100% !important;
+                height: 180px !important;
+            }
+        }
+
         @media (max-width: 480px) {
             .cards-grid { grid-template-columns: 1fr; }
             .card-img { height: 160px; }
@@ -1920,7 +1929,15 @@
             </div>
         </div>
 
-        <div class="dl-fs-section-title">
+        <!-- SCREENSHOTS SECTION -->
+        <div id="fsScreenshotsSection" style="display:none; margin:0 0 28px 0;">
+            <div class="dl-fs-section-title">
+                <i class="fa-solid fa-images"></i> <span>Screenshots</span>
+            </div>
+            <div id="fsScreenshotsList" style="display:flex; gap:14px; flex-wrap:wrap;"></div>
+        </div>
+
+                <div class="dl-fs-section-title">
             <i class="fa-solid fa-code-branch"></i> <span id="fsVersionsTitle">Qo'llab-quvvatlanadigan Versiyalar</span>
         </div>
 
@@ -2712,6 +2729,20 @@
         }
     };
 
+    // Screenshots ma'lumotlari
+    const RESOURCE_SCREENSHOTS = {
+        "bsl":           ["images/bsl1.png", "images/bsl2.jpg"],
+        "complementary": ["images/complementary1.png", "images/complementary2.png"],
+        "unbound":       ["images/unbound1.jfif"],
+        "makeup":        ["images/make-up1.jpg", "images/make-up2.webp"],
+        "mellow":        ["images/mellow1.jfif", "images/mellow2.jfif"],
+        "voxels":        ["images/voxels1.png", "images/voxels2.webp"],
+        "optifine":      ["images/optifine1.jpg"],
+        "sodium":        ["images/sodium1.png"],
+        "manfog":        ["images/man1.webp", "images/man2.webp"],
+        "jei":           ["images/jei1.png"]
+    };
+
     const DOWNLOAD_BTN_TEXT = { uz: 'Yuklab Olish', ru: 'Скачать', en: 'Download' };
     const UPDATED_TEXT = { uz: 'Yangilangan', ru: 'Обновлено', en: 'Updated' };
 
@@ -2828,6 +2859,31 @@
                 </div>`;
             list.appendChild(row);
         });
+
+        // Screenshots
+        const screenshots = RESOURCE_SCREENSHOTS[id] || [];
+        const ssSection = document.getElementById('fsScreenshotsSection');
+        const ssList = document.getElementById('fsScreenshotsList');
+        if (screenshots.length > 0) {
+            ssSection.style.display = 'block';
+            ssList.innerHTML = screenshots.map(src =>
+                `<img loading="lazy" src="${src}" alt="Screenshot" style="
+                    flex:1;
+                    min-width:calc(50% - 7px);
+                    max-width:calc(50% - 7px);
+                    height:220px;
+                    object-fit:cover;
+                    border-radius:12px;
+                    border:1px solid var(--border-color);
+                    cursor:pointer;
+                    transition:transform 0.2s;
+                " onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'"
+                   onclick="window.open(this.src,'_blank')">`
+            ).join('');
+        } else {
+            ssSection.style.display = 'none';
+            ssList.innerHTML = '';
+        }
 
         trackModalView(id);
         renderComments(id);
