@@ -294,7 +294,7 @@
             border-bottom: 2px solid var(--border-color);
             position: sticky;
             top: 0;
-            z-index: 900;
+            z-index: 100;
             transition: background-color 0.3s ease;
         }
         .logo { font-size: 1.4rem; font-weight: bold; color: #52b788; cursor: pointer; display: flex; align-items: center; gap: 8px; }
@@ -3047,8 +3047,6 @@
             window.RESOURCE_TAGS = {"mc-launcher": ["Launcher", "Official", "Java Edition", "Bedrock", "Microsoft", "Free"], "bsl": ["Shader", "OptiFine", "Iris", "Realistic", "High Quality", "Shadows", "Reflections"], "complementary": ["Shader", "OptiFine", "Iris", "Balanced", "Atmosphere", "Lightweight"], "jei": ["Mod", "Forge", "Fabric", "Utility", "Recipes", "QoL", "Popular"], "sodium": ["Mod", "Fabric", "Performance", "FPS Boost", "Open Source", "Optimization"], "optifine": ["Mod", "Optimization", "Shader Support", "HD Textures", "FPS Boost", "Standalone"], "makeup": ["Shader", "OptiFine", "Iris", "Lightweight", "Fast", "FPS Friendly", "Low-End PC"], "mellow": ["Shader", "OptiFine", "Iris", "Pastel", "Lightweight", "Eye-Friendly", "Creative"], "manfog": ["Mod", "Forge", "Horror", "Atmospheric", "Survival", "Scary", "Adventure"], "unbound": ["Shader", "OptiFine", "Iris", "Cinematic", "Reflections", "High Quality", "Screenshot"], "voxels": ["Shader", "Iris", "Fabric", "Voxel", "Ray Tracing", "Colorful", "Advanced"], "glowingores": ["Texture Pack", "Vanilla", "Mining", "Glowing", "Lightweight", "Utility", "Dark Mode"]};
         }
         currentResourceId = id;
-        // URL update for SEO
-        try { history.pushState({modId: id}, title, '#/mods/' + id); } catch(e) {}
         try { document.title = title + ' - Minecraft.uz'; } catch(e) {}
         document.getElementById('fsDlTitle').textContent = title;
         document.getElementById('fsDlDesc').textContent = desc;
@@ -3169,12 +3167,11 @@
 
         trackModalView(id);
         renderComments(id);
-        const scrollY = window.scrollY;
-        document.getElementById('downloadModalFullScreen').classList.add('active');
-        const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
+        const _sbw = window.innerWidth - document.documentElement.clientWidth;
         document.body.style.overflow = 'hidden';
-        document.body.style.paddingRight = scrollBarWidth + 'px';
-        document.body.dataset.scrollY = scrollY;
+        document.body.style.paddingRight = _sbw + 'px';
+        document.getElementById('downloadModalFullScreen').classList.add('active');
+        document.getElementById('downloadModalFullScreen').scrollTop = 0;
     }
 
     function startDownloadAnim(btn, id) {
@@ -3235,7 +3232,6 @@
         document.getElementById('downloadModalFullScreen').classList.remove('active');
         document.body.style.overflow = '';
         document.body.style.paddingRight = '';
-        try { history.pushState({}, 'Minecraft.uz', '#/'); } catch(e) {}
         try { document.title = 'Minecraft.uz — Shaderlar, Modlar, Teksturalar'; } catch(e) {}
     }
 
